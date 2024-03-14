@@ -1,6 +1,5 @@
 <?php
 include('page_includes/index_header.php');
-// Done By Abir
 ?>
 
 <div class="container">
