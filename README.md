@@ -47,7 +47,7 @@ To use RenewBiz, simply sign in or register for an account. Buyers can browse an
 
 ## Contributing
 
-Main Contributors are Abir Hossain, Saba Rubaia, Shah Md Abdullah Al saud.
+Main Contributors are Abir Hossain,Sadia Nawshin, Saba Rubaia, Shah Md Abdullah Al saud.
 
 ## Download
 To download paste the link to your <b> Git Bash </b> <br>
