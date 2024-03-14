@@ -51,4 +51,4 @@ Main Contributors are Abir Hossain, Saba Rubaia, Shah Md Abdullah Al saud.
 
 ## Download
 To download paste the link to your <b> Git Bash </b> <br>
-```https://github.com/AbirCodes/RenewBiz.git```
+```git clone https://github.com/AbirCodes/RenewBiz.git```
