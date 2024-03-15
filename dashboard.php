@@ -1,5 +1,6 @@
 <?php 
 include('page_includes/dashboard_header.php')
+//setting global
 ?>
 
 <!-- Main Content -->
