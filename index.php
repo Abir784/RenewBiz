@@ -1,4 +1,5 @@
 <?php
+//nothing
 include('page_includes/index_header.php');
 ?>
 
