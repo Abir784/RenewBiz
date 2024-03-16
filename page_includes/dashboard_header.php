@@ -56,6 +56,11 @@
                 Add Product
               </a>
             </li>
+            <li class="nav-item">
+              <a href="../product/show_product.php" class="nav-link active">
+                Show Product
+              </a>
+            </li>
           </ul>
         </div>
       </li>
