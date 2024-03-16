@@ -92,7 +92,6 @@ $products=mysqli_query($dbconnect,$product_select);
                   <path d="M17.076,19.2,12,16.14,6.924,19.2l1.344-5.772L3.792,9.546l5.9-.5L12,3.6l2.3,5.442,5.9.5-4.476,3.882Z" transform="translate(-3.792 -3.6)" fill="#ffffff"/>
                 </svg></span> 4.8</small></div>
                 <a href="#" class="py-2 mb-md-4 muse-animation has-height"><img src="images/product/<?=$product['image']?>" alt="img"></a>
-                <a href="#" class="py-2 mb-md-4 muse-animation has-height"><img src="assets/img/templates/headphone2.jpg" alt="img"></a>
                 <?php if(isset($_SESSION['login_done']) and ($_SESSION['login_done']==1)){?>
                   <a href="#" class="">
                 <?php } elseif(isset($_SESSION['login_done']) and ($_SESSION['login_done']==2)){?>
