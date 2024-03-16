@@ -1,4 +1,11 @@
 <?php
+// saud bhai bhalo manush
+//abir biye kor
+//ami shakkhi dibo
+//sadia bhalo moto note korbe
+//ami nite collect korbo
+//saba password change kor
+// na hoile ami hack korbo id:3
 include('page_includes/index_header.php');
 
 
