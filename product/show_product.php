@@ -80,7 +80,7 @@ $products=mysqli_query($dbconnect,$product_select_query);
                         <?php }?>
                         <td><a href="delete.php?id=<?=$product['id']?>" class="btn btn-danger" id="alertButton">Delete</a></td>
                         <td><a href="edit.php?id=<?=$product['id']?>" class="btn btn-primary"> Edit </a></td>
-                        <td><a href="" class="btn btn-info"> Inventory </a></td>
+                        <td><a href="add_inventory.php?id=<?=$product['id']?>" class="btn btn-info"> Inventory </a></td>
                     </tr>
                     <?php } ?>
                 </tbody>

@@ -26,7 +26,7 @@ $categories=mysqli_query($dbconnect,$category_select_query);
             <a href="#" class="back-arrow bg-white circle circle-sm shadow-dark-80 rounded mb-0"><img src="../assets/svg/icons/chevrons-left1.svg" alt="Chevrons"></a>
             <div class="ps-0 ps-md-3">
               <h1 class="h4 mb-0">
-                Add Product
+                 Product
               </h1>
             </div>
           </div>
@@ -61,7 +61,7 @@ $categories=mysqli_query($dbconnect,$category_select_query);
       <div class="col-lg-12">
         <div class="bg-white rounded-12 shadow-dark-80 mb-3" data-aos="fade-up" data-aos-delay="100">
           <div class="border-bottom border-gray-200 px-4 px-md-5 py-4">
-            <h5 class="mb-0">Product info</h5>
+            <h5 class="mb-0">Add Product </h5>
           </div>
           <div class="px-4 px-md-5 py-4">
             <form action="post.php" method="post" enctype="multipart/form-data"> 
