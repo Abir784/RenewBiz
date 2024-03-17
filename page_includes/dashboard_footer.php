@@ -6,6 +6,9 @@
 <script src="../assets/vendor/highcharts/mapdata/countries/us/us-all.js"></script>
 <script src="../assets/vendor/simplebar/dist/simplebar.min.js"></script>
 <script src="../assets/js/theme-custom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
 //Muse Chart Radius JavaScript
 Highcharts.wrap(Highcharts.seriesTypes.column.prototype, 'translate', function (proceed) {
