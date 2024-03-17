@@ -18,7 +18,7 @@ $product=mysqli_fetch_assoc($product_select_query_result);
 
 ?>
 
-<!-- Main Content -->
+
 <div class="main-content">
   <div class="header p-0 p-md-3">
     <div class="container-fluid">
@@ -143,9 +143,6 @@ $product=mysqli_fetch_assoc($product_select_query_result);
           </div>
         </div>
 </section>
-
-
-
 
 
 <?php

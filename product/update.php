@@ -3,8 +3,6 @@ session_start();
 include '../db.php';
 
 
-
-
 $field_names = ["name"=>"Product Name required", "description"=>"Description required", "price"=>"Price required",'category'=>'Category Need to be Added'];
 
 $error =[];
