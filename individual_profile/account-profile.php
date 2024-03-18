@@ -8,8 +8,9 @@ $role=$_SESSION['login_done'];
 
 //buyer
 if ($role == 2){
-  $if_exists="SELECT EXISTS (SELECT FROM buyer WHERE user_id = '$id')";
-  $exists_result=mysqli_query($dbconnect,$if_exists);
+  $if_exists="SELECT EXISTS (SELECT FROM buyer WHERE user_id = '$id') as buyer_exists";
+  $exists_result_done=mysqli_query($dbconnect,$if_exists);
+  $exists_result=mysqli_fetch_assoc($exists_result_done)['buyer_exists'];
   if ($exists_result){
     $buyer_select_query="SELECT * FROM buyer b, user u WHERE b.user_id = u.user_id";
     $buyer_select_query_result=mysqli_query($dbconnect,$buyer_select_query);
@@ -17,8 +18,9 @@ if ($role == 2){
   }
 //seller
 }else{
-  $if_exists="SELECT EXISTS (SELECT FROM seller WHERE user_id = '$id')";
-  $exists_result=mysqli_query($dbconnect,$if_exists);
+  $if_exists="SELECT EXISTS (SELECT FROM seller WHERE user_id = '$id') as seller_exists";
+  $exists_result_done=mysqli_query($dbconnect,$if_exists);
+  $exists_result=mysqli_fetch_assoc($exists_result_done)['seller_exists'];
 if ($exists_result){
     $seller_select_query="SELECT * FROM seller s, user u WHERE s.user_id = u.user_id";
     $seller_select_query_result=mysqli_query($dbconnect,$seller_select_query);
