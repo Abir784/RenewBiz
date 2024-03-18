@@ -3,13 +3,8 @@ include '../session_check.php';
 include '../page_includes/dashboard_header.php';
 include '../db.php';
 $user_id=$_SESSION['login_user_id'];
-//$product_select_query="SELECT * FROM product WHERE user_id='$user_id'";
-$product_select_query="SELECT p.name AS p_name, c.name AS category_name,p.price AS price,p.image AS product_image,p.status AS p_status ,p.description AS p_description  FROM product p INNER JOIN Category c ON p.category_id = c.id WHERE user_id=$user_id";
+$product_select_query="SELECT p.id,p.name AS p_name, c.name AS category_name,p.price AS price,p.image AS product_image,p.status AS p_status ,p.description AS p_description  FROM product p INNER JOIN Category c ON p.category_id = c.id WHERE user_id=$user_id";
 $products=mysqli_query($dbconnect,$product_select_query);
-// foreach($products as $product){
-//     print_r($product);
-// }
-// die();
 
 ?>
 <div class="main-content">
@@ -65,7 +60,7 @@ $products=mysqli_query($dbconnect,$product_select_query);
                         <th>Price</th>
                         <th>Description</th>
                         <th>Status</th>
-                        <th>Action</th>
+                        <th colspan="3" class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -79,11 +74,13 @@ $products=mysqli_query($dbconnect,$product_select_query);
                         <td><?=$product['price']?></td>
                         <td><?=$product['p_description']?></td>
                         <?php if($product['p_status']==1) {?>
-                        <td><a href="" class="btn btn-success">Live</a></td>
+                        <td><a href="status_change.php?id=<?=$product['id']?>" class="btn btn-success">Live</a></td>
                         <?php } else {?>
-                        <td><a href="" class="btn btn-danger">Offline</a></td>
+                        <td><a href="status_change.php?id=<?=$product['id']?>" class="btn btn-danger">Offline</a></td>
                         <?php }?>
-                        <td><a href="" class="btn btn-secondary"> Actions</a></td>
+                        <td><a href="delete.php?id=<?=$product['id']?>" class="btn btn-danger" id="alertButton">Delete</a></td>
+                        <td><a href="edit.php?id=<?=$product['id']?>" class="btn btn-primary"> Edit </a></td>
+                        <td><a href="add_inventory.php?id=<?=$product['id']?>" class="btn btn-info"> Inventory </a></td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -97,18 +94,20 @@ $products=mysqli_query($dbconnect,$product_select_query);
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
 <?php
 include '../page_includes/dashboard_footer.php';
 
 ?>
+<?php if(isset($_SESSION['delete_done'])) {?>
+<script>
+  $(document).ready(function(){
+    Swal.fire({
+    position: "top-end",
+    icon: "success",
+    title: "Deleted Successfully",
+    showConfirmButton: false,
+    timer: 750
+      });
+});
+</script>
+<?php } unset($_SESSION['delete_done'])?>

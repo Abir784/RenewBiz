@@ -10,13 +10,15 @@ $user=mysqli_fetch_assoc($user_query);
 //getting category 
 $category_select_query="SELECT * FROM category";
 $categories=mysqli_query($dbconnect,$category_select_query);
-
-
-
+// getting existing datas.
+$id=$_GET['id'];
+$product_select_query="SELECT p.id,p.name AS p_name,p.category_id as category_id, c.name AS category_name,p.price AS price ,p.description AS p_description  FROM product p INNER JOIN Category c ON p.category_id = c.id WHERE p.id=$id";
+$product_select_query_result=mysqli_query($dbconnect,$product_select_query);
+$product=mysqli_fetch_assoc($product_select_query_result);
 
 ?>
 
-<!-- Main Content -->
+
 <div class="main-content">
   <div class="header p-0 p-md-3">
     <div class="container-fluid">
@@ -26,7 +28,7 @@ $categories=mysqli_query($dbconnect,$category_select_query);
             <a href="#" class="back-arrow bg-white circle circle-sm shadow-dark-80 rounded mb-0"><img src="../assets/svg/icons/chevrons-left1.svg" alt="Chevrons"></a>
             <div class="ps-0 ps-md-3">
               <h1 class="h4 mb-0">
-                 Product
+                Edit Product
               </h1>
             </div>
           </div>
@@ -61,21 +63,21 @@ $categories=mysqli_query($dbconnect,$category_select_query);
       <div class="col-lg-12">
         <div class="bg-white rounded-12 shadow-dark-80 mb-3" data-aos="fade-up" data-aos-delay="100">
           <div class="border-bottom border-gray-200 px-4 px-md-5 py-4">
-            <h5 class="mb-0">Add Product </h5>
+            <h5 class="mb-0">Product info</h5>
           </div>
           <div class="px-4 px-md-5 py-4">
-            <form action="post.php" method="post" enctype="multipart/form-data"> 
+            <form action="update.php" method="post" enctype="multipart/form-data"> 
+                <input type="hidden" name="id" value="<?=$id?>">
               <?php if(isset($_SESSION['success'])) {?>
                 <div class="alert alert-success" role="alert">
                   <?=$_SESSION['success']?>
                 </div>
-
               <?php }unset($_SESSION['success']) ?>
               <div class="row">
                   <div class="col-md-6">
                     <div class="mb-4">
                       <label class="form-label form-label-lg">Product Name</label>
-                      <input type="text" class="form-control form-control-xl"  name="name">
+                      <input type="text" class="form-control form-control-xl" value="<?=$product['p_name']?>"  name="name">
                     </div>
                       <?php if(isset($_SESSION['error']['name'])) {?>
                         <div class="alert alert-danger" role="alert">
@@ -87,7 +89,7 @@ $categories=mysqli_query($dbconnect,$category_select_query);
                     <div class="mb-4">
                       <label class="form-label form-label-lg">Product Category </label>
                       <select name="category" id="" class="form-control form-control-xl">
-                         <option value="">--Select Category--</option>
+                         <option  value="<?=$product['category_id']?>"><?=$product['category_name']?></option>
                          <?php foreach($categories as $category) {?>
 
                           <option value="<?=$category['id']?>"><?=$category['name']?></option>
@@ -104,7 +106,7 @@ $categories=mysqli_query($dbconnect,$category_select_query);
                   <div class="col-md-12">
                     <div class="mb-4">
                       <label class="form-label form-label-lg">Description</label>
-                      <textarea name="description" rows="3" class="form-control form-control-xl" placeholder="Message"> </textarea>
+                      <textarea name="description" rows="3" class="form-control form-control-xl"  value="<?=$product['p_description']?>" placeholder="Message"> <?=$product['p_description']?> </textarea>
                       <?php if(isset($_SESSION['error']['description'])) {?>
                         <div class="alert alert-danger" role="alert">
                           <?=$_SESSION['error']['description']?>
@@ -123,7 +125,7 @@ $categories=mysqli_query($dbconnect,$category_select_query);
                 <div class="col-md-6">
                   <div class="mb-4">
                     <label class="form-label form-label-lg">Product Price (per unit)</label>
-                    <input type="number" class="form-control form-control-xl" name="price">
+                    <input type="number" class="form-control form-control-xl" value="<?=$product['price']?>" name="price">
                   </div>
                   <?php if(isset($_SESSION['error']['price'])) {?>
                         <div class="alert alert-danger" role="alert">
@@ -141,16 +143,6 @@ $categories=mysqli_query($dbconnect,$category_select_query);
           </div>
         </div>
 </section>
-
-
-
-
-
-
-
-
-
-
 
 
 <?php

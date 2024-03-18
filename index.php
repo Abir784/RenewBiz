@@ -216,7 +216,7 @@ $products=mysqli_query($dbconnect,$product_select);
               <div class="rounded-6 bg-light-100 px-4 pt-4 pb-5 position-relative">
                 <a href="#" class="py-2 muse-animation has-height"><img src="assets/img/templates/new-arrival1.jpg" alt="img"></a>
                 <?php if(isset($_SESSION['login_done']) and ($_SESSION['login_done']==1)){?>
-                  <a href="#" class="">
+                  <a href="#" class="add-cart">
                 <?php } elseif(isset($_SESSION['login_done']) and ($_SESSION['login_done']==2)){?>
                   <a href="#" class="add-cart">
                 <?php } else{?>

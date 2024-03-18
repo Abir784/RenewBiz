@@ -7,11 +7,13 @@
 <meta name="author" content="Muse">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <!-- Muse Favicon -->
-<link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
+<link href="../favicon.ico" rel="shortcut icon" type="image/x-icon">
 <!-- Muse Plugins CSS -->
 <link href="../assets/vendor/simplebar/dist/simplebar.min.css" rel="stylesheet" type="text/css" media="all">
 <!-- Muse Theme CSS -->
 <link href="../assets/css/theme.min.css" rel="stylesheet" type="text/css" media="all">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+ 
 </head>
 <body class="bg-gray-100 dashboard-template" id="mainBox">
 
