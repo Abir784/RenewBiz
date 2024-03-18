@@ -37,7 +37,7 @@ $categories=mysqli_query($dbconnect,$category_select_query);
                 <span class="avatar-status avatar-sm-status avatar-danger">&nbsp;</span>
               </a>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><a class="dropdown-item" href="../individual_profile/account-profile.php">Profile</a></li>
                 <li><a class="dropdown-item" href="#">Settings</a></li>
                 <li><a class="dropdown-item" href="../login/logout.php">Logout</a></li>
               </ul>
