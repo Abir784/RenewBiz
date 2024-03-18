@@ -1,4 +1,8 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -61,12 +65,16 @@
 </head>
 <body>
   <div class="signup-form">
-    <h2>Sign Up</h2>
-    <form action="db.php" method="post">
+    <h2>Sign Up </h2> 
+    <?php if(isset($_SESSION['error1'])){ ?>
+          <div class="alert alert-danger" ><?=$_SESSION['error1']?></div>
+          <?php }unset($_SESSION['error1'])?>
+
+    <form action="post_signup.php" method="post">
       
    
-      <input type="email" name="email" placeholder="Email" required>
-      <input type="password" name="password" placeholder="Password" required>
+      <input type="email" name="email" placeholder="Email required" >
+      <input type="password" name="password" placeholder="Password required" >
       <label for="remember-me"><input type="checkbox" id="remember-me" name="remember"> Remember Me</label>
       <button type="submit">Sign Up</button>
     </form>
