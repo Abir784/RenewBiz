@@ -75,6 +75,7 @@ if ($role == 2){
   <section class="muse-section py-4 py-md-5" data-aos="fade-up" data-aos-delay="100">
     <div class="muse-profile rounded-12">
       <img src="../assets/img/pages/account-profile.jpg" class="rounded-12 w-100" alt="Account Profile">
+
       <a href="#" class="btn btn-sm btn-light position-absolute">Change</a>
     </div>
   </section>
@@ -115,7 +116,7 @@ if ($role == 2){
               <li>
                 <a href="account-payment.html">Payment</a>
               </li>
-              
+
             </ul>
             <div class="border-top border-gray-200 p-3">
               <a href="#" class="btn btn-sm btn-primary">Log Out</a>
@@ -137,10 +138,6 @@ if ($role == 2){
                 </div>
               <?php }unset($_SESSION['success']) ?>
         
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="mb-4">
-                    <label class="form-label form-label-lg">Full name</label>
                     <input type = "text" class="form-control" name="name" value="<?=$edit['name']?>">
                   </div>
                   <?php if(isset($_SESSION['error']['name'])) {?>
@@ -360,9 +357,6 @@ if ($role == 2){
 <?php
 include '../page_includes/dashboard_footer.php';
 ?>
-
-
-
 
 
 
