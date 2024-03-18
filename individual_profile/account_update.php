@@ -2,9 +2,14 @@
 include '../session_check.php';
 include '../page_includes/dashboard_header.php';
 include '../db.php';
-$id=$_SESSION['login_user_id'];
-$user_select_query= "SELECT * FROM user WHERE id='$id'";
-$user_query=mysqli_query($dbconnect,$user_select_query);
-$user=mysqli_fetch_assoc($user_query);
+$name = $_POST['name'];
+$email = $_POST['email'];
+$address = $_POST['address'];
+$phn_no = $_POST['phn_no'];
+$business_name = $_POST['business_name'];
+$business_industry = $_POST['business_industry'];
+?>
 
+<?php
+include '../page_includes/dashboard_footer.php';
 ?>
