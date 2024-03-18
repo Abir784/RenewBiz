@@ -37,6 +37,10 @@ session_start();
         <?php if(isset($_SESSION['error'])){ ?>
           <div class="alert alert-danger" ><?=$_SESSION['error']?></div>
           <?php }unset($_SESSION['error'])?>
+          <?php if(isset($_SESSION['success'])){ ?>
+          <div class="alert alert-success" ><?=$_SESSION['success']?></div>
+          <?php }unset($_SESSION['success'])?>
+
         <form class="pt-2"  action="post.php" method="post">
           <div class="mb-4">
             <label class="form-label form-label-lg">Email</label>
@@ -53,9 +57,11 @@ session_start();
           </div>
         </form>
       </div>
+      <p class="mb-0">Don't have an account yet? <a href="../buyer_reg/buyer_reg.php" class="text-secondary font-weight-bold">Sign up as buyer</a></p>
     </div>
   </div>
 </div>
+
   
 <!-- Muse Javascript Plugins -->
 <script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
