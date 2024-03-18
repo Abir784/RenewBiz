@@ -4,22 +4,26 @@ include '../page_includes/dashboard_header.php';
 include '../db.php';
 //profile page
 $id=$_SESSION['login_user_id'];
-$role=$_SESSION['login_done'];
+$user_select_query="SELECT role FROM user WHERE id=$id";
+$user_select_query_result=mysqli_query($dbconnect,$user_select_query);
+$role=mysqli_fetch_assoc($user_select_query_result);
 
 //buyer
 if ($role == 2){
-  $if_exists="SELECT EXISTS (SELECT FROM buyer WHERE user_id = '$id')";
-  $exists_result=mysqli_query($dbconnect,$if_exists);
-  if ($exists_result){
+  $if_exists="SELECT EXISTS (SELECT * FROM buyer WHERE user_id = '$id') as buyer";
+  $exists_result_done=mysqli_query($dbconnect,$if_exists);
+  $exists_result=mysqli_fetch_assoc($exists_result_done);
+  if ($exists_result['buyer']){
     $buyer_select_query="SELECT * FROM buyer b, user u WHERE b.user_id = u.user_id";
     $buyer_select_query_result=mysqli_query($dbconnect,$buyer_select_query);
     $edit=mysqli_fetch_assoc($buyer_select_query_result);
   }
 //seller
 }else{
-  $if_exists="SELECT EXISTS (SELECT FROM seller WHERE user_id = '$id')";
-  $exists_result=mysqli_query($dbconnect,$if_exists);
-if ($exists_result){
+  $if_exists="SELECT EXISTS (SELECT * FROM seller WHERE user_id = '$id') as seller";
+  $exists_result_done=mysqli_query($dbconnect,$if_exists);
+  $exists_result=mysqli_fetch_assoc($exists_result_done);
+if ($exists_result['seller']){
     $seller_select_query="SELECT * FROM seller s, user u WHERE s.user_id = u.user_id";
     $seller_select_query_result=mysqli_query($dbconnect,$seller_select_query);
     $edit=mysqli_fetch_assoc($seller_select_query_result);
@@ -71,7 +75,7 @@ if ($exists_result){
   </section>
 
   <!-- Muse Section, Pt 4 -->
-  <?php if($exists_result) {?>
+  <?php if($exists_result['seller']) {?>
   <section class="muse-section pt-4">
     <div class="row">
       <div class="col-lg-3">
