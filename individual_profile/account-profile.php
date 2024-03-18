@@ -187,7 +187,7 @@ if ($exists_result){
                 <div class="col-md-6">
                   <div class="mb-4">
                     <label class="form-label form-label-lg">Business Industry</label>
-                    <input type = "business_industry" class="form-control" name="business_industry" value="<?=$edit['emaibusiness_industry']?>">
+                    <input type = "business_industry" class="form-control" name="business_industry" value="<?=$edit['business_industry']?>">
                   </div>
                   <?php if(isset($_SESSION['error']['business_industry'])) {?>
                     <div class="alert alert-danger" role="alert">
