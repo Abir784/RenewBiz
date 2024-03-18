@@ -1,7 +1,7 @@
 <?php
 session_start();
 include '../db.php';
-$field_names = ["name"=>"Full Name Required","email"=>"Email Required","address"=>"Address Required","phn_no"=>"Phone Number Required","business_name"=>"Business Nane Required","business_industry"=>"Business Industry Required"]
+$field_names = ["name"=>"Full Name Required","email"=>"Email Required","address"=>"Address Required","phn_no"=>"Phone Number Required","business_name"=>"Business Nane Required","business_industry"=>"Business Industry Required"];
 $error = [];
 foreach($field_names as $key=>$value){
     if (empty($_POST[$key])){
