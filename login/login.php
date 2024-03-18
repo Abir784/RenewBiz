@@ -58,9 +58,11 @@ session_start();
           </div>
         </form>
       </div>
+      <p class="mb-0">Don't have an account yet? <a href="../buyer_reg/buyer_reg.php" class="text-secondary font-weight-bold">Sign up as buyer</a></p>
     </div>
   </div>
 </div>
+
   
 <!-- Muse Javascript Plugins -->
 </body>
