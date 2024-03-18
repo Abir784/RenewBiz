@@ -9,6 +9,7 @@ $after_assoc= mysqli_fetch_assoc($select_query_result);
 $num_rows=mysqli_num_rows($select_query_result);
 
 
+
 if ($num_rows==1){
     if(password_verify($password,$after_assoc['password'])){
         $_SESSION['login_user_id']=$after_assoc['id'];
@@ -17,12 +18,12 @@ if ($num_rows==1){
         $_SESSION['role']='role check';
         header('location:../dashboard/dashboard.php');
     }else{
-        $_SESSION['error']='Incorrect Credentials';
+        $_SESSION['error']='Incorrect pass Credentials';
         header('location:login.php');
         
     }
 }else{
-    $_SESSION['error']='Incorrect Credentials';
+    $_SESSION['error']='Incorrect email Credentials';
     header('location:login.php');
     
 }
