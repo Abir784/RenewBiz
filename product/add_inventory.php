@@ -7,11 +7,16 @@ $id=$_GET['id'];
 $product_select_query="SELECT p.id,p.name AS p_name, c.name AS category_name,p.price AS price,p.image AS product_image,p.description AS p_description  FROM product p INNER JOIN Category c ON p.category_id = c.id WHERE p.id=$id";
 $products=mysqli_query($dbconnect,$product_select_query);
 $product=mysqli_fetch_assoc($products);
-
-
-
+//if exists in Inventory
+$if_inventory_exists="SELECT EXISTS(SELECT * FROM inventory WHERE product_id = '$id') as product_exists";
+$inventory_exists=mysqli_query($dbconnect,$if_inventory_exists);
+$quantity=0;
+if(mysqli_fetch_assoc($inventory_exists)['product_exists']){
+  $inventory="SELECT weight FROM inventory WHERE product_id = '$id'";
+  $inventory_result=mysqli_query($dbconnect,$inventory);
+  $quantity=mysqli_fetch_assoc($inventory_result)['weight'];
+}
 ?>
-
 <div class="main-content">
   <div class="header p-0 p-md-3">
     <div class="container-fluid">
@@ -63,10 +68,10 @@ $product=mysqli_fetch_assoc($products);
                             <img src="../images/product/<?=$product['product_image']?>"  width="180px" height="180px" class="rounded float-start ml-2" alt="Product Image">
                             <div class="card-body">
 
-                            <table >
+                            <table class="table table-borderless">
                               <thead>
                               <tr>
-                                <td style="padding-right:350px;"><h5 class="card-title">Product Name:</h5></td>
+                                <td><h5 class="card-title">Product Name:</h5></td>
                                 <td><h5 class="card-title" >Category:</h5></td>
                               </tr>
                               </thead>
@@ -75,12 +80,20 @@ $product=mysqli_fetch_assoc($products);
                                 <td><?=$product['p_name']?> </td>
                                 <td><?=$product['category_name']?></td>
                               </tr>
-                              <tr>
-                                <td>
-                                  <p class="card-text"><b>Description:</b> <?=$product['p_description']?></p>
+                              <tr >
+                                <td >
+                                  <p class="card-text"><b>Description:</b><br> <?=$product['p_description']?></p>
                                 </td>
-                                <td> 
-                                    <p class="card-text"><b>Price:</b> <?=$product['price']?> Tk</p>
+                                <td > 
+                                    <p class="card-text"><b>Price:</b> <br><?=$product['price']?> Tk (per Kg) </p>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td >
+                                  <p class="card-text"><b>In-Stock:</b><br> <?=$quantity?> Kg's</p>
+                                </td>
+                                <td > 
+                                    <p class="card-text"></p>
                                 </td>
                               </tr>
                               </tbody>
@@ -88,13 +101,13 @@ $product=mysqli_fetch_assoc($products);
                             </table>
                             </div>
                           </div>
-                          <form action="#" method="post" class="ml-3">
-                            <input type="hidden" value="<?=$product['p_id']?>" name="id">
+                          <form action="inventory_post.php" method="post" class="ml-3">
+                            <input type="hidden" value="<?=$product['id']?>" name="id" >
                             <div class="form-group">
                               <label for="weight">Weight (in kg):</label>
-                              <input type="number" class="form-control" id="weight" name="weight" min="0" step="0.01" required>
+                              <input type="number" class="form-control" name="weight" min="0" step="0.01" required>
                             </div>
-                            <button type="submit" class="btn btn-primary mb-5">Submit</button>
+                            <button type="submit" class="btn btn-primary mb-5">Add</button>
                           </form>
                         </div>
                 </div>
