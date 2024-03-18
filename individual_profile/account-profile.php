@@ -4,17 +4,20 @@ include '../page_includes/dashboard_header.php';
 include '../db.php';
 //profile page
 $id=$_SESSION['login_user_id'];
-$user_select_query="SELECT role FROM user WHERE id=$id";
+$user_select_query="SELECT * FROM user WHERE id=$id";
 $user_select_query_result=mysqli_query($dbconnect,$user_select_query);
-$role=mysqli_fetch_assoc($user_select_query_result);
+$user=mysqli_fetch_assoc($user_select_query_result);
+$role=$user['role'];
 
 //buyer
 if ($role == 2){
   $if_exists="SELECT EXISTS (SELECT * FROM buyer WHERE user_id = '$id') as buyer";
   $exists_result_done=mysqli_query($dbconnect,$if_exists);
   $exists_result=mysqli_fetch_assoc($exists_result_done);
+  
   if ($exists_result['buyer']){
-    $buyer_select_query="SELECT * FROM buyer b, user u WHERE b.user_id = u.user_id";
+    $exists_result=$exists_result['buyer'];
+    $buyer_select_query="SELECT * FROM buyer WHERE user_id = '$id'";
     $buyer_select_query_result=mysqli_query($dbconnect,$buyer_select_query);
     $edit=mysqli_fetch_assoc($buyer_select_query_result);
   }
@@ -23,8 +26,10 @@ if ($role == 2){
   $if_exists="SELECT EXISTS (SELECT * FROM seller WHERE user_id = '$id') as seller";
   $exists_result_done=mysqli_query($dbconnect,$if_exists);
   $exists_result=mysqli_fetch_assoc($exists_result_done);
-if ($exists_result['seller']){
-    $seller_select_query="SELECT * FROM seller s, user u WHERE s.user_id = u.user_id";
+
+  if ($exists_result['seller']){
+    $exists_result=$exists_result['seller'];
+    $seller_select_query="SELECT * FROM seller WHERE user_id = '$id'";
     $seller_select_query_result=mysqli_query($dbconnect,$seller_select_query);
     $edit=mysqli_fetch_assoc($seller_select_query_result);
   }
@@ -75,7 +80,7 @@ if ($exists_result['seller']){
   </section>
 
   <!-- Muse Section, Pt 4 -->
-  <?php if($exists_result['seller']) {?>
+  <?php if($exists_result) {?>
   <section class="muse-section pt-4">
     <div class="row">
       <div class="col-lg-3">
@@ -110,12 +115,7 @@ if ($exists_result['seller']){
               <li>
                 <a href="account-payment.html">Payment</a>
               </li>
-              <li>
-                <a href="account-friends.html">Friends</a>
-              </li>
-              <li>
-                <a href="account-security.html">Security</a>
-              </li>
+              
             </ul>
             <div class="border-top border-gray-200 p-3">
               <a href="#" class="btn btn-sm btn-primary">Log Out</a>
@@ -152,7 +152,7 @@ if ($exists_result['seller']){
                 <div class="col-md-6">
                   <div class="mb-4">
                     <label class="form-label form-label-lg">Email</label>
-                    <input type = "email" class="form-control" name="email" value="<?=$edit['email']?>">
+                    <input type = "email" class="form-control" name="email" value="<?=$user['email']?>" read-only>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -214,6 +214,7 @@ if ($exists_result['seller']){
       </div>
     </div>
   </section>
+  
 
 
   <?php } else{ ?>
@@ -251,12 +252,7 @@ if ($exists_result['seller']){
               <li>
                 <a href="account-payment.html">Payment</a>
               </li>
-              <li>
-                <a href="account-friends.html">Friends</a>
-              </li>
-              <li>
-                <a href="account-security.html">Security</a>
-              </li>
+              
             </ul>
             <div class="border-top border-gray-200 p-3">
               <a href="#" class="btn btn-sm btn-primary">Log Out</a>
