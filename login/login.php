@@ -41,8 +41,7 @@ session_start();
         <form class="pt-2"  action="post.php" method="post">
           <div class="mb-4">
             <label class="form-label form-label-lg">Email</label>
-            <input 
-            me="email" type="text" class="form-control form-control-lg" value="">
+            <input name="email" type="text" class="form-control form-control-lg" value="">
           </div>
           <div class="mb-4">
             <label class="form-label form-label-lg">Password</label>
