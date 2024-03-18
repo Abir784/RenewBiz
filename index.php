@@ -1,5 +1,5 @@
 <?php
-
+//abir er dosh
 include('page_includes/index_header.php');
 include 'db.php';
 $product_select='SELECT image,name,price FROM product WHERE status=1';

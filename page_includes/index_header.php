@@ -145,8 +145,11 @@
               <li><a class="dropdown-item" href="snippets/index.html">Snippets <span class="badge badge-success fs-11 py-1 px-2 ms-1 rounded text-uppercase">Build</span></a></li>
             </ul>
           </li>
+          
         </ul>
-        <a href="javascript:void(0);" class="btn btn-lg btn-success my-3 my-lg-0">Buy Now</a>
+        <a href="javascript:void(0);" class="btn btn-success my-2 my-lg-0">Buy Now</a>
+        <a href="dashboard/dashboard.php" class="btn btn-primary">Dashboard</a>
+        
       </div>
     </nav>
   </div>
