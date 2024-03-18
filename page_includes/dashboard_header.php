@@ -108,8 +108,11 @@
         </a>
       </li>
     </ul>
-    <div class="mt-3 mt-md-auto mb-3 signout d-grid">
+    
+    <!--<div class="mt-3 mt-md-auto mb-3 signout d-grid">-->
+    <div class="col-md-12 py-2">
       <a href="#" class="btn btn-primary btn-lg"><img src="../assets/img/dashboard/cart-outline.svg" alt="Cart"><span>Buy Now</span></a>
     </div>
+    
   </div>
 </nav>
