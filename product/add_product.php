@@ -11,9 +11,6 @@ $user=mysqli_fetch_assoc($user_query);
 $category_select_query="SELECT * FROM category";
 $categories=mysqli_query($dbconnect,$category_select_query);
 
-
-
-
 ?>
 
 <!-- Main Content -->
@@ -132,7 +129,7 @@ $categories=mysqli_query($dbconnect,$category_select_query);
                        <?php }unset($_SESSION['error']['price']) ?>
                 </div>
                 </div>
-              
+
                 <div class="col-md-12 py-2">
                   <button type="submit" class="btn btn-lg btn-primary">Submit</button>
                 </div>
