@@ -1,13 +1,11 @@
 <?php
 session_start();
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Login - Muse Documentation | Muse - Responsive Website Template</title>
+<title>Login / Registration to RenewBiz</title>
 <meta charset="UTF-8">
 <meta name="description" content="Muse">
 <meta name="keywords" content="Muse">
@@ -37,10 +35,14 @@ session_start();
         <?php if(isset($_SESSION['error'])){ ?>
           <div class="alert alert-danger" ><?=$_SESSION['error']?></div>
           <?php }unset($_SESSION['error'])?>
+          <?php if(isset($_SESSION['success'])){ ?>
+          <div class="alert alert-success" ><?=$_SESSION['success']?></div>
+          <?php }unset($_SESSION['success'])?>
         <form class="pt-2"  action="post.php" method="post">
           <div class="mb-4">
             <label class="form-label form-label-lg">Email</label>
-            <input name="email" type="text" class="form-control form-control-lg" value="">
+            <input 
+            me="email" type="text" class="form-control form-control-lg" value="">
           </div>
           <div class="mb-4">
             <label class="form-label form-label-lg">Password</label>
@@ -49,7 +51,10 @@ session_start();
           <div class="d-grid">
             <button type="submit" class="btn btn-xl btn-primary">Sign in</button>
           </div>
-            </div>
+          <div class="mt-3">
+          <p>Don't have an account? <a href="signup.php">Sign Up as Seller</a></p>
+
+            
           </div>
         </form>
       </div>
@@ -58,6 +63,5 @@ session_start();
 </div>
   
 <!-- Muse Javascript Plugins -->
-<script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
