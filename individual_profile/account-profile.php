@@ -4,7 +4,7 @@ include '../page_includes/dashboard_header.php';
 include '../db.php';
 //profile page
 $id=$_SESSION['login_user_id'];
-$user_select_query="SELECT * FROM user WHERE id=$id";
+$user_select_query="SELECT * FROM user WHERE id='$id'";
 $user_select_query_result=mysqli_query($dbconnect,$user_select_query);
 $user=mysqli_fetch_assoc($user_select_query_result);
 $role=$user['role'];
@@ -100,7 +100,6 @@ if ($role == 2){
               <!--<a href="#" class="small text-gray-600">Change photo</a> -->
               <div class="mb-4">
                 <label class="form-label form-label-lg">Change Photo</label>
-                <input type="file" class="form-control form-control-xl" name="change_photo">
               </div>
             </div>
             <button class="navbar-toggler collapsed ms-auto d-block d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav2" aria-controls="navbarNav2" aria-expanded="false" aria-label="Toggle navigation">
@@ -135,7 +134,7 @@ if ($role == 2){
           <div class="border-bottom border-gray-200 px-4 px-md-5 py-4">
             <h5 class="mb-0">Basic info</h5>
             <div class="px-4 px-md-5 py-4">
-            <form action="account_insert.php" method="post" enctype="multipart/form-data">
+            <form action="account_update.php" method="post" enctype="multipart/form-data">
               <?php if(isset($_SESSION['success'])){?>
                 <div class="alert alert-success" role="alert">
                   <?=$_SESSION['success']?>
@@ -147,6 +146,7 @@ if ($role == 2){
                   <div class="mb-4">
                     <label class="form-label form-label-lg">Full name</label>
                     <input type = "text" class="form-control" name="name" value="<?=$edit['name']?>">
+                    <input type = "hidden" class="form-control" name="id" value="<?=$edit['id']?>">
                   </div>
                   <?php if(isset($_SESSION['error']['name'])) {?>
                     <div class="alert alert-danger" role="alert">
@@ -174,7 +174,7 @@ if ($role == 2){
                 <div class="col-md-6">
                   <div class="mb-4">
                     <label class="form-label form-label-lg">Phone Number</label>
-                    <input type = "phn_no" class="form-control" name="phn_no" value="<?=$edit['phone_number']?>">
+                    <input type ="text" class="form-control" name="phn_no" value="<?=$edit['phone_number']?>">
                   </div>
                   <?php if(isset($_SESSION['error']['phn_no'])) {?>
                     <div class="alert alert-danger" role="alert">
@@ -227,7 +227,7 @@ if ($role == 2){
   <?php } else{ ?>
     
 
-
+<!----->
    <section class="muse-section pt-4">
     <div class="row">
       <div class="col-lg-3">
@@ -244,7 +244,6 @@ if ($role == 2){
               <!--<a href="#" class="small text-gray-600">Change photo</a> -->
               <div class="mb-4">
                 <label class="form-label form-label-lg">Change Photo</label>
-                <input type="file" class="form-control form-control-xl" name="change_photo">
               </div>
             </div>
             <button class="navbar-toggler collapsed ms-auto d-block d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav2" aria-controls="navbarNav2" aria-expanded="false" aria-label="Toggle navigation">
@@ -297,12 +296,6 @@ if ($role == 2){
                       <?=$_SESSION['error']['name']?>
                     </div>
                   <?php }unset($_SESSION['error']['name']) ?>
-                </div>
-                <div class="col-md-6">
-                  <div class="mb-4">
-                    <label class="form-label form-label-lg">Email</label>
-                    <input type = "email" class="form-control" name="email" value="">
-                  </div>
                 </div>
                 <div class="col-md-6">
                   <div class="mb-4">
