@@ -9,7 +9,7 @@ $user_select_query_result=mysqli_query($dbconnect,$user_select_query);
 $user=mysqli_fetch_assoc($user_select_query_result);
 $role=$user['role'];
 
-//buyer
+//buyer 12-36 baad, 85 baad
 if ($role == 2){
   $if_exists="SELECT EXISTS (SELECT * FROM buyer WHERE user_id = '$id') as buyer";
   $exists_result_done=mysqli_query($dbconnect,$if_exists);
@@ -83,7 +83,6 @@ if ($role == 2){
 
   <!-- Muse Section, Pt 4 -->
   <?php if($data) {?>
-
     <section class="muse-section pt-4">
     <div class="row">
       <div class="col-lg-3">
@@ -99,7 +98,7 @@ if ($role == 2){
               </svg></h5>
               <!--<a href="#" class="small text-gray-600">Change photo</a> -->
               <div class="mb-4">
-                <label class="form-label form-label-lg">Change Photo</label>
+                <label class="form-label form-label-lg"><a href="change_photo.php">Change Photo</a></label>
               </div>
             </div>
             <button class="navbar-toggler collapsed ms-auto d-block d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav2" aria-controls="navbarNav2" aria-expanded="false" aria-label="Toggle navigation">
@@ -119,7 +118,7 @@ if ($role == 2){
                 <a href="account-profile.html" class="active">General</a>
               </li>
               <li>
-                <a href="#">Change Password</a>
+                <a href="change_photo.php">Change Password</a>
               </li>
               
             </ul>
@@ -220,15 +219,11 @@ if ($role == 2){
       </div>
     </div>
   </section>
-
-
-
-
   <?php } else{ ?>
     
 
 <!----->
-   <section class="muse-section pt-4">
+    <section class="muse-section pt-4">
     <div class="row">
       <div class="col-lg-3">
         <aside class="muse-aside mb-4" data-aos="fade-up" data-aos-delay="100">
@@ -243,7 +238,7 @@ if ($role == 2){
               </svg></h5>
               <!--<a href="#" class="small text-gray-600">Change photo</a> -->
               <div class="mb-4">
-                <label class="form-label form-label-lg">Change Photo</label>
+                <label class="form-label form-label-lg"><a href="change_photo.php">Change Photo</a></label>
               </div>
             </div>
             <button class="navbar-toggler collapsed ms-auto d-block d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav2" aria-controls="navbarNav2" aria-expanded="false" aria-label="Toggle navigation">
@@ -263,7 +258,7 @@ if ($role == 2){
                 <a href="account-profile.html" class="active">General</a>
               </li>
               <li>
-                <a href="#">Change Password</a>
+                <a href="change_photo.php">Change Password</a>
               </li>
               
             </ul>
@@ -349,9 +344,9 @@ if ($role == 2){
             </form>
           </div>
           </div>
-         
-       </div>
-       <?php }?>
+          
+        </div>
+        <?php }?>
           
         </div>
         <br>
@@ -364,7 +359,6 @@ if ($role == 2){
 
 </div>
 </div>
-
 
 
 <?php
