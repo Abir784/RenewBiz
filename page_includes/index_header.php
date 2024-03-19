@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -147,9 +146,11 @@
           </li>
           
         </ul>
-        <a href="javascript:void(0);" class="btn btn-success my-2 my-lg-0">Buy Now</a>
-        <a href="dashboard/dashboard.php" class="btn btn-primary">Dashboard</a>
-        
+        <?php if(isset($_SESSION['login_user_id'])) {?>
+        <a href="dashboard/dashboard.php" class="btn btn-success my-2 my-lg-0"> Go to Dashboard</a>
+        <?php }else { ?>
+        <a href="dashboard/dashboard.php" class="btn btn-success my-2 my-lg-0"> Sign-in</a>
+        <?php } ?>
       </div>
     </nav>
   </div>
