@@ -45,7 +45,7 @@
   </div>
   <div class="navbar-collapse">
     <ul class="navbar-nav mb-2" id="accordionExample" data-simplebar>
-      <?php if(isset($_SESSION['login_done'])  and $_SESSION['login_done']==1) {?>
+      <?php if(isset($_SESSION['login_done']) and $_SESSION['login_done']==1) {?>
         
       <li class="nav-item">
         <a class="nav-link collapsed" href="#sidebarLanding" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLanding">

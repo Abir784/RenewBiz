@@ -24,8 +24,6 @@ if(count($error)==0){
     date_default_timezone_set('Asia/Dhaka');
     $created_at = date("d-m-y h:i:s");
     if ($role == 2){
-        echo 'skjdnf';
-        die();
         $query = "INSERT INTO buyer(user_id,name,address,phone_number,business_name,business_industry,created_at) VALUES('$id','$name','$address','$phn_no','$business_name','$business_industry','$created_at')";
         $insert_query_result = mysqli_query($dbconnect,$query);
     }else{
@@ -34,7 +32,7 @@ if(count($error)==0){
 
     }
     $_SESSION['success']='Inserted Successfully';
-    header('location:../dashboard/dashboard.php');
+    header('location:account-profile.php');
 }else{
     $_SESSION['error']=$error;
     header('location:account-profile.php');
