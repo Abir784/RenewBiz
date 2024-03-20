@@ -21,7 +21,7 @@
 <header class="muse-header py-0 py-sm-2">
   <div class="container">
     <nav class="navbar navbar-expand-lg">
-      <a class="navbar-brand" href="javascript:void(0);">
+      <a class="navbar-brand" href="index.php">
         <img src="assets/svg/brand/logo.svg" alt="Muse">
       </a>
       <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
