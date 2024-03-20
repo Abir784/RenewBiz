@@ -34,7 +34,7 @@ if(count($error)==0){
 
     }
     $_SESSION['success']='Inserted Successfully';
-    header('location:../dashboard/dashboard.php');
+    header('location:account-profile.php');
 }else{
     $_SESSION['error']=$error;
     header('location:account-profile.php');
