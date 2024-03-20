@@ -12,7 +12,6 @@ foreach($field_names as $key=>$value){
 if(count($error)==0){
     $id=$_POST['id'];
     $name = $_POST['name'];
-    $email = $_POST['email'];
     $address = $_POST['address'];
     $phn_no = $_POST['phn_no'];
     $business_name = $_POST['business_name'];

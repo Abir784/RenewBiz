@@ -1,4 +1,5 @@
 <?php
+$page='Profile';
 include '../session_check.php';
 include '../page_includes/dashboard_header.php';
 include '../db.php';
@@ -9,7 +10,7 @@ $user_select_query_result=mysqli_query($dbconnect,$user_select_query);
 $user=mysqli_fetch_assoc($user_select_query_result);
 $role=$user['role'];
 
-//buyer
+//buyer 12-36 baad, 85 baad
 if ($role == 2){
   $if_exists="SELECT EXISTS (SELECT * FROM buyer WHERE user_id = '$id') as buyer";
   $exists_result_done=mysqli_query($dbconnect,$if_exists);
@@ -37,60 +38,21 @@ if ($role == 2){
 }
 ?>
 <!-- Main Content -->
-<div class="main-content">
-  <div class="header p-0 p-md-3">
-    <div class="container-fluid">
-      <div class="header-body">
-        <div class="row align-items-center">
-          <div class="col d-flex align-items-center">
-            <a href="#" class="back-arrow bg-white circle circle-sm shadow-dark-80 rounded mb-0"><img src="../assets/svg/icons/chevrons-left1.svg" alt="Chevrons"></a>
-            <div class="ps-0 ps-md-3">
-              <h1 class="h4 mb-0">
-                Profile
-              </h1>
-            </div>
-          </div>
-          <div class="col-auto d-flex flex-wrap align-items-center">
-            <a href="#" class="text-dark h5 mb-0 notification dnd"><img src="../assets/svg/icons/notification.svg" style="width:20px;" alt="Notification"></a>
-            <a href="#" class="text-dark ms-4 h5 mb-0 ps-2"><img src="../assets/svg/icons/setting1.svg" alt="Setting"></a>
-            <a href="#" class="text-dark ms-4 h5 mb-0 ps-2"><img src="../assets/svg/icons/hamburger1.svg" alt="Hamburger"></a>
-            <div class="dropdown d-none d-md-inline-block ps-2">
-              <a href="#" class="avatar avatar-sm avatar-circle avatar-border-sm ms-4" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenuButton">
-                <img class="avatar-img" src="../assets/img/templates/avatar1.svg" alt="Avatar">
-                <span class="avatar-status avatar-sm-status avatar-danger">&nbsp;</span>
-              </a>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="../individual_profile/account-profile.php">Profile</a></li>
-                <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><a class="dropdown-item" href="../login/logout.php">Logout</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <hr class="my-3 bg-gray-200">
   <div class="container">
-  <!-- Muse Section, Py 4, Py Md 5 -->
   <section class="muse-section py-4 py-md-5" data-aos="fade-up" data-aos-delay="100">
-    <div class="muse-profile rounded-12">
-      <img src="../assets/img/pages/account-profile.jpg" class="rounded-12 w-100" alt="Account Profile">
+  <img src="../assets/img/pages/account-profile.jpg" class="rounded-12 w-100" alt="Account Profile">
 
-      <a href="#" class="btn btn-sm btn-light position-absolute">Change</a>
-    </div>
   </section>
 
   <!-- Muse Section, Pt 4 -->
   <?php if($data) {?>
-
     <section class="muse-section pt-4">
     <div class="row">
       <div class="col-lg-3">
         <aside class="muse-aside mb-4" data-aos="fade-up" data-aos-delay="100">
           <div class="border-bottom border-gray-200 pb-3 d-flex align-items-center">
             <span class="avatar avatar-lg avatar-circle avatar-border-lg">
-              <img class="avatar-img" src="../assets/img/pages/avatar1.svg" alt="Avatars">
+              <img class="avatar-img" src="../images/user/<?=$user['image']?>" alt="Avatars">
             </span>
             <div class="ps-2">
               <h5 class="mb-0"><?=$edit['name']?> <svg class="ms-1" data-name="Group 1" xmlns="http://www.w3.org/2000/svg" width="16" height="15.25" viewBox="0 0 24 23.25">
@@ -99,7 +61,7 @@ if ($role == 2){
               </svg></h5>
               <!--<a href="#" class="small text-gray-600">Change photo</a> -->
               <div class="mb-4">
-                <label class="form-label form-label-lg">Change Photo</label>
+                <label class="form-label form-label-lg"><a href="change_photo.php">Change Photo</a></label>
               </div>
             </div>
             <button class="navbar-toggler collapsed ms-auto d-block d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav2" aria-controls="navbarNav2" aria-expanded="false" aria-label="Toggle navigation">
@@ -119,7 +81,7 @@ if ($role == 2){
                 <a href="account-profile.html" class="active">General</a>
               </li>
               <li>
-                <a href="#">Change Password</a>
+                <a href="change_photo.php">Change Password</a>
               </li>
               
             </ul>
@@ -220,21 +182,17 @@ if ($role == 2){
       </div>
     </div>
   </section>
-
-
-
-
   <?php } else{ ?>
     
 
 <!----->
-   <section class="muse-section pt-4">
+    <section class="muse-section pt-4">
     <div class="row">
       <div class="col-lg-3">
         <aside class="muse-aside mb-4" data-aos="fade-up" data-aos-delay="100">
           <div class="border-bottom border-gray-200 pb-3 d-flex align-items-center">
             <span class="avatar avatar-lg avatar-circle avatar-border-lg">
-              <img class="avatar-img" src="../assets/img/pages/avatar1.svg" alt="Avatars">
+              <img class="avatar-img" src="../images/user/<?=$user['image']?>" alt="Avatars">
             </span>
             <div class="ps-2">
               <h5 class="mb-0"><?php if($role==1){ echo 'Seller';}else{ echo 'Buyer';}?> <svg class="ms-1" data-name="Group 1" xmlns="http://www.w3.org/2000/svg" width="16" height="15.25" viewBox="0 0 24 23.25">
@@ -243,7 +201,7 @@ if ($role == 2){
               </svg></h5>
               <!--<a href="#" class="small text-gray-600">Change photo</a> -->
               <div class="mb-4">
-                <label class="form-label form-label-lg">Change Photo</label>
+                <label class="form-label form-label-lg"><a href="change_photo.php">Change Photo</a></label>
               </div>
             </div>
             <button class="navbar-toggler collapsed ms-auto d-block d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav2" aria-controls="navbarNav2" aria-expanded="false" aria-label="Toggle navigation">
@@ -260,10 +218,10 @@ if ($role == 2){
           <div class="collapse navbar-collapse d-lg-block" id="navbarNav2">
             <ul class="sidebar-nav pt-3">
               <li>
-                <a href="account-profile.html" class="active">General</a>
+                <a href="account-profile.php" class="active">General</a>
               </li>
               <li>
-                <a href="#">Change Password</a>
+                <a href="change_photo.php">Change Password</a>
               </li>
               
             </ul>
@@ -349,9 +307,9 @@ if ($role == 2){
             </form>
           </div>
           </div>
-         
-       </div>
-       <?php }?>
+          
+        </div>
+        <?php }?>
           
         </div>
         <br>
@@ -359,12 +317,10 @@ if ($role == 2){
       </div>
     </div>
   </section>
-
   
 
+  
 </div>
-</div>
-
 
 
 <?php
