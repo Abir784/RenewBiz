@@ -18,7 +18,7 @@ $product=mysqli_fetch_assoc($select_product_query_result);
       <p class="big mt-1 lh-lg"><?=$product['description']?></p>
       <p class="h3 mt-4"><?=$product['price']?> Tk</p>
       <div class="mt-2">
-        <a href="#" class="btn btn-xl btn-dark font-weight-semibold text-uppercase me-2 px-5"><span class="px-md-5">Add to Cart</span></a>
+        <a href="cart/cart_post.php?id=<?=$id?>" class="btn btn-xl btn-dark font-weight-semibold text-uppercase me-2 px-5"><span class="px-md-5">Add to Cart</span></a>
       </div>
       <small class="text-uppercase text-gray-600 d-block my-3">FREE SHIPPING</small>
     </div>
