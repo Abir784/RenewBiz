@@ -94,9 +94,9 @@ $products=mysqli_query($dbconnect,$product_select);
                 </svg></span> 4.8</small></div>
                 <a href="#" class="py-2 mb-md-4 muse-animation has-height"><img src="images/product/<?=$product['image']?>" alt="img"></a>
                 <?php if(isset($_SESSION['login_done']) and ($_SESSION['login_done']==1)){?>
-                  <a href="#" class="">
-                <?php } elseif(isset($_SESSION['login_done']) and ($_SESSION['login_done']==2)){?>
                   <a href="#" class="add-cart">
+                <?php } elseif(isset($_SESSION['login_done']) and ($_SESSION['login_done']==2)){?>
+                  <a href="cart/cart.php" class="add-cart">
                 <?php } else{?>
                   <a href="login/login.php" class="add-cart">
                 <?php }?>
@@ -107,12 +107,15 @@ $products=mysqli_query($dbconnect,$product_select);
                 </a>
               </div>
               <figcaption class="pt-3">
-                <h4 class="mb-sm-3 title-box"><a href="add_to_cart.php?id=<?=$product['id']?>"><?=$product['name']?></a></h4>
+                <h4 class="mb-sm-3 title-box">
+                <a href="add_to_cart.php?id=<?=$product['id']?>"><?=$product['name']?>
+                </a>
+                </h4>
                 <span class="h5"><?=$product['price']?> Tk</span>
               </figcaption>
             </figure>
               </div>
-        <?php }?>
+          <?php }?>
         
  
         </div>

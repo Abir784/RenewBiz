@@ -1,13 +1,10 @@
-
 <?php 
 $page= "My cart";
 include '../session_check.php';
-
 include '../page_includes/dashboard_header.php'
 ?> 
 <div class="container mb-5">
   <!-- Muse Section, Py 4, Py Md 5 -->
- 
   <!-- Muse Section, Pt 4 -->
   <section class="muse-section pt-4 mb-5">
         <div class="row">
@@ -65,7 +62,6 @@ include '../page_includes/dashboard_header.php'
       </div>
     </div>
   </section>
-
 
 <?php 
 include '../page_includes/dashboard_footer.php'
