@@ -107,12 +107,15 @@ $products=mysqli_query($dbconnect,$product_select);
                 </a>
               </div>
               <figcaption class="pt-3">
-                <h4 class="mb-sm-3 title-box"><a href="add_to_cart.php?id=<?=$product['id']?>"><?=$product['name']?></a></h4>
+                <h4 class="mb-sm-3 title-box">
+                <a href="add_to_cart.php?id=<?=$product['id']?>"><?=$product['name']?>
+                </a>
+                </h4>
                 <span class="h5"><?=$product['price']?> Tk</span>
               </figcaption>
             </figure>
               </div>
-        <?php }?>
+          <?php }?>
         
  
         </div>

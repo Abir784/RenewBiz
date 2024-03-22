@@ -146,8 +146,11 @@
           </li>
           
         </ul>
-        <?php if(isset($_SESSION['login_user_id'])) {?>
-        <a href="dashboard/dashboard.php" class="btn btn-success my-2 my-lg-0"> Go to Dashboard</a>
+        <?php if(isset($_SESSION['login_user_id']) and ($_SESSION['login_done']==2)) {?>
+        <a href="cart/cart.php" class="btn btn-primary my-2 my-lg-0">My Cart</a>
+        <a href="dashboard/dashboard.php" class="btn btn-success my-2 my-lg-0">Dashboard</a>
+        <?php } elseif(isset($_SESSION['login_user_id']) and ($_SESSION['login_done']==1)) {?>
+        <a href="dashboard/dashboard.php" class="btn btn-success my-2 my-lg-0">Dashboard</a>
         <?php }else { ?>
         <a href="dashboard/dashboard.php" class="btn btn-success my-2 my-lg-0"> Sign-in</a>
         <?php } ?>
