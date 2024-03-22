@@ -32,7 +32,7 @@ $role=$user['role'];
     <img src="../assets/svg/icons/hamburger1.svg" alt="img">
     <img src="../assets/svg/icons/close1.svg" style="width:20px;" class="menu-close" alt="img">
   </a>
-  <a class="navbar-brand mx-auto d-block my-0 my-md-4" href="#">
+  <a class="navbar-brand mx-auto d-block my-0 my-md-4" href="../index.php">
     <img src="../assets/svg/brand/logo.svg" alt="Muse">
     <img src="../assets/svg/brand/muse-icon.svg" class="muse-icon" alt="Muse">
   </a>
@@ -110,9 +110,11 @@ $role=$user['role'];
         <div class="collapse collapse-box" id="sidebarDashboards" data-parent="#accordionExample">
           <ul class="nav nav-sm flex-column">
             <li class="nav-item">
-              <a href="#" class="nav-link">Light Mode</a>
+              <a href="../cart/cart.php" class="nav-link">My Cart</a>
             </li>
             <li class="nav-item">
+
+              <a href="../cart/wishlist.php" class="nav-link">My Wishlist</a>
               <a href="#" class="nav-link">Dark Mode</a>
             </li>
           </ul>
