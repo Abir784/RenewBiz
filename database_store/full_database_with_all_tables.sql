@@ -47,7 +47,7 @@ CREATE TABLE `buyer` (
 
 CREATE TABLE `buyer_feedback` (
   `id` int(11) NOT NULL,
-  `seller_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
   `buyer_id` int(11) DEFAULT NULL,
   `comment` text DEFAULT NULL,
   `rating` int(11) DEFAULT NULL,

@@ -40,8 +40,7 @@ if ($role == 2){
 <!-- Main Content -->
   <div class="container">
   <section class="muse-section py-4 py-md-5" data-aos="fade-up" data-aos-delay="100">
-  <img src="../assets/img/pages/account-profile.jpg" class="rounded-12 w-100" alt="Account Profile">
-
+    <img src="../assets/img/pages/account-profile.jpg" class="rounded-12 w-100" alt="Account Profile">
   </section>
 
   <!-- Muse Section, Pt 4 -->

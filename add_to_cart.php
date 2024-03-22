@@ -31,3 +31,17 @@ $product=mysqli_fetch_assoc($select_product_query_result);
 <?php
 include 'page_includes/index_footer.php';
 ?>
+
+<?php if(isset($_SESSION['success'])) {?>
+<script>
+  $(document).ready(function(){
+    Swal.fire({
+    position: "top-end",
+    icon: "success",
+    title: "<?=$_SESSION['success']?>",
+    showConfirmButton: false,
+    timer: 750
+      });
+});
+</script>
+<?php } unset($_SESSION['success'])?>
