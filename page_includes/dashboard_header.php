@@ -76,9 +76,34 @@ $role=$user['role'];
         </div>
       </li>
 
-        <?php } ?>
+    <?php } ?>
+    <?php if(isset($_SESSION['login_done']) and $_SESSION['login_done']==1) {?>
+        
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLanding">
+            <img src="../assets/svg/icons/power-outline.svg" alt="Power" class="me-2"> &nbsp;Category
+          </a>
+          <div class="collapse collapse-box" id="sidebarDashboards" data-parent="#accordionExample">
+            <ul class="nav nav-sm flex-column">
+              <li class="nav-item">
+                <a href="../category/add.php" class="nav-link active">
+                  Add Category
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../category/show_category.php" class="nav-link active">
+                  Show Category
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+  
+          <?php } ?>
       
-      <li class="nav-item">
+
+      
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
           <img src="../assets/svg/icons/chart.svg" alt="Chart" class="me-2"> &nbsp;Dashboards
         </a>
@@ -88,7 +113,24 @@ $role=$user['role'];
               <a href="../cart/cart.php" class="nav-link">My Cart</a>
             </li>
             <li class="nav-item">
+
               <a href="../cart/wishlist.php" class="nav-link">My Wishlist</a>
+              <a href="#" class="nav-link">Dark Mode</a>
+            </li>
+          </ul>
+        </div>
+      </li> -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
+          <img src="../assets/svg/icons/page.svg" alt="Chart" class="me-2"> &nbsp;Pages
+        </a>
+        <div class="collapse collapse-box" id="sidebarPages" data-parent="#accordionExample">
+          <ul class="nav nav-sm flex-column">
+            <li class="nav-item">
+              <a href="#" class="nav-link">Light Mode</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">Dark Mode</a>
             </li>
           </ul>
         </div>
