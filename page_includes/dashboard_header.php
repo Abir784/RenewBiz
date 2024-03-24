@@ -32,7 +32,7 @@ $role=$user['role'];
     <img src="../assets/svg/icons/hamburger1.svg" alt="img">
     <img src="../assets/svg/icons/close1.svg" style="width:20px;" class="menu-close" alt="img">
   </a>
-  <a class="navbar-brand mx-auto d-block my-0 my-md-4" href="../index.php">
+  <a class="navbar-brand mx-auto d-block my-0 my-md-4" href="../dashboard/dashboard.php">
     <img src="../assets/svg/brand/logo.svg" alt="Muse">
     <img src="../assets/svg/brand/muse-icon.svg" class="muse-icon" alt="Muse">
   </a>
@@ -54,8 +54,7 @@ $role=$user['role'];
   </div>
   <div class="navbar-collapse">
     <ul class="navbar-nav mb-2" id="accordionExample" data-simplebar>
-      <?php if(isset($_SESSION['login_done']) and $_SESSION['login_done']==1) {?>
-        
+      <?php if(isset($_SESSION['login_done']) and $_SESSION['login_done']==1) {?> 
       <li class="nav-item">
         <a class="nav-link collapsed" href="#sidebarLanding" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLanding">
           <img src="../assets/svg/icons/power-outline.svg" alt="Power" class="me-2"> &nbsp;Product
@@ -75,10 +74,9 @@ $role=$user['role'];
           </ul>
         </div>
       </li>
+      <?php } ?>
 
-    <?php } ?>
-    <?php if(isset($_SESSION['login_done']) and $_SESSION['login_done']==1) {?>
-        
+      <?php if(isset($_SESSION['login_done']) and $_SESSION['login_done']==1) {?>
         <li class="nav-item">
           <a class="nav-link collapsed" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLanding">
             <img src="../assets/svg/icons/power-outline.svg" alt="Power" class="me-2"> &nbsp;Category
@@ -98,29 +96,27 @@ $role=$user['role'];
             </ul>
           </div>
         </li>
-  
-          <?php } ?>
+      <?php } ?>
       
 
-      
-      <!-- <li class="nav-item">
+      <?php if(isset($_SESSION['login_done']) and $_SESSION['login_done']==2) {?>
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
-          <img src="../assets/svg/icons/chart.svg" alt="Chart" class="me-2"> &nbsp;Dashboards
+          <img src="../assets/svg/icons/chart.svg" alt="Chart" class="me-2"> &nbsp;Cart and Wishlist
         </a>
         <div class="collapse collapse-box" id="sidebarDashboards" data-parent="#accordionExample">
           <ul class="nav nav-sm flex-column">
             <li class="nav-item">
-              <a href="../cart/cart.php" class="nav-link">My Cart</a>
+            <a href="../cart/cart.php" class="nav-link">My Cart</a>
             </li>
             <li class="nav-item">
-
-              <a href="../cart/wishlist.php" class="nav-link">My Wishlist</a>
-              <a href="#" class="nav-link">Dark Mode</a>
+            <a href="../cart/wishlist.php" class="nav-link">My Wishlist</a> 
             </li>
           </ul>
         </div>
-      </li> -->
-      <li class="nav-item">
+      </li>
+      <?php } ?> 
+      <!--<li class="nav-item">
         <a class="nav-link collapsed" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
           <img src="../assets/svg/icons/page.svg" alt="Chart" class="me-2"> &nbsp;Pages
         </a>
@@ -134,7 +130,7 @@ $role=$user['role'];
             </li>
           </ul>
         </div>
-      </li>
+      </li>-->
       <li class="nav-item">
         <a class="nav-link" href="#">
           <img src="../assets/svg/icons/docs.svg" alt="Paperclip" class="me-2"> &nbsp;Docs
@@ -149,7 +145,7 @@ $role=$user['role'];
     
     <!--<div class="mt-3 mt-md-auto mb-3 signout d-grid">-->
     <div class="col-md-12 py-2">
-      <a href="#" class="btn btn-primary btn-lg"><img src="../assets/img/dashboard/cart-outline.svg" alt="Cart"><span>Buy Now</span></a>
+      <a href="../index.php" class="btn btn-primary btn-lg"><img src="../assets/img/dashboard/cart-outline.svg" alt="Cart"><span>Buy Now</span></a>
     </div>
     
   </div>
