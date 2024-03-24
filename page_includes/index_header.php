@@ -21,7 +21,7 @@
 <header class="muse-header py-0 py-sm-2">
   <div class="container">
     <nav class="navbar navbar-expand-lg">
-      <a class="navbar-brand" href="javascript:void(0);">
+      <a class="navbar-brand" href="index.php">
         <img src="assets/svg/brand/logo.svg" alt="Muse">
       </a>
       <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -146,8 +146,11 @@
           </li>
           
         </ul>
-        <?php if(isset($_SESSION['login_user_id'])) {?>
-        <a href="dashboard/dashboard.php" class="btn btn-success my-2 my-lg-0"> Go to Dashboard</a>
+        <?php if(isset($_SESSION['login_user_id']) and ($_SESSION['login_done']==2)) {?>
+        <a href="cart/cart.php" class="btn btn-primary my-2 my-lg-0">My Cart</a>
+        <a href="dashboard/dashboard.php" class="btn btn-success my-2 my-lg-0">Dashboard</a>
+        <?php } elseif(isset($_SESSION['login_user_id']) and ($_SESSION['login_done']==1)) {?>
+        <a href="dashboard/dashboard.php" class="btn btn-success my-2 my-lg-0">Dashboard</a>
         <?php }else { ?>
         <a href="dashboard/dashboard.php" class="btn btn-success my-2 my-lg-0"> Sign-in</a>
         <?php } ?>

@@ -47,7 +47,7 @@ CREATE TABLE `buyer` (
 
 CREATE TABLE `buyer_feedback` (
   `id` int(11) NOT NULL,
-  `seller_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
   `buyer_id` int(11) DEFAULT NULL,
   `comment` text DEFAULT NULL,
   `rating` int(11) DEFAULT NULL,
@@ -108,6 +108,7 @@ CREATE TABLE `inventory` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 -- --------------------------------------------------------
 
