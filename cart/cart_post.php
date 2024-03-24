@@ -2,6 +2,7 @@
 session_start();
 include '../db.php';
 $id = $_GET['id'];
+
 $user_id=$_SESSION['login_user_id'];
 $if_exists="SELECT EXISTS (SELECT * FROM buyer WHERE user_id = '$user_id') as buyer";
 $exists_result_done=mysqli_query($dbconnect,$if_exists);
@@ -23,10 +24,9 @@ if ($data){
 
     //buyer id, product id exists in cart table
     if ($product_data){
-
         $query = "UPDATE carts SET quantity=quantity+1 WHERE (product_id = '$id' and buyer_id = '$bid')";
         $insert_query_result = mysqli_query($dbconnect,$query);
-        $_SESSION['success']='Added Successfully';
+        $_SESSION['success']='Added To Cart Successfully';
         header('location:../add_to_cart.php?id='.$id);
 
     //buyer id exist, product id doesnt exist in cart table
@@ -34,13 +34,13 @@ if ($data){
         
         $query = "INSERT INTO carts(product_id,quantity,buyer_id,created_at) VALUES('$id',1,'$bid','$created_at')";
         $insert_query_result = mysqli_query($dbconnect,$query);
-        $_SESSION['success']='Added Successfully';
+        $_SESSION['success']='Added to Cart Successfully';
         header('location:../add_to_cart.php?id='.$id);
     }
 
 //buyer id doesn't exists in buyer table
 }else{
+    $_SESSION['error1']="You have to Sign up as buyer to buy this product";
     header('location:../buyer_reg/buyer_reg.php');
 }
-
 ?>
