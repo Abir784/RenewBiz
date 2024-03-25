@@ -21,7 +21,7 @@ $user=mysqli_fetch_assoc($user_query);
             <h5 class="mb-0">Add Category </h5>
           </div>
           <div class="px-4 px-md-5 py-4">
-            <form action="#" method="post" enctype="multipart/form-data"> 
+            <form action="add_post.php" method="post" enctype="multipart/form-data"> 
               <?php if(isset($_SESSION['success'])) {?>
                 <div class="alert alert-success" role="alert">
                   <?=$_SESSION['success']?>
