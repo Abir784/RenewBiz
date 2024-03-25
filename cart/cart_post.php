@@ -1,6 +1,7 @@
 <?php
 session_start();
 include '../db.php';
+
 $id = $_GET['id'];
 
 $user_id=$_SESSION['login_user_id'];
@@ -8,7 +9,8 @@ $if_exists="SELECT EXISTS (SELECT * FROM buyer WHERE user_id = '$user_id') as bu
 $exists_result_done=mysqli_query($dbconnect,$if_exists);
 $exists_result=mysqli_fetch_assoc($exists_result_done);
 $data=$exists_result['buyer'];
-  
+
+
 if ($data){
     $select_query="SELECT * FROM buyer WHERE user_id='$user_id'";
     $buyer_select_query_result=mysqli_query($dbconnect,$select_query);

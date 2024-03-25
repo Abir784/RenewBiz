@@ -33,6 +33,7 @@ $grand_total=0;
             <div class="border-bottom border-gray-200 px-4 px-md-5 py-4">
                 <h5 class="mb-0">Cart info</h5>
             </div>
+            <form action="confirmed_order.php" method="post">
             <div class="container mt-5">
                 <table class="table">
                 <thead>
@@ -56,9 +57,11 @@ $grand_total=0;
                         <th scope="row"><?=$key+1?></th>
                         <th><img class="rounded-pill" width="150" height="75" src="../images/product/<?=$product['product_image']?>" alt="0.jpg"></th>
                         <td><?=$product['p_name']?></td>
-                        <td><input class="form-control" type="number" name="quantiy" value="<?=$product['quantity']?>"></td>
+                        <td><input class="form-control" type="number" name="quantiy<?=$key+1?>" value="<?=$product['quantity']?>"></td>
+                        <input type="hidden" name="id<?=$key+1?>" value="<?=$product['id']?>">
                         <td><?=$product['price']?> TK.</td>
                         <td><?=$product['price']*$product['quantity']?> TK.</td>
+                        <input type="hidden" name="total_price<?=$key+1?>" value="<?=$product['price']*$product['quantity']?>">
                         <td><a href="cart_delete.php?id=<?=$product['id']?>" class="btn btn-danger" id="alertButton">Remove</a></td>
                     
                     </tr>
@@ -74,10 +77,11 @@ $grand_total=0;
                 </tfoot>
                 </table>
                 <div class="text-right">
-                <button name="save" class="btn btn-secondary mb-3">Save</button>
-                <button name="confirm_order" class="btn btn-info mb-3">Confirm Order</button>
+                <button type="submit" name="save" class="btn btn-secondary mb-3">Save</button>
+                <button type="submit" name="confirm_order" class="btn btn-info mb-3">Confirm Order</button>
                 </div>
             </div>
+            </form>
         </div>
       </div>
     </div>
