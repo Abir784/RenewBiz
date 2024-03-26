@@ -1,6 +1,6 @@
 <?php 
 $page= "My cart";
-session_start();
+
 include '../session_check.php';
 include '../page_includes/dashboard_header.php';
 
@@ -18,8 +18,9 @@ $product_select_query="SELECT * FROM carts WHERE buyer_id='$bid'";
 $product_select_query_result=mysqli_query($dbconnect,$product_select_query);
 
 //then oi product id diye product table e join korbo and product er details anbo
-$product_details_query="SELECT p.id,p.name AS p_name,p.price AS price,p.image AS product_image FROM product p INNER JOIN Carts c ON c.product_id = p.id";
+$product_details_query="SELECT p.id,p.name AS p_name, p.price as price, p.image AS product_image, c.quantity AS quantity FROM product p, carts c WHERE c.product_id = p.id";
 $products=mysqli_query($dbconnect,$product_details_query);
+$grand_total=0;
 
 ?> 
 <div class="container mb-5">
@@ -46,36 +47,35 @@ $products=mysqli_query($dbconnect,$product_details_query);
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <th scope="row">1</th>
-                    <th><img class="rounded-pill" width="150" height="75" src="../images/product/0.jpg" alt="0.jpg"></th>
-                    <td>Product Name 1</td>
-                    <td><input class="form-control" type="number" name="quantiy"></td>
-                    <td>$10.00</td>
-                    <td>$20.00</td>
-                    <td><button class="btn btn-sm btn-danger">Remove</button></td>
+                    <?php foreach($products as $key=>$product){?>
+                    <tr> 
+                        <?php
+                        $grand_total+=($product['price']*$product['quantity']);
+
+                        ?>
+                        <th scope="row"><?=$key+1?></th>
+                        <th><img class="rounded-pill" width="150" height="75" src="../images/product/<?=$product['product_image']?>" alt="0.jpg"></th>
+                        <td><?=$product['p_name']?></td>
+                        <td><input class="form-control" type="number" name="quantiy" value="<?=$product['quantity']?>"></td>
+                        <td><?=$product['price']?> TK.</td>
+                        <td><?=$product['price']*$product['quantity']?> TK.</td>
+                        <td><a href="cart_delete.php?id=<?=$product['id']?>" class="btn btn-danger" id="alertButton">Remove</a></td>
+                    
                     </tr>
-                    <tr>
-                    <th scope="row">2</th>
-                    <th><img class="rounded-pill" width="150" height="75"src="../images/product/0.jpg" alt="0.jpg"></th>
-                    <td>Product Name 2</td>
-                    <td><input class="form-control" type="number" name="quantiy"></td>
-                    <td>$15.00</td>
-                    <td>$15.00</td>
-                    <td><button class="btn btn-sm btn-danger">Remove</button></td>
-                    </tr>
+                    <?php } ?>
+                    
                 </tbody>
                 <tfoot>
                     <tr>
-                    <td colspan="4" class="text-right">Total:</td>
-                    <td>$35.00</td>
+                    <td colspan="4" class="text-right">Grand Total:</td>
+                    <td><?=$grand_total?> TK.</td>
                     <td></td>
                     </tr>
                 </tfoot>
                 </table>
                 <div class="text-right">
-                <button class="btn btn-secondary mb-3">Save</button>
-                <button class="btn btn-info mb-3">Confirm Order</button>
+                <button name="save" class="btn btn-secondary mb-3">Save</button>
+                <button name="confirm_order" class="btn btn-info mb-3">Confirm Order</button>
                 </div>
             </div>
         </div>
