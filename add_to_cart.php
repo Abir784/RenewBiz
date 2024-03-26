@@ -4,6 +4,22 @@ include 'page_includes/index_header.php';
 include 'db.php';
 $id=$_GET['id'];
 
+$if_buyer_exists="SELECT EXISTS (SELECT * FROM buyer WHERE user_id = '$user_id') as buyer";
+$buyer_exists_result=mysqli_query($dbconnect,$if_buyer_exists);
+$exists_result=mysqli_fetch_assoc($buyer_exists_result);
+$data=$exists_result['buyer'];
+
+if ($data){
+    $if_product_exists="SELECT EXISTS (SELECT * FROM orders WHERE (product_id = '$id' and buyer_id = '$buyer_id')) as order";
+    $product_exists_result=mysqli_query($dbconnect,$if_product_exists);
+    $product_exists=mysqli_fetch_assoc($product_exists_result);
+    $product_data=$product_exists['order'];
+
+    header('location:add_to_cart.php'); 
+}
+else 
+
+
 $select_product_query="SELECT * FROM product WHERE id='$id'";
 $select_product_query_result=mysqli_query($dbconnect,$select_product_query);
 $product=mysqli_fetch_assoc($select_product_query_result);
@@ -46,7 +62,7 @@ $product=mysqli_fetch_assoc($select_product_query_result);
 .rate > input:checked ~ label:hover,
 .rate > input:checked ~ label:hover ~ label,
 .rate > label:hover ~ input:checked ~ label {
-    color: #c59b08;
+    color: #c59b08;}
 </style>
 <div class="container">
   <div class="row">

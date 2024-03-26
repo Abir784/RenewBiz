@@ -96,7 +96,7 @@ $products=mysqli_query($dbconnect,$product_select);
                 <?php if(isset($_SESSION['login_done']) and ($_SESSION['login_done']==1)){?>
                   <a href="#" class="add-cart">
                 <?php } elseif(isset($_SESSION['login_done']) and ($_SESSION['login_done']==2)){?>
-                  <a href="cart/cart.php" class="add-cart">
+                  <a href="cart/cart_post.php?id=<?=$product['id']?>" class="add-cart">
                 <?php } else{?>
                   <a href="login/login.php" class="add-cart">
                 <?php }?>
