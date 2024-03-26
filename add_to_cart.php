@@ -3,21 +3,30 @@ session_start();
 include 'page_includes/index_header.php';
 include 'db.php';
 $id=$_GET['id'];
+if(isset($_SESSION['login_user_id'])){
 
-$if_buyer_exists="SELECT EXISTS (SELECT * FROM buyer WHERE user_id = '$user_id') as buyer";
-$buyer_exists_result=mysqli_query($dbconnect,$if_buyer_exists);
-$exists_result=mysqli_fetch_assoc($buyer_exists_result);
-$data=$exists_result['buyer'];
+    $user_id=$_SESSION['login_user_id'];
 
-if ($data){
-    $if_product_exists="SELECT EXISTS (SELECT * FROM orders WHERE (product_id = '$id' and buyer_id = '$buyer_id')) as order";
-    $product_exists_result=mysqli_query($dbconnect,$if_product_exists);
-    $product_exists=mysqli_fetch_assoc($product_exists_result);
-    $product_data=$product_exists['order'];
+    $if_buyer_exists="SELECT EXISTS (SELECT * FROM buyer WHERE user_id = '$user_id') as buyer";
+    $buyer_exists_result=mysqli_query($dbconnect,$if_buyer_exists);
+    $exists_result=mysqli_fetch_assoc($buyer_exists_result);
+    $data=$exists_result['buyer'];
+    
+    if ($data){
+        
+        $if_product_exists="SELECT EXISTS (SELECT * FROM orders WHERE (user_id = '$user_id' and product_id = '$id' and status = 2)) as orders";
+        $product_exists_result=mysqli_query($dbconnect,$if_product_exists);
+        $product_exists=mysqli_fetch_assoc($product_exists_result);
+        $product_data=$product_exists['orders'];
+    
+    } else {
+        $product_data=false;
+    }
+  }
 
-    header('location:add_to_cart.php'); 
-}
-else 
+
+
+
 
 
 $select_product_query="SELECT * FROM product WHERE id='$id'";
@@ -86,15 +95,15 @@ $product=mysqli_fetch_assoc($select_product_query_result);
     </div>
   </div>
 </div>
-
+<?php if(isset($_SESSION['login_user_id']) and $product_data){ ?>
 <div class="container">
     <div class="row">
         <div class="col-lg-8">
             <h2 class="mt-5">Feedback</h2>
-            <form action="" method="post">
+            <form action="feedback/post.php" method="post">
                 <div class="form-group">
                     <label for="feedback">Your Feedback</label>
-                    <textarea name="feedback" id="feedback" class="form-control" rows="5" required></textarea>
+                    <textarea name="comment" id="feedback" class="form-control" rows="5" required></textarea>
                 </div>
                 <div class="form-class">
                   <label for="rating" class="form-control"></label>
@@ -111,10 +120,15 @@ $product=mysqli_fetch_assoc($select_product_query_result);
                     <label for="star1" title="text">1 star</label>
                   </div>
                 </div>
+                <div class="mb-3" >
+                    <button type="submit" class="form-control">submit</button>
+                </div>
+
             </form>
         </div>
     </div>
 </div>
+<?php } ?>
 <div class="container">
     <div class="row">
         <div class="col-lg-8">
