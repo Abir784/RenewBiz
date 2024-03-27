@@ -21,6 +21,7 @@ if(isset($_POST["confirm_order"])){
     $insert_query_result = mysqli_query($dbconnect,$query);
     $delete_product= "DELETE FROM carts WHERE id='$cart_id'";
     $cart_delete=mysqli_query($dbconnect,$delete_product);
+    $_SESSION['success']="Order Placed !!";
 
   }
 } elseif(isset($_POST['save'])){
@@ -34,6 +35,8 @@ if(isset($_POST["confirm_order"])){
       $created_at = date("d-m-y h:i:s");
       $query="UPDATE carts SET quantity= $quantity WHERE id=$cart_id";
       $insert_query_result = mysqli_query($dbconnect,$query);
+      $_SESSION['success']="Cart Updated !!";
+
     }
 
 }

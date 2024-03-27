@@ -5,9 +5,7 @@ include 'db.php';
 $id=$_GET['id'];
 $select_product_query="SELECT * FROM product WHERE id='$id'";
 if(isset($_SESSION['login_user_id'])){
-
     $user_id=$_SESSION['login_user_id'];
-
     $if_buyer_exists="SELECT EXISTS (SELECT * FROM buyer WHERE user_id = '$user_id') as buyer";
     $buyer_exists_result=mysqli_query($dbconnect,$if_buyer_exists);
     $exists_result=mysqli_fetch_assoc($buyer_exists_result);
@@ -40,7 +38,7 @@ if(isset($_SESSION['login_user_id'])){
   $data=$exists_result['buyer'];
   
   if ($data){
-      $if_product_exists="SELECT EXISTS (SELECT * FROM orders WHERE (user_id = '$user_id' and product_id = '$id')) as orders";
+      $if_product_exists="SELECT EXISTS (SELECT * FROM orders WHERE (user_id = '$user_id' and product_id = '$id' and status=2)) as orders";
       $product_exists_result=mysqli_query($dbconnect,$if_product_exists);
       $product_exists=mysqli_fetch_assoc($product_exists_result);
       $product_data=$product_exists['orders'];
@@ -49,10 +47,6 @@ if(isset($_SESSION['login_user_id'])){
       $product_data=false;
   }
 }
-
-
-
-
 ?>
 <style>
 *{
@@ -139,7 +133,7 @@ if(isset($_SESSION['login_user_id'])){
                   </div>
                 </div>
                 <div class="mb-3" >
-                    <button type="submit" class="form-control">submit</button>
+                    <button type="submit" class="btn btn-success">submit</button>
                 </div>
 
             </form>

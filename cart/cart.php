@@ -88,3 +88,17 @@ $grand_total=0;
 <?php 
 include '../page_includes/dashboard_footer.php'
 ?>
+
+<?php if(isset($_SESSION['success'])) {?>
+<script>
+  $(document).ready(function(){
+    Swal.fire({
+    position: "top-end",
+    icon: "success",
+    title: "<?=$_SESSION['success']?>",
+    showConfirmButton: false,
+    timer: 1050
+      });
+});
+</script>
+<?php } unset($_SESSION['success'])?>

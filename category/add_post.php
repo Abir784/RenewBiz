@@ -4,17 +4,19 @@ session_start();
 
 include '../session_check.php';
 include '../db.php';
-$field_names = ["name"=>"Category Name required"];
+$field_names = ["name"=>"Category Name required or already Exists"];
 $error =[];
+$name=$_POST["name"];
+$check_query = "SELECT * FROM category WHERE name = '$name'";
+$check_result = mysqli_query($dbconnect, $check_query);
 
 foreach($field_names as $key=>$value){
-    if (empty($_POST[$key])){
+    if (empty($_POST[$key]) or mysqli_num_rows($check_result) > 0 ){
         $error[$key] = $value;
         }
     }  
 if(count($error)==0){
     $name=$_POST['name'];
-  
     $uploaded_file=$_FILES['product_image'];
     date_default_timezone_set('Asia/Dhaka');
     $created_at = date("d-m-y h:i:s");
