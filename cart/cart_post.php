@@ -1,6 +1,7 @@
 <?php
 session_start();
 include '../db.php';
+
 $id = $_GET['id'];
 
 $user_id=$_SESSION['login_user_id'];
