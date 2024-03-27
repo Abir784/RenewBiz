@@ -96,10 +96,4 @@ if(!empty($_POST['password'])){
   }
 }
 
-
-
-
-
-
-
 ?>
