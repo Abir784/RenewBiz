@@ -2,10 +2,33 @@
 session_start();
 include 'page_includes/index_header.php';
 include 'db.php';
-$product_id=$_GET['id'];
-$select_product_query="SELECT * FROM product WHERE id='$product_id'";
+$id=$_GET['id'];
+$select_product_query="SELECT * FROM product WHERE id='$id'";
 $select_product_query_result=mysqli_query($dbconnect,$select_product_query);
 $product=mysqli_fetch_assoc($select_product_query_result);
+
+if(isset($_SESSION['login_user_id'])){
+
+  $user_id=$_SESSION['login_user_id'];
+
+  $if_buyer_exists="SELECT EXISTS (SELECT * FROM buyer WHERE user_id = '$user_id') as buyer";
+  $buyer_exists_result=mysqli_query($dbconnect,$if_buyer_exists);
+  $exists_result=mysqli_fetch_assoc($buyer_exists_result);
+  $data=$exists_result['buyer'];
+  
+  if ($data){
+      $if_product_exists="SELECT EXISTS (SELECT * FROM orders WHERE (user_id = '$user_id' and product_id = '$id')) as orders";
+      $product_exists_result=mysqli_query($dbconnect,$if_product_exists);
+      $product_exists=mysqli_fetch_assoc($product_exists_result);
+      $product_data=$product_exists['orders'];
+  
+  } else {
+      $product_data=false;
+  }
+}
+
+
+
 
 ?>
 <div class="container">

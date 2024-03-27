@@ -1,6 +1,5 @@
 <?php 
 $page= "My cart";
-session_start();
 include '../session_check.php';
 include '../page_includes/dashboard_header.php';
 
