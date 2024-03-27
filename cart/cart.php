@@ -1,12 +1,9 @@
 <?php 
 $page= "My cart";
-
 include '../session_check.php';
 include '../page_includes/dashboard_header.php';
-
 //amr id session diye dhorte hobe age
 $user_id=$_SESSION['login_user_id'];
-
 //then oi user id diye buyer table theke buyer id ante hobe
 $select_query="SELECT * FROM buyer WHERE user_id='$user_id'";
 $buyer_select_query_result=mysqli_query($dbconnect,$select_query);
@@ -91,3 +88,17 @@ $grand_total=0;
 <?php 
 include '../page_includes/dashboard_footer.php'
 ?>
+
+<?php if(isset($_SESSION['success'])) {?>
+<script>
+  $(document).ready(function(){
+    Swal.fire({
+    position: "top-end",
+    icon: "success",
+    title: "<?=$_SESSION['success']?>",
+    showConfirmButton: false,
+    timer: 1050
+      });
+});
+</script>
+<?php } unset($_SESSION['success'])?>
