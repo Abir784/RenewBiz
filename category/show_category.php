@@ -18,8 +18,8 @@ $categories = mysqli_query($dbconnect, $category_select_query);
         <div class="row">
             <div class="col-lg-12">
                 <div class="bg-white rounded-12 shadow-dark-80 mb-3" data-aos="fade-up" data-aos-delay="100">
-                    <table class="table table-light">
-                        <thead class="thead-light">
+                    <table class="table card-table table-nowrap">
+                        <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Category</th>

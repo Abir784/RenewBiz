@@ -5,6 +5,22 @@ $user_select_query="SELECT * FROM user WHERE id='$id'";
 $user_select_query_result=mysqli_query($dbconnect,$user_select_query);
 $user=mysqli_fetch_assoc($user_select_query_result);
 $role=$user['role'];
+$user_id=$user['id'];
+// joining order table with product table
+$join_product_order_table="SELECT p.user_id as sellers_user_id, o.user_id as buyers_user_id From product p,orders o WHERE (o.product_id = p.id and p.user_id = $user_id and o.status = 0)";
+$join_product_order_table_result= mysqli_query($dbconnect,$join_product_order_table);
+if ($role == 2){
+  $if_exists="SELECT EXISTS (SELECT * FROM buyer WHERE user_id = '$id') as buyer";
+  $exists_result_done=mysqli_query($dbconnect,$if_exists);
+  $exists_result=mysqli_fetch_assoc($exists_result_done);
+  $data=$exists_result['buyer'];
+//seller
+}else{
+  $if_exists="SELECT EXISTS (SELECT * FROM seller WHERE user_id = '$id') as seller";
+  $exists_result_done=mysqli_query($dbconnect,$if_exists);
+  $exists_result=mysqli_fetch_assoc($exists_result_done);
+  $data=$exists_result['seller'];
+}
 
 ?>
 <html lang="en">
@@ -54,12 +70,13 @@ $role=$user['role'];
   </div>
   <div class="navbar-collapse">
     <ul class="navbar-nav mb-2" id="accordionExample" data-simplebar>
-      <?php if(isset($_SESSION['login_done']) and $_SESSION['login_done']==1) {?> 
+      <?php if(isset($_SESSION['login_done']) and $_SESSION['login_done']==1 and $data)  {?> 
       <li class="nav-item">
         <a class="nav-link collapsed" href="#sidebarLanding" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLanding">
-          <img src="../assets/svg/icons/power-outline.svg" alt="Power" class="me-2"> &nbsp;Product
+          <img src="../assets/svg/icons/power-outline.svg" alt="Power" class="me-2"> 
+          &nbsp;Product
         </a>
-        <div class="collapse collapse-box" id="sidebarLanding" data-parent="#accordionExample">
+          <div class="collapse collapse-box" id="sidebarLanding" data-parent="#accordionExample">
           <ul class="nav nav-sm flex-column">
             <li class="nav-item">
               <a href="../product/add_product.php" class="nav-link active">
@@ -73,10 +90,9 @@ $role=$user['role'];
             </li>
           </ul>
         </div>
-      </li>
       <?php } ?>
 
-      <?php if(isset($_SESSION['login_done']) and $_SESSION['login_done']==1) {?>
+      <?php if(isset($_SESSION['login_done']) and $_SESSION['login_done']==1 and $data ) {?>
         <li class="nav-item">
           <a class="nav-link collapsed" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLanding">
             <img src="../assets/svg/icons/power-outline.svg" alt="Power" class="me-2"> &nbsp;Category
@@ -99,7 +115,7 @@ $role=$user['role'];
       <?php } ?>
       
 
-      <?php if(isset($_SESSION['login_done']) and $_SESSION['login_done']==2) {?>
+      <?php if(isset($_SESSION['login_done']) and $_SESSION['login_done']==2 and $data) {?>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
           <img src="../assets/svg/icons/chart.svg" alt="Chart" class="me-2"> &nbsp;Cart and Wishlist
@@ -131,11 +147,13 @@ $role=$user['role'];
           </ul>
         </div>
       </li>-->
+      <?php if((isset($_SESSION['login_done']) and $_SESSION['login_done']==1 and $data )){?>
       <li class="nav-item">
-        <a class="nav-link" href="#">
-          <img src="../assets/svg/icons/docs.svg" alt="Paperclip" class="me-2"> &nbsp;Docs
+        <a class="nav-link" href="../order/seller_orders.php">
+          <img src="../assets/svg/icons/docs.svg" alt="Paperclip" class="me-2"> &nbsp;Orders
         </a>
       </li>
+      <?php }  ?>
       <li class="nav-item">
         <a class="nav-link" href="#">
           <img src="../assets/svg/icons/paperclip.svg" alt="Paperclip" class="me-2"> &nbsp;Snippets
@@ -165,13 +183,26 @@ $role=$user['role'];
             </div>
           </div>
           <div class="col-auto d-flex flex-wrap align-items-center">
-            <a href="#" class="text-dark h5 mb-0 notification dnd"><img src="../assets/svg/icons/notification.svg" style="width:20px;" alt="Notification"></a>
-            <a href="#" class="text-dark ms-4 h5 mb-0 ps-2"><img src="../assets/svg/icons/setting1.svg" alt="Setting"></a>
-            <a href="#" class="text-dark ms-4 h5 mb-0 ps-2"><img src="../assets/svg/icons/hamburger1.svg" alt="Hamburger"></a>
+          <?php if($role ==1){ 
+             if (mysqli_num_rows($join_product_order_table_result) > 0){  
+          ?>
+          
+          <a href="#" class="text-dark h5 mb-0 notification dnd" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenuButton"><img src="../assets/svg/icons/notification.svg" style="width:20px;" alt="Notification"  >
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item">You have got <?=mysqli_num_rows($join_product_order_table_result)?> new orders</a></li>
+            </ul>
+          <?php } else { ?>
+            <a href="#" class="text-dark h5 mb-0" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenuButton"><img src="../assets/svg/icons/notification.svg" style="width:20px;" alt="Notification"  >
+          </a>
+            <?php }?>
+          <?php } ?>
+            <!-- <a href="#" class="text-dark ms-4 h5 mb-0 ps-2"><img src="../assets/svg/icons/setting1.svg" alt="Setting"></a>
+            <a href="#" class="text-dark ms-4 h5 mb-0 ps-2"><img src="../assets/svg/icons/hamburger1.svg" alt="Hamburger"></a> -->
             <div class="dropdown d-none d-md-inline-block ps-2">
               <a href="#" class="avatar avatar-sm avatar-circle avatar-border-sm ms-4" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenuButton">
                 <img class="avatar-img" src="../images/user/<?=$user['image']?>" alt="Avatar">
-                <span class="avatar-status avatar-sm-status avatar-danger">&nbsp;</span>
+                <span class="avatar-status avatar-sm-status avatar-success">&nbsp;</span>
               </a>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                 <li><a class="dropdown-item" href="../individual_profile/account-profile.php">Profile</a></li>

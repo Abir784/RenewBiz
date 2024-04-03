@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2024 at 06:40 PM
+-- Generation Time: Mar 29, 2024 at 03:01 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -39,6 +39,14 @@ CREATE TABLE `buyer` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `buyer`
+--
+
+INSERT INTO `buyer` (`id`, `user_id`, `name`, `address`, `phone_number`, `business_name`, `business_industry`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Abir Hossain', 'Matuail Uttar Para', '01552484784', 'Sulking', 'Caligraphy', '2024-03-18 18:54:42', '2024-03-24 02:26:43'),
+(4, 10, 'Shukhi', 'Error dicta architec', '0155526222', 'Charissa Chase', 'Reiciendis earum ips', '2020-03-23 21:22:52', '2020-03-23 21:27:07');
+
 -- --------------------------------------------------------
 
 --
@@ -47,7 +55,7 @@ CREATE TABLE `buyer` (
 
 CREATE TABLE `buyer_feedback` (
   `id` int(11) NOT NULL,
-  `product_id` int(11) DEFAULT NULL,
+  `seller_id` int(11) DEFAULT NULL,
   `buyer_id` int(11) DEFAULT NULL,
   `comment` text DEFAULT NULL,
   `rating` int(11) DEFAULT NULL,
@@ -70,6 +78,13 @@ CREATE TABLE `carts` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `carts`
+--
+
+INSERT INTO `carts` (`id`, `product_id`, `quantity`, `buyer_id`, `created_at`, `updated_at`) VALUES
+(3, 1, 6, 1, '2023-03-24 03:01:35', '2024-03-23 15:04:54');
+
 -- --------------------------------------------------------
 
 --
@@ -89,11 +104,13 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `name`, `image`, `created_at`, `updated_at`) VALUES
-(1, 'Plastic', '1.jpg', '2024-03-16 15:32:36', '2024-03-16 15:33:02'),
-(2, 'Paper', '2.jpg', '2024-03-16 15:32:36', '2024-03-16 15:33:13'),
-(3, 'Glass', 'glass_image_url', '2024-03-16 15:32:36', '2024-03-16 15:32:36'),
-(4, 'Metal', 'metal_image_url', '2024-03-16 15:32:36', '2024-03-16 15:32:36'),
-(5, 'Organic', 'organic_image_url', '2024-03-16 15:32:36', '2024-03-16 15:32:36');
+(1, 'Plastic', '0.jpg', '2024-03-16 15:32:36', '2024-03-27 09:49:42'),
+(2, 'Paper', '0.jpg', '2024-03-16 15:32:36', '2024-03-27 09:49:47'),
+(3, 'Glass', '0.jpg', '2024-03-16 15:32:36', '2024-03-27 09:49:14'),
+(4, 'Metal', '0.jpg', '2024-03-16 15:32:36', '2024-03-27 09:49:20'),
+(5, 'Organic', '0.jpg', '2024-03-16 15:32:36', '2024-03-27 09:49:29'),
+(6, 'Hard Glass', '6.png', '2027-03-23 21:21:21', '2024-03-27 09:21:21'),
+(7, 'Random', '0.jpg', '2027-03-23 21:22:45', '2024-03-27 09:22:45');
 
 -- --------------------------------------------------------
 
@@ -104,11 +121,21 @@ INSERT INTO `category` (`id`, `name`, `image`, `created_at`, `updated_at`) VALUE
 CREATE TABLE `inventory` (
   `id` int(11) NOT NULL,
   `product_id` int(11) DEFAULT NULL,
+  `seller_id` int(11) NOT NULL,
   `weight` decimal(10,2) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `inventory`
+--
+
+INSERT INTO `inventory` (`id`, `product_id`, `seller_id`, `weight`, `created_at`, `updated_at`) VALUES
+(1, 5, 3, 70.00, '2018-03-23 22:09:02', '2024-03-28 18:29:22'),
+(2, 15, 3, 50.00, '2018-03-23 22:28:56', '2024-03-28 18:29:25'),
+(3, 16, 3, 25.00, '2018-03-23 22:29:15', '2024-03-28 18:29:35'),
+(4, 20, 3, 50.00, '2020-03-23 21:14:46', '2024-03-28 18:29:38');
 
 -- --------------------------------------------------------
 
@@ -152,9 +179,10 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`Id`, `user_id`, `category_id`, `name`, `status`, `description`, `image`, `price`, `created_at`, `updated_at`) VALUES
 (5, 2, 4, 'Soldering Irons', '1', '  Rerum perspiciatis   ', '0.jpg', 1100.00, '2017-03-24 06:32:07', '2024-03-17 15:53:36'),
-(15, 1, 1, 'Bottle Waste', '0', ' Sed ipsum excepturi ', '15.png', 216.00, '2017-03-23 21:26:07', '2024-03-17 10:58:22'),
+(15, 1, 1, 'Bottle Waste', '1', ' Sed ipsum excepturi ', '15.png', 216.00, '2017-03-23 21:26:07', '2024-03-18 10:29:10'),
 (16, 1, 3, 'Raymond Rush', '1', 'Do quae corporis fac', '0.jpg', 123.00, '2017-03-23 21:26:15', '2024-03-17 09:35:17'),
-(18, 1, 1, 'Cheryl Hunter', '1', 'Aut dicta commodo se', '0.jpg', 488.00, '2017-03-23 21:27:06', '2024-03-17 09:35:17');
+(18, 1, 1, 'Cheryl Hunter', '1', 'Aut dicta commodo se', '0.jpg', 488.00, '2017-03-23 21:27:06', '2024-03-17 09:35:17'),
+(20, 9, 4, 'Kalia Carver', '1', 'Ut non non facere ip', '20.png', 703.00, '2020-03-23 21:14:21', '2024-03-20 09:14:25');
 
 -- --------------------------------------------------------
 
@@ -173,6 +201,14 @@ CREATE TABLE `seller` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `seller`
+--
+
+INSERT INTO `seller` (`id`, `user_id`, `name`, `address`, `phone_number`, `business_name`, `business_industry`, `created_at`, `updated_at`) VALUES
+(3, 8, 'Leslie Oneal', 'Cupidatat deserunt e', 'Animi dolorem e', 'Julie Dudley', 'Sed dolorum quos in ', '2020-03-23 21:03:28', '2024-03-20 09:03:28'),
+(4, 2, 'Abir Hossain', 'Laborum sunt repelle', 'Do dolorem volu', 'Germane Oneil', 'A maxime sed alias s', '2020-03-23 21:16:13', '2024-03-27 09:20:07');
 
 -- --------------------------------------------------------
 
@@ -195,10 +231,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `password`, `image`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'admin@gmail.com', '$2y$10$lsS51/oZvh/ce.1zU8mCT.F0H20D8jwUHWWssPwsBmiJosonTabEO', 'avatar1.svg', 1, '0000-00-00 00:00:00.000000', '0000-00-00 00:00:00.000000'),
-(2, 'admin1@gmail.com', '$2y$10$O2dYar.UZ6BGTfAoUOLYKuHA/dD3ykKcFVPX.3Nt.W1yJjhL.RVU.', 'avatar1.svg', 1, '2024-03-16 06:00:00.000000', '2024-03-16 06:00:00.000000'),
-(3, 'admin2@gmail.com', '$2y$10$O2dYar.UZ6BGTfAoUOLYKuHA/dD3ykKcFVPX.3Nt.W1yJjhL.RVU.', 'avatar1.svg', 1, '2024-03-16 06:01:00.000000', '2024-03-16 06:01:00.000000'),
-(4, 'admin3@gmail.com', '$2y$10$O2dYar.UZ6BGTfAoUOLYKuHA/dD3ykKcFVPX.3Nt.W1yJjhL.RVU.', 'avatar1.svg', 2, '2024-03-16 06:02:00.000000', '2024-03-16 06:02:00.000000');
+(1, 'abir@gmail.com', '$2y$10$PG4Uci690aPF8lZVov/yJ.x7l5ceUyqK8etqpEu5yG4sLmLJpBPci', '1.jpg', 2, '2022-03-23 22:50:51.000000', NULL),
+(2, 'abirhossain@gmail.com', '$2y$10$Cyx2Pxu3DfE7Ud83QMXNmu/i4d4OS0/md2dbEiSnAEPVowHekKSiy', 'avatar1.svg', 1, NULL, NULL),
+(3, 'seller@gmail.com', '$2y$10$h8IXbzeRDMED9Ocpogw4LuMO6XgSzK3D.N57yPbFxf6TfzafZr01y', 'avatar1.svg', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -287,7 +322,7 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT for table `buyer`
 --
 ALTER TABLE `buyer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `buyer_feedback`
@@ -299,19 +334,19 @@ ALTER TABLE `buyer_feedback`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -323,19 +358,19 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `seller`
 --
 ALTER TABLE `seller`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `wishlist`

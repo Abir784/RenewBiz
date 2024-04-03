@@ -14,8 +14,6 @@ $category_id = $_GET['id'];
 $category_select_query = "SELECT * FROM category WHERE id='$category_id'";
 $category_query = mysqli_query($dbconnect, $category_select_query);
 $category = mysqli_fetch_assoc($category_query);
-
-$_SESSION['category_name'] = $category['name']; 
 ?>
 
 <div class="container">
@@ -42,7 +40,7 @@ $_SESSION['category_name'] = $category['name'];
                                     <div class="mb-4">
                                         <label class="form-label form-label-lg">Category Name</label>
                                       
-                                        <input type="text" class="form-control form-control-xl" value="<?= isset($_SESSION['category_name']) ? $_SESSION['category_name'] : '' ?>" name="name">
+                                        <input type="text" class="form-control form-control-xl" value="<?= $category['name'] ?>" name="name">
                                     </div>
                                   
                                     <?php if (isset($_SESSION['error']['name'])): ?>
