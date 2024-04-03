@@ -9,11 +9,9 @@ $select_query="SELECT * FROM buyer WHERE user_id='$user_id'";
 $buyer_select_query_result=mysqli_query($dbconnect,$select_query);
 $buyer=mysqli_fetch_assoc($buyer_select_query_result);
 $bid=$buyer['id'];
-
 // then oi buyer id diye cart table theke amr product id gula ana lagbe
 $product_select_query="SELECT * FROM carts WHERE buyer_id='$bid'";
 $product_select_query_result=mysqli_query($dbconnect,$product_select_query);
-
 //then oi product id diye product table e join korbo and product er details anbo
 $product_details_query="SELECT c.id AS cart_id, p.id,p.name AS p_name, p.price as price, p.image AS product_image, c.quantity AS quantity FROM product p, carts c WHERE c.product_id = p.id";
 $products=mysqli_query($dbconnect,$product_details_query);
@@ -32,7 +30,7 @@ $grand_total=0;
             </div>
             <form action="confirmed_order.php" method="post">
             <div class="container mt-5">
-                <table class="table">
+                <table class="table card-table table-nowrap">
                 <thead>
                     <tr>
                     <th scope="col">#</th>

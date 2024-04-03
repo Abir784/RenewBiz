@@ -16,7 +16,7 @@ $products=mysqli_query($dbconnect,$product_select_query);
     <div class="row">
       <div class="col-lg-12">
          <div class="bg-white rounded-12 shadow-dark-80 mb-3" data-aos="fade-up" data-aos-delay="100">
-            <table class="table table-light">
+            <table class="table card-table ">
                 <thead class="thead-light">
                     <tr>
                         <th>#</th>
@@ -26,7 +26,7 @@ $products=mysqli_query($dbconnect,$product_select_query);
                         <th>Price</th>
                         <th>Description</th>
                         <th>Status</th>
-                        <th colspan="3" class="text-center">Action</th>
+                        <th colspan="4" class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,7 +34,7 @@ $products=mysqli_query($dbconnect,$product_select_query);
 
                     <tr>
                         <td><?=$key+1?></td>
-                        <td><img src="../images/product/<?=$product['product_image']?>" width="50px" height="50px" alt="<?=$product['product_image']?>"></td>
+                        <td><img src="../images/product/<?=$product['product_image']?>" width="50px" height="50px" alt="<?=$product['p_name']?>"></td>
                         <td><?=$product['p_name']?></td>
                         <td><?=$product['category_name']?></td>
                         <td><?=$product['price']?></td>
