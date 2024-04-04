@@ -190,7 +190,7 @@ if ($role == 2){
           <a href="#" class="text-dark h5 mb-0 notification dnd" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenuButton"><img src="../assets/svg/icons/notification.svg" style="width:20px;" alt="Notification"  >
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item">You have got <?=mysqli_num_rows($join_product_order_table_result)?> new orders</a></li>
+                <li><a class="dropdown-item">You have <?=mysqli_num_rows($join_product_order_table_result)?> pending orders</a></li>
             </ul>
           <?php } else { ?>
             <a href="#" class="text-dark h5 mb-0" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenuButton"><img src="../assets/svg/icons/notification.svg" style="width:20px;" alt="Notification"  >
