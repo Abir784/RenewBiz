@@ -3,16 +3,16 @@ $page="Dashboard";
 include('../session_check.php');
 require '../db.php';
 include('../page_includes/dashboard_header.php');
-$id=$_SESSION['login_user_id'];
-$user_select_query= "SELECT * FROM user WHERE id='$id'";
+$user_id=$_SESSION['login_user_id'];
+$user_select_query= "SELECT * FROM user WHERE id='$user_id'";
 $user_query=mysqli_query($dbconnect,$user_select_query);
 $user=mysqli_fetch_assoc($user_query);
 // total revenue count (seller)
-$join_product_order_table_seller="SELECT sum(o.total_price) as total_sell From product p,orders o WHERE (o.product_id = p.id and p.user_id ='$id' and o.status=2);";
+$join_product_order_table_seller="SELECT sum(o.total_price) as total_sell From product p,orders o WHERE (o.product_id = p.id and p.user_id ='$user_id' and o.status=2);";
 $join_product_order_table_seller_result= mysqli_query($dbconnect,$join_product_order_table_seller);
 $revenue=mysqli_fetch_assoc($join_product_order_table_seller_result)['total_sell'];
 // Average Sell
-$join_product_order_table_seller_avg="SELECT avg(o.total_price) as avg_sell From product p,orders o WHERE (o.product_id = p.id and p.user_id ='$id' and o.status=2);";
+$join_product_order_table_seller_avg="SELECT avg(o.total_price) as avg_sell From product p,orders o WHERE (o.product_id = p.id and p.user_id ='$user_id' and o.status=2);";
 $join_product_order_table_seller_avg_result= mysqli_query($dbconnect,$join_product_order_table_seller_avg);
 $avg=mysqli_fetch_assoc($join_product_order_table_seller_avg_result)['avg_sell'];
 // Show orders
@@ -36,13 +36,15 @@ $join_product_order_table_result= mysqli_query($dbconnect,$join_product_order_ta
                   <span class="h5 mb-0"><?=$revenue?> Taka</span>
                 </div>
                 <div class="col-auto">
-                  <span class="badge badge-success py-2 px-2"><span class="px-1">Download Revenue Report <svg class="ms-1" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 16 16">
+                 <a href="generate_revenue.php?id=<?=$user['id']?>"> <span class="badge badge-success py-2 px-2"><span class="px-1">Download Revenue Report <svg class="ms-1" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 16 16">
                     <g data-name="icons/tabler/trend-up" transform="translate(0)">
                       <rect data-name="Icons/Tabler/Trend background" width="16" height="16" fill="none"/>
                       <path d="M.249,9.315.18,9.256a.616.616,0,0,1-.059-.8L.18,8.385,5.1,3.462A.616.616,0,0,1,5.9,3.4l.068.059L8.821,6.309,13.9,1.231H9.641A.616.616,0,0,1,9.031.7L9.025.616a.617.617,0,0,1,.532-.61L9.641,0h5.728a.614.614,0,0,1,.569.346h0l0,.008,0,.008h0a.613.613,0,0,1,.048.168V.541A.621.621,0,0,1,16,.61V6.359a.616.616,0,0,1-1.226.083l-.005-.083V2.1L9.256,7.615a.616.616,0,0,1-.8.059l-.069-.059L5.539,4.768,1.05,9.256a.615.615,0,0,1-.8.059Z" transform="translate(0 3)" fill="#ffffff"/>
                     </g>
                   </svg>
-                  </span></span>
+                  </span>
+                </span>
+                </a>
                 </div>
               </div>
             </div>
