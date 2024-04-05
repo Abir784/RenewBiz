@@ -38,7 +38,7 @@ $categories = mysqli_query($dbconnect, $category_select_query);
                                     </td>
                                     <td class="text-center">
                                     <a href="update.php?id=<?= $category['id'] ?>" class="btn btn-info btn-sm">Update</a>
-                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                    <td><a href="delete_p.php?id=<?=$category['id']?>" class="btn btn-danger" id="alertButton">Delete</a></td>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -50,19 +50,20 @@ $categories = mysqli_query($dbconnect, $category_select_query);
     </section>
 </div>
 
-<?php include '../page_includes/dashboard_footer.php'; ?>
+<?php include '../page_includes/dashboard_footer.php'; 
+?>
 
-<?php if (isset($_SESSION['delete_done'])): ?>
-    <script>
-        $(document).ready(function () {
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Deleted Successfully",
-                showConfirmButton: false,
-                timer: 750
-            });
-        });
-    </script>
-<?php endif; ?>
-<?php unset($_SESSION['delete_done']); ?>
+<?php if(isset($_SESSION['delete_done'])) {?>
+<script>
+  $(document).ready(function(){
+    Swal.fire({
+    position: "top-end",
+    icon: "success",
+    title: "Deleted Successfully",
+    showConfirmButton: false,
+    timer: 750
+      });
+});
+</script>
+<?php } unset($_SESSION['delete_done'])?>
+
