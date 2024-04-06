@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2024 at 06:40 PM
+-- Generation Time: Apr 06, 2024 at 09:46 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -36,8 +36,16 @@ CREATE TABLE `buyer` (
   `business_name` varchar(255) DEFAULT NULL,
   `business_industry` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `buyer`
+--
+
+INSERT INTO `buyer` (`id`, `user_id`, `name`, `address`, `phone_number`, `business_name`, `business_industry`, `created_at`, `updated_at`) VALUES
+(4, 3, 'Shukhi', 'Error dicta architec', '0155526222', 'Charissa Chase', 'Reiciendis earum ips', '2020-03-23 21:22:52', '2024-04-03 10:27:16'),
+(5, 1, 'Byron Berg', 'Occaecat at laborios', 'Molestiae eaque', 'Keefe Rios', 'Et corrupti officii', '2003-04-24 03:17:43', '2024-04-03 15:17:43');
 
 -- --------------------------------------------------------
 
@@ -52,7 +60,7 @@ CREATE TABLE `buyer_feedback` (
   `comment` text DEFAULT NULL,
   `rating` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -67,7 +75,7 @@ CREATE TABLE `carts` (
   `quantity` int(11) DEFAULT NULL,
   `buyer_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -81,7 +89,7 @@ CREATE TABLE `category` (
   `name` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT '0.jpg',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -89,11 +97,9 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `name`, `image`, `created_at`, `updated_at`) VALUES
-(1, 'Plastic', '1.jpg', '2024-03-16 15:32:36', '2024-03-16 15:33:02'),
-(2, 'Paper', '2.jpg', '2024-03-16 15:32:36', '2024-03-16 15:33:13'),
-(3, 'Glass', 'glass_image_url', '2024-03-16 15:32:36', '2024-03-16 15:32:36'),
-(4, 'Metal', 'metal_image_url', '2024-03-16 15:32:36', '2024-03-16 15:32:36'),
-(5, 'Organic', 'organic_image_url', '2024-03-16 15:32:36', '2024-03-16 15:32:36');
+(1, 'Plastic', '0.jpg', '2024-03-16 15:32:36', '2024-03-27 09:49:42'),
+(2, 'Paper', '0.jpg', '2024-03-16 15:32:36', '2024-03-27 09:49:47'),
+(3, 'Glass', '0.jpg', '2024-03-16 15:32:36', '2024-03-27 09:49:14');
 
 -- --------------------------------------------------------
 
@@ -104,11 +110,11 @@ INSERT INTO `category` (`id`, `name`, `image`, `created_at`, `updated_at`) VALUE
 CREATE TABLE `inventory` (
   `id` int(11) NOT NULL,
   `product_id` int(11) DEFAULT NULL,
+  `seller_id` int(11) NOT NULL,
   `weight` decimal(10,2) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 
 -- --------------------------------------------------------
 
@@ -124,8 +130,17 @@ CREATE TABLE `orders` (
   `status` varchar(50) DEFAULT NULL,
   `total_price` decimal(10,2) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `product_id`, `weight`, `status`, `total_price`, `created_at`, `updated_at`) VALUES
+(6, 1, 16, 5.00, '2', 615.00, '2003-04-24 03:21:31', '2024-04-03 16:02:57'),
+(8, 3, 18, 10.00, '2', 3500.00, '2024-04-03 16:19:23', '2004-04-24 03:59:56'),
+(9, 1, 16, 10.00, '2', 4000.00, '2024-04-03 16:19:23', '2004-04-24 04:00:00');
 
 -- --------------------------------------------------------
 
@@ -143,7 +158,7 @@ CREATE TABLE `product` (
   `image` varchar(255) DEFAULT '0.jpg',
   `price` decimal(10,2) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -151,10 +166,9 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`Id`, `user_id`, `category_id`, `name`, `status`, `description`, `image`, `price`, `created_at`, `updated_at`) VALUES
-(5, 2, 4, 'Soldering Irons', '1', '  Rerum perspiciatis   ', '0.jpg', 1100.00, '2017-03-24 06:32:07', '2024-03-17 15:53:36'),
-(15, 1, 1, 'Bottle Waste', '0', ' Sed ipsum excepturi ', '15.png', 216.00, '2017-03-23 21:26:07', '2024-03-17 10:58:22'),
-(16, 1, 3, 'Raymond Rush', '1', 'Do quae corporis fac', '0.jpg', 123.00, '2017-03-23 21:26:15', '2024-03-17 09:35:17'),
-(18, 1, 1, 'Cheryl Hunter', '1', 'Aut dicta commodo se', '0.jpg', 488.00, '2017-03-23 21:27:06', '2024-03-17 09:35:17');
+(15, 2, 1, 'Bottle Waste', '1', ' Sed ipsum excepturi ', '15.png', 216.00, '2017-03-23 21:26:07', '2024-04-03 10:24:32'),
+(16, 3, 3, 'Raymond Rush', '1', 'Do quae corporis fac', '0.jpg', 123.00, '2017-03-23 21:26:15', '2024-04-03 16:01:26'),
+(18, 3, 1, 'Cheryl Hunter', '1', 'Aut dicta commodo se', '0.jpg', 488.00, '2017-03-23 21:27:06', '2024-04-03 15:23:43');
 
 -- --------------------------------------------------------
 
@@ -171,8 +185,17 @@ CREATE TABLE `seller` (
   `business_name` varchar(255) DEFAULT NULL,
   `business_industry` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `seller`
+--
+
+INSERT INTO `seller` (`id`, `user_id`, `name`, `address`, `phone_number`, `business_name`, `business_industry`, `created_at`, `updated_at`) VALUES
+(3, 8, 'Leslie Oneal', 'Cupidatat deserunt e', 'Animi dolorem e', 'Julie Dudley', 'Sed dolorum quos in ', '2020-03-23 21:03:28', '2024-03-20 09:03:28'),
+(7, 3, 'Asaf Abir', 'Mirpur', '019544232', 'Shukhi Recycle', 'Plastic Bag Manefacturer', '2003-04-24 04:52:44', '2004-04-24 04:01:39'),
+(8, 2, 'MD ABIR HOSSAIN ABIR', 'MATUAIL UTTARPARA', '01552484784', 'Paper Cuts Inc.', 'Paper Recycling', '2005-04-24 06:05:29', '2024-04-04 18:05:29');
 
 -- --------------------------------------------------------
 
@@ -195,10 +218,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `password`, `image`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'admin@gmail.com', '$2y$10$lsS51/oZvh/ce.1zU8mCT.F0H20D8jwUHWWssPwsBmiJosonTabEO', 'avatar1.svg', 1, '0000-00-00 00:00:00.000000', '0000-00-00 00:00:00.000000'),
-(2, 'admin1@gmail.com', '$2y$10$O2dYar.UZ6BGTfAoUOLYKuHA/dD3ykKcFVPX.3Nt.W1yJjhL.RVU.', 'avatar1.svg', 1, '2024-03-16 06:00:00.000000', '2024-03-16 06:00:00.000000'),
-(3, 'admin2@gmail.com', '$2y$10$O2dYar.UZ6BGTfAoUOLYKuHA/dD3ykKcFVPX.3Nt.W1yJjhL.RVU.', 'avatar1.svg', 1, '2024-03-16 06:01:00.000000', '2024-03-16 06:01:00.000000'),
-(4, 'admin3@gmail.com', '$2y$10$O2dYar.UZ6BGTfAoUOLYKuHA/dD3ykKcFVPX.3Nt.W1yJjhL.RVU.', 'avatar1.svg', 2, '2024-03-16 06:02:00.000000', '2024-03-16 06:02:00.000000');
+(1, 'abir@gmail.com', '$2y$10$PG4Uci690aPF8lZVov/yJ.x7l5ceUyqK8etqpEu5yG4sLmLJpBPci', '1.jpg', 2, '2022-03-23 22:50:51.000000', NULL),
+(2, 'abirhossain@gmail.com', '$2y$10$Cyx2Pxu3DfE7Ud83QMXNmu/i4d4OS0/md2dbEiSnAEPVowHekKSiy', 'avatar1.svg', 1, NULL, NULL),
+(3, 'seller@gmail.com', '$2y$10$h8IXbzeRDMED9Ocpogw4LuMO6XgSzK3D.N57yPbFxf6TfzafZr01y', 'avatar1.svg', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -212,7 +234,7 @@ CREATE TABLE `wishlist` (
   `quantity` int(11) DEFAULT NULL,
   `buyer_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -229,7 +251,8 @@ ALTER TABLE `buyer`
 -- Indexes for table `buyer_feedback`
 --
 ALTER TABLE `buyer_feedback`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`);
 
 --
 -- Indexes for table `carts`
@@ -247,19 +270,22 @@ ALTER TABLE `category`
 -- Indexes for table `inventory`
 --
 ALTER TABLE `inventory`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`);
 
 --
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`);
 
 --
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
-  ADD PRIMARY KEY (`Id`);
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `category_id` (`category_id`);
 
 --
 -- Indexes for table `seller`
@@ -287,7 +313,7 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT for table `buyer`
 --
 ALTER TABLE `buyer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `buyer_feedback`
@@ -299,13 +325,13 @@ ALTER TABLE `buyer_feedback`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `inventory`
@@ -317,31 +343,59 @@ ALTER TABLE `inventory`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `seller`
 --
 ALTER TABLE `seller`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `wishlist`
 --
 ALTER TABLE `wishlist`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `buyer_feedback`
+--
+ALTER TABLE `buyer_feedback`
+  ADD CONSTRAINT `buyer_feedback_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`Id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `inventory`
+--
+ALTER TABLE `inventory`
+  ADD CONSTRAINT `inventory_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`Id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`Id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

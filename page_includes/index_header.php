@@ -8,7 +8,7 @@
 <meta name="author" content="Muse">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <!-- Muse Favicon -->
-<link href="../favicon.ico" rel="shortcut icon" type="image/x-icon">
+<link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
 <!-- Muse Plugins CSS -->
 <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" type="text/css" media="all">
 <link href="assets/vendor/aos/dist/aos.css" rel="stylesheet" type="text/css" media="all">
@@ -148,7 +148,7 @@
         </ul>
         <?php if(isset($_SESSION['login_user_id']) and ($_SESSION['login_done']==2)) {?>
         <a href="cart/cart.php" class="btn btn-primary my-2 my-lg-0">My Cart</a>
-        <a href="dashboard/dashboard.php" class="btn btn-success my-2 my-lg-0">Dashboard</a>
+        <a href="dashboard/dashboard.php" class="btn btn-success my-2 my-lg-0" style="margin-left:5px ;">Dashboard</a>
         <?php } elseif(isset($_SESSION['login_user_id']) and ($_SESSION['login_done']==1)) {?>
         <a href="dashboard/dashboard.php" class="btn btn-success my-2 my-lg-0">Dashboard</a>
         <?php }else { ?>
