@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 include('page_includes/index_header.php');
 include 'db.php';
