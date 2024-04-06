@@ -33,7 +33,6 @@ $categories = mysqli_query($dbconnect, $category_select_query);
                                     <td><?= $key + 1 ?></td>
                                     <td><?= $category['name'] ?></td>
                                     <td>
-                                      
                                         <img src="../images/category/<?= $category['image'] ?>" width="50px" height="50px" alt="<?= $category['name'] ?> Image">
                                     </td>
                                     <td class="text-center">
