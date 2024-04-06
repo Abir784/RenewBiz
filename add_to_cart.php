@@ -47,8 +47,13 @@ if(isset($_SESSION['login_user_id'])){
       $product_data=false;
   }
 }
-$select_buyer_feedback="SELECT b.name as buyer_name,bf.comment,bf.rating FROM  buyer_feedback bf,buyer b WHERE b.id=bf.buyer_id and product_id='$id'";
+$select_buyer_feedback="SELECT u.image as profile_image ,b.name as buyer_name,bf.comment,bf.rating FROM user u, buyer_feedback bf,buyer b WHERE (u.id=b.user_id and b.id=bf.buyer_id and product_id='$id')";
 $buyer_feedback_query=mysqli_query($dbconnect,$select_buyer_feedback);
+$avg_query= "SELECT avg(rating) as avg_rating FROM buyer_feedback WHERE product_id='$id'";
+$avg_rating_query_result=mysqli_query($dbconnect,$avg_query);
+$avg_rating=mysqli_fetch_assoc($avg_rating_query_result)['avg_rating'];
+
+
 
 ?>
 <style>
@@ -77,6 +82,7 @@ $buyer_feedback_query=mysqli_query($dbconnect,$select_buyer_feedback);
 .rate:not(:checked) > label:before {
     content: '★ ';
 }
+
 .rate > input:checked ~ label {
     color: #ffc700;    
 }
@@ -98,7 +104,7 @@ $buyer_feedback_query=mysqli_query($dbconnect,$select_buyer_feedback);
     </div>
     <div class="col-lg-6 mt-4 mb-2 my-lg-0">
       <p class="star-icon"><span class="rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16.416 15.6">
-          <path d="M17.076,19.2,12,16.14,6.924,19.2l1.344-5.772L3.792,9.546l5.9-.5L12,3.6l2.3,5.442,5.9.5-4.476,3.882Z" transform="translate(-3.792 -3.6)" fill="#ffffff"/></svg></span> 4.8</p>
+          <path d="M17.076,19.2,12,16.14,6.924,19.2l1.344-5.772L3.792,9.546l5.9-.5L12,3.6l2.3,5.442,5.9.5-4.476,3.882Z" transform="translate(-3.792 -3.6)" fill="#ffffff"/></svg></span> <?=round($avg_rating,3)?></p>
       <h1 class="display-4 mt-2 text-uppercase"><?=$product['name']?></h1>
       <p class="big mt-1 lh-lg"><?=$product['description']?></p>
       <p class="h3 mt-4"><?=$product['price']?> Tk</p>
@@ -151,15 +157,22 @@ $buyer_feedback_query=mysqli_query($dbconnect,$select_buyer_feedback);
         <div class="col-lg-8">
             <h2 class="mt-5">Feedbacks</h2>
             <?php foreach($buyer_feedback_query as $key=>$feedback){?>
-            <div class="media">
+            <div class="media bg-white m-2">
                 <div class="media-body">
-                    <h5><?=$feedback['buyer_name']?></h5>
-                    <p><?=$feedback['comment']?></p>
-                    <p class="text-muted">
-            </p>
+                <img src="images/user/<?=$feedback['profile_image']?>" alt="Buyer Image" width="50" height="50" style="border-radius: 50%; margin:10px;">
+                    <b style="display: inline-block; margin:8px"><?=$feedback['buyer_name']?></b>
+                    <p class="star-icon"  style="display: inline-block;" >
+                        <span class="rounded-pill">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16.416 15.6" >
+                            <path d="M17.076,19.2,12,16.14,6.924,19.2l1.344-5.772L3.792,9.546l5.9-.5L12,3.6l2.3,5.442,5.9.5-4.476,3.882Z" transform="translate(-3.792 -3.6)" fill="#ffffff"/></svg></span> <?=$feedback['rating']?>
+                    </p>
+                                
+                    <p class="text-muted" style="margin-left:8px">
+                     <?=$feedback['comment']?>
+                     </p>
                 </div>
             </div>
-            <?php } ?>
+            <?php }?>
         </div>
     </div>
 </div>
