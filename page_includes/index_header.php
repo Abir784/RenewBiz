@@ -148,7 +148,7 @@
         </ul>
         <?php if(isset($_SESSION['login_user_id']) and ($_SESSION['login_done']==2)) {?>
         <a href="cart/cart.php" class="btn btn-primary my-2 my-lg-0">My Cart</a>
-        <a href="dashboard/dashboard.php" class="btn btn-success my-2 my-lg-0">Dashboard</a>
+        <a href="dashboard/dashboard.php" class="btn btn-success my-2 my-lg-0" style="margin-left:5px ;">Dashboard</a>
         <?php } elseif(isset($_SESSION['login_user_id']) and ($_SESSION['login_done']==1)) {?>
         <a href="dashboard/dashboard.php" class="btn btn-success my-2 my-lg-0">Dashboard</a>
         <?php }else { ?>

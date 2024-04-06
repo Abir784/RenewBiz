@@ -14,32 +14,29 @@ $categorys=mysqli_query($dbconnect,$category_select);
 
 <div class="container">
   <!-- Muse Section, Pb 0 -->
-  <section class="muse-section pb-0">
+
+<section class="muse-section pb-0">
     <div class="row">
-      <div class="col-lg-6 order-lg-2 text-lg-end mt-auto" data-aos="fade-up" data-aos-delay="100">
-        <img src="assets/img/templates/bitmap.png" class="img-fluid" alt="Banner">
-      </div>
-      <div class="col-lg-6 mt-4 mb-2 my-lg-0">
-        <p class="star-icon"><span class="rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16.416 15.6">
-          <path d="M17.076,19.2,12,16.14,6.924,19.2l1.344-5.772L3.792,9.546l5.9-.5L12,3.6l2.3,5.442,5.9.5-4.476,3.882Z" transform="translate(-3.792 -3.6)" fill="#ffffff"/>
-        </svg>
-        </span> 4.8</p>
-        <h1 class="display-4 mt-2 text-uppercase">New Mac Pro Limited Edition</h1>
-        <p class="big mt-1 lh-lg">On the other hand, we denounce with righteous indignation and dislike men who are so beguiled</p>
-        <p class="h3 mt-4">$2,195</p>
-        <div class="mt-2">
-          <a href="javascript:void(0);" class="btn btn-xl btn-dark font-weight-semibold text-uppercase me-2 px-5"><span class="px-md-5">Cart</span></a>
-          <a href="javascript:void(0);" class="btn btn-success btn-icon btn-xl">
-            <svg data-name="Icons/Tabler/Notification" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <rect data-name="Icons/Tabler/Notification background" width="24" height="24" fill="none"></rect>
-              <path d="M6.162,19.63l-.005-.246v-.308H.926A.923.923,0,0,1,.471,17.35a4,4,0,0,0,1.956-2.66l.036-.229V10.726A9.492,9.492,0,0,1,7.292,2.873l.147-.08,0-.018A3.369,3.369,0,0,1,10.566.007L10.771,0a3.379,3.379,0,0,1,3.287,2.573l.045.22.147.08a9.556,9.556,0,0,1,4.806,7.541l.023.355-.007,3.582a4.016,4.016,0,0,0,2,3,.924.924,0,0,1-.329,1.719l-.126.008H15.387v.308a4.616,4.616,0,0,1-9.225.246ZM8,19.385a2.769,2.769,0,0,0,5.532.189l.007-.189v-.308H8ZM9.242,3.228l-.012.238-.005.045L9.2,3.63l-.039.113-.054.107-.035.055L9,4l-.036.038-.05.046-.1.074L8.7,4.219A7.7,7.7,0,0,0,4.332,10.46l-.022.309-.007,3.8a5.875,5.875,0,0,1-.94,2.541l-.084.119H18.266l-.007-.012a6.007,6.007,0,0,1-.983-2.452l-.043-.306V10.812a7.674,7.674,0,0,0-4.4-6.593.919.919,0,0,1-.518-.7l-.009-.132a1.538,1.538,0,0,0-3.069-.157Z" transform="translate(1.499)" fill="#fff"></path>
-            </svg>
-          </a>
+        <div class="col-lg-6 order-lg-2 text-lg-end mt-auto" data-aos="fade-up" data-aos-delay="100">
+            <img src="images/Banner.png" class="img-fluid" alt="Banner">
         </div>
-        <small class="text-uppercase text-gray-600 d-block my-3">FREE SHIPPING</small>
-      </div>
+        <div class="col-lg-6 mt-4 mb-2 my-lg-0">
+           
+            <h1 class="display-4 mt-2 mt-5 text-success">RenewBiz</h1>
+            <p class="big mt-1 lh-lg"> An eco-friendly digital marketplace akin to e-commerce that facilitates connections between entrepreneurs .</p>
+          
+            <div class="mt-2 mb-5">
+                
+                <a href="javascript:void(0);" class (continued)class="btn btn-success btn-icon btn-xl">
+                    <svg data-name="Icons/Tabler/Notification" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <rect data-name="Icons/Tabler/Notification background" width="24" height="24" fill="none"></rect>
+                        <path d="M6.162,19.63l-.005-.246v-.308H.926A.923.923,0,0,1,.471,17.35a4,4,0,0,0,1.956-2.66l.036-.229V10.726A9.492,9.492,0,0,1,7.292,2.873l.147-.08,0-.018A3.369,3.369,0,0,1,10.566.007L10.771,0a3.379,3.379,0,0,1,3.287,2.573l.045.22.147.08a9.556,9.556,0,0,1,4.806,7.541l.023.355-.007,3.582a4.016,4.016,0,0,0,2,3,.924.924,0,0,1-.329,1.719l-.126.008H15.387v.308a4.616,4.616,0,0,1-9.225.246ZM8,19.385a2.769,2.769,0,0,0,5.532.189l.007-.189v-.308H8ZM9.242,3.228l-.012.238-.005.045L9.2,3.63l-.039.113-.054.107-.035.055L9,4l-.036.038-.05.046-.1.074L8.7,4.219A7.7,7.7,0,0,0,4.332,10.46l-.022.309-.007,3.8a5.875,5.875,0,0,1-.94,2.541l-.084.119H18.266l-.007-.012a6.007,6.007,0,0,1-.983-2.452l-.043-.306V10.812a7.674,7.674,0,0,0-4.4-6.593.919.919,0,0,1-.518-.7l-.009-.132a1.538,1.538,0,0,0-3.069-.157Z" transform="translate(1.499)" fill="#fff"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
     </div>
-  </section>
+</section>
 </div>
 
 <div class="bg-white">
@@ -93,12 +90,22 @@ $categorys=mysqli_query($dbconnect,$category_select);
         </div>
         <div class="swiper-wrapper">
           <?php foreach($products as $product) {?>
+            <?php 
+                  $product_id=$product['id'];
+                  $avg_query= "SELECT avg(rating) as avg_rating FROM buyer_feedback WHERE product_id='$product_id'";
+                  $avg_rating_query_result=mysqli_query($dbconnect,$avg_query);
+                  $avg_rating=mysqli_fetch_assoc($avg_rating_query_result)['avg_rating'];
+                    if($avg_rating == NULL){
+                      $avg_rating=0;
+
+                    }
+            ?>
             <div class="swiper-slide">
             <figure class="card border-0 transition-3d-hover">
               <div class="rounded-6 bg-light-100 px-4 pt-4 pb-5 position-relative">
                 <div><small class="star-icon big bg-white rounded-pill ps-2 pe-3 d-inline-flex align-items-center"><span class="rounded-pill me-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16.416 15.6">
                   <path d="M17.076,19.2,12,16.14,6.924,19.2l1.344-5.772L3.792,9.546l5.9-.5L12,3.6l2.3,5.442,5.9.5-4.476,3.882Z" transform="translate(-3.792 -3.6)" fill="#ffffff"/>
-                </svg></span> 4.8</small></div>
+                </svg></span><?=round($avg_rating,2)?></small></div>
                 <a href="#" class="py-2 mb-md-4 muse-animation has-height"><img src="images/product/<?=$product['image']?>" alt="img"></a>
                 <?php if($product['weight']>0){?>
                   <?php if(isset($_SESSION['login_done']) and ($_SESSION['login_done']==1)){?>
