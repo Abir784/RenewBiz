@@ -47,6 +47,9 @@ if(isset($_SESSION['login_user_id'])){
       $product_data=false;
   }
 }
+$select_buyer_feedback="SELECT b.name as buyer_name,bf.comment,bf.rating FROM  buyer_feedback bf,buyer b WHERE b.id=bf.buyer_id and product_id='$id'";
+$buyer_feedback_query=mysqli_query($dbconnect,$select_buyer_feedback);
+
 ?>
 <style>
 *{
@@ -113,6 +116,8 @@ if(isset($_SESSION['login_user_id'])){
         <div class="col-lg-8">
             <h2 class="mt-5">Feedback</h2>
             <form action="feedback/post.php" method="post">
+                <input type="hidden" name ="product_id" value ="<?=$id?>">
+                
                 <div class="form-group">
                     <label for="feedback">Your Feedback</label>
                     <textarea name="comment" id="feedback" class="form-control" rows="5" required></textarea>
@@ -145,17 +150,16 @@ if(isset($_SESSION['login_user_id'])){
     <div class="row">
         <div class="col-lg-8">
             <h2 class="mt-5">Feedbacks</h2>
-            <?//php if($product['avg_rating']): ?>
+            <?php foreach($buyer_feedback_query as $key=>$feedback){?>
             <div class="media">
-                <img class="me-3" src="#" alt="profile" width="50">
                 <div class="media-body">
-                    <h5><?//=$feedback['name']?></h5>
-                    <p><?//=$feedback['feedback']?></p>
+                    <h5><?=$feedback['buyer_name']?></h5>
+                    <p><?=$feedback['comment']?></p>
                     <p class="text-muted">
             </p>
                 </div>
             </div>
-            <?//php endwhile; ?>
+            <?php } ?>
         </div>
     </div>
 </div>
