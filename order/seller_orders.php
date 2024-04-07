@@ -1,5 +1,5 @@
 <?php
-$page = " Seller Orders";
+$page = "Seller Orders";
 include '../session_check.php';
 include '../db.php';
 include '../page_includes/dashboard_header.php';
@@ -9,7 +9,7 @@ $join_product_order_table_result= mysqli_query($dbconnect,$join_product_order_ta
 
 <div class="container">
             <div class="d-flex align-items-center px-4 py-3">
-              <h6 class="card-header-title mb-0">Goals</h6>
+              <h6 class="card-header-title mb-0"></h6>
               <div class="ms-auto">
                 <select class="form-select form-select-sm mb-2">
                   <option>Status</option>
@@ -53,20 +53,6 @@ $join_product_order_table_result= mysqli_query($dbconnect,$join_product_order_ta
     </table>
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

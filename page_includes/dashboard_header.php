@@ -1,4 +1,5 @@
 <?php
+$page="Orders";
 include '../db.php';
 $id=$_SESSION['login_user_id'];
 $user_select_query="SELECT * FROM user WHERE id='$id'";
@@ -31,6 +32,8 @@ if ($role == 2){
 <meta name="keywords" content="Muse">
 <meta name="author" content="Muse">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 <!-- Muse Favicon -->
 <link href="../images/web/small_logo.png" rel="shortcut icon" type="image/x-icon">
 <!-- Muse Plugins CSS -->
@@ -140,11 +143,20 @@ if ($role == 2){
         </a>
       </li>
       <?php }  ?>
+
+
+      <?php if((isset($_SESSION['login_done']) and $_SESSION['login_done']==2 and $data )){?>
       <li class="nav-item">
+        <a class="nav-link" href="../order/buyer_orders.php">
+          <img src="../assets/svg/icons/docs.svg" alt="Paperclip" class="me-2"> &nbsp;Orders
+        </a>
+      </li>
+      <?php }  ?>
+      <!-- <li class="nav-item">
         <a class="nav-link" href="#">
           <img src="../assets/svg/icons/paperclip.svg" alt="Paperclip" class="me-2"> &nbsp;Snippets
         </a>
-      </li>
+      </li> -->
 
 
 
