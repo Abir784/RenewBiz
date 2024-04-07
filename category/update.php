@@ -28,13 +28,13 @@ $category = mysqli_fetch_assoc($category_query);
                         <h5 class="mb-0">Category Info</h5>
                     </div>
                     <div class="px-4 px-md-5 py-4">
-                        <form action="update.php" method="post" enctype="multipart/form-data">
-                            <input type="hidden" name="id" value="<?= $id ?>">
+                        <form action="update_post.php" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="id" value="<?= $category_id?>">
                             <?php if (isset($_SESSION['success'])): ?>
                                 <div class="alert alert-success" role="alert">
                                     <?= $_SESSION['success'] ?>
                                 </div>
-                            <?php endif; ?>
+                            <?php endif; unset($_SESSION['success']); ?>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-4">
@@ -47,7 +47,7 @@ $category = mysqli_fetch_assoc($category_query);
                                         <div class="alert alert-danger" role="alert">
                                             <?= $_SESSION['error']['name'] ?>
                                         </div>
-                                    <?php endif; ?>
+                                    <?php endif; unset($_SESSION['error']['name']); ?>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-4">
@@ -56,11 +56,11 @@ $category = mysqli_fetch_assoc($category_query);
                                         <input type="file" class="form-control form-control-xl" name="category_image">
                                     </div>
                                   
-                                    <?php if (isset($_SESSION['error']['image'])): ?>
+                                    <?php if (isset($_SESSION['error']['category_image'])): ?>
                                         <div class="alert alert-danger" role="alert">
-                                            <?= $_SESSION['error']['image'] ?>
+                                            <?= $_SESSION['error']['category_image'] ?>
                                         </div>
-                                    <?php endif; ?>
+                                    <?php endif;unset($_SESSION['error']['category_image']); ?>
                                 </div>
                             </div>
                             
