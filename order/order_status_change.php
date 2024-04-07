@@ -10,7 +10,7 @@ $weight=$order['weight'];
 $product_id=$order['product_id'];
 
 date_default_timezone_set('Asia/Dhaka');
-$updated_at = date("d-m-y h:i:s");
+$updated_at = date("y-m-d h:i:s");
 if(isset($_POST['accept'])){
     $update_status= "UPDATE orders SET status=1 WHERE id='$order_id'";
     $update_status_result= mysqli_query($dbconnect,$update_status);

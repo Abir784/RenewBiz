@@ -25,14 +25,14 @@ if ($role == 2){
 ?>
 <html lang="en">
 <head>
-<title>Dashboard - Muse Documentation | Muse - Responsive Website Template</title>
+<title>Dashboard - RenewBiz</title>
 <meta charset="UTF-8">
 <meta name="description" content="Muse">
 <meta name="keywords" content="Muse">
 <meta name="author" content="Muse">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <!-- Muse Favicon -->
-<link href="../favicon.ico" rel="shortcut icon" type="image/x-icon">
+<link href="../images/web/small_logo.png" rel="shortcut icon" type="image/x-icon">
 <!-- Muse Plugins CSS -->
 <link href="../assets/vendor/simplebar/dist/simplebar.min.css" rel="stylesheet" type="text/css" media="all">
 <!-- Muse Theme CSS -->
@@ -49,8 +49,8 @@ if ($role == 2){
     <img src="../assets/svg/icons/close1.svg" style="width:20px;" class="menu-close" alt="img">
   </a>
   <a class="navbar-brand mx-auto d-block my-0 my-md-4" href="../dashboard/dashboard.php">
-    <img src="../assets/svg/brand/logo.svg" alt="Muse">
-    <img src="../assets/svg/brand/muse-icon.svg" class="muse-icon" alt="Muse">
+    <img src="../images/web/logo.png" alt="Muse">
+    <img src="../images/web/small_logo.png" class="muse-icon" alt="Muse">
   </a>
   <div class="navbar-user d-md-none">
     <div class="dropdown">
@@ -132,21 +132,7 @@ if ($role == 2){
         </div>
       </li>
       <?php } ?> 
-      <!--<li class="nav-item">
-        <a class="nav-link collapsed" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
-          <img src="../assets/svg/icons/page.svg" alt="Chart" class="me-2"> &nbsp;Pages
-        </a>
-        <div class="collapse collapse-box" id="sidebarPages" data-parent="#accordionExample">
-          <ul class="nav nav-sm flex-column">
-            <li class="nav-item">
-              <a href="#" class="nav-link">Light Mode</a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">Dark Mode</a>
-            </li>
-          </ul>
-        </div>
-      </li>-->
+      
       <?php if((isset($_SESSION['login_done']) and $_SESSION['login_done']==1 and $data )){?>
       <li class="nav-item">
         <a class="nav-link" href="../order/seller_orders.php">
@@ -159,14 +145,21 @@ if ($role == 2){
           <img src="../assets/svg/icons/paperclip.svg" alt="Paperclip" class="me-2"> &nbsp;Snippets
         </a>
       </li>
+
+
+
+      <div class="mt-3 mt-md-auto mb-3 signout d-grid">
+        <div class="col-md-12 py-2">
+              <a href="../index.php" class="btn btn-primary btn-lg"><img src="../assets/img/dashboard/cart-outline.svg" alt="Cart"><span>Buy Now</span></a>
+        </div>
+     </div>
+
     </ul>
-    
-    <!--<div class="mt-3 mt-md-auto mb-3 signout d-grid">-->
-    <div class="col-md-12 py-2">
-      <a href="../index.php" class="btn btn-primary btn-lg"><img src="../assets/img/dashboard/cart-outline.svg" alt="Cart"><span>Buy Now</span></a>
-    </div>
+  
+ 
     
   </div>
+    
 </nav>
 <!-- Main Content -->
 <div class="main-content">

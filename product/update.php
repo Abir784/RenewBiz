@@ -23,7 +23,7 @@ if(count($error)==0){
     $category_id=$_POST['category'];
     $user_id=$_SESSION['login_user_id'];
     date_default_timezone_set('Asia/Dhaka');
-    $updated_at = date("d-m-y h:i:s");
+    $updated_at = date("y-m-d h:i:s");
     $query = "UPDATE product SET category_id = '$category_id', name = '$name', description = '$desp', price = '$price', updated_at = '$updated_at' WHERE id = '$id'";
     $update_query = mysqli_query($dbconnect,$query);
     if($_FILES['product_image']['error']==0){

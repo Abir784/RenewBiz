@@ -19,7 +19,7 @@ if(count($error)==0){
     $user_id=$_SESSION['login_user_id'];
     $role=$_SESSION['login_done'];
     date_default_timezone_set('Asia/Dhaka');
-    $updated_at = date("d-m-y h:i:s");
+    $updated_at = date("y-m-d h:i:s");
     //buyer
     if ($role == 2){
         $query = "UPDATE buyer SET name = '$name',address = '$address',phone_number = '$phn_no',business_name = '$business_name',business_industry = '$business_industry',updated_at = '$updated_at' WHERE id = '$id'";

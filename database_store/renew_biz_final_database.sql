@@ -35,7 +35,7 @@ CREATE TABLE `buyer` (
   `phone_number` varchar(15) DEFAULT NULL,
   `business_name` varchar(255) DEFAULT NULL,
   `business_industry` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -59,7 +59,7 @@ CREATE TABLE `buyer_feedback` (
   `buyer_id` int(11) DEFAULT NULL,
   `comment` text DEFAULT NULL,
   `rating` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -74,7 +74,7 @@ CREATE TABLE `carts` (
   `product_id` int(11) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
   `buyer_id` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -88,7 +88,7 @@ CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT '0.jpg',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -110,9 +110,8 @@ INSERT INTO `category` (`id`, `name`, `image`, `created_at`, `updated_at`) VALUE
 CREATE TABLE `inventory` (
   `id` int(11) NOT NULL,
   `product_id` int(11) DEFAULT NULL,
-  `seller_id` int(11) NOT NULL,
   `weight` decimal(10,2) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -129,7 +128,7 @@ CREATE TABLE `orders` (
   `weight` decimal(10,2) DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
   `total_price` decimal(10,2) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -157,7 +156,7 @@ CREATE TABLE `product` (
   `description` text DEFAULT NULL,
   `image` varchar(255) DEFAULT '0.jpg',
   `price` decimal(10,2) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -184,7 +183,7 @@ CREATE TABLE `seller` (
   `phone_number` varchar(15) DEFAULT NULL,
   `business_name` varchar(255) DEFAULT NULL,
   `business_industry` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -233,7 +232,7 @@ CREATE TABLE `wishlist` (
   `product_id` int(11) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
   `buyer_id` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

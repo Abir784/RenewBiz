@@ -6,7 +6,7 @@ $if_inventory_exists="SELECT EXISTS (SELECT * FROM inventory WHERE product_id = 
 $inventory_exists_result=mysqli_query($dbconnect,$if_inventory_exists);
 $inventory_exists=mysqli_fetch_assoc($inventory_exists_result)['inventory_exists'];
 date_default_timezone_set('Asia/Dhaka');
-$created_at = date("d-m-y h:i:s");
+$created_at = date("y-m-d h:i:s");
 if (empty($weight)){
     header('location:add_inventory.php?id='.$id);
 

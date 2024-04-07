@@ -11,7 +11,7 @@ $comment = $_POST['comment'];
 $rating = $_POST['rate'];
 $buyer_id =$after_assoc['id'];
 date_default_timezone_set('Asia/Dhaka');
-$created_at = date("d-m-y h:i:s");
+$created_at = date("y-m-d h:i:s");
 $field_names = ["comment"=>"do comment", "rate"=>"rating required"];
 
 $error =[];
