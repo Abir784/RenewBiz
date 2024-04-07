@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Ecommerce - Muse Documentation | Muse - Responsive Website Template</title>
+<title>RenewBiz - Grow Business and Nature</title>
 <meta charset="UTF-8">
 <meta name="description" content="Muse">
 <meta name="keywords" content="Muse">
 <meta name="author" content="Muse">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <!-- Muse Favicon -->
-<link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
+<link href="images/web/small_logo.png" rel="shortcut icon" type="image/x-icon">
 <!-- Muse Plugins CSS -->
 <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" type="text/css" media="all">
 <link href="assets/vendor/aos/dist/aos.css" rel="stylesheet" type="text/css" media="all">
@@ -22,7 +22,7 @@
   <div class="container">
     <nav class="navbar navbar-expand-lg">
       <a class="navbar-brand" href="index.php">
-        <img src="assets/svg/brand/logo.svg" alt="Muse">
+        <img src="images/web/logo.png" alt="Muse">
       </a>
       <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <svg class="menu-icon" data-name="icons/tabler/hamburger" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">

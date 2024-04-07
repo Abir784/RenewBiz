@@ -24,7 +24,7 @@ if(count($error)==0){
     $category_id=$_POST['category'];
     $user_id=$_SESSION['login_user_id'];
     date_default_timezone_set('Asia/Dhaka');
-    $created_at = date("d-m-y h:i:s");
+    $created_at = date("y-m-d h:i:s");
     $query = "INSERT INTO product(user_id,category_id,name,status,description,price,created_at) VALUES ('$user_id','$category_id','$name',0,'$desp','$price','$created_at')";
     $insert_query_result = mysqli_query($dbconnect,$query);
     if($_FILES['product_image']['error']==0){

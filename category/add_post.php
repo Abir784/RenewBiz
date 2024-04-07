@@ -19,7 +19,7 @@ if(count($error)==0){
     $name=$_POST['name'];
     $uploaded_file=$_FILES['product_image'];
     date_default_timezone_set('Asia/Dhaka');
-    $created_at = date("d-m-y h:i:s");
+    $created_at = date("y-m-d h:i:s");
     $query = "INSERT INTO category(name,created_at) VALUES ('$name','$created_at')";
     $insert_query_result = mysqli_query($dbconnect,$query);
     if($_FILES['product_image']['error']==0){

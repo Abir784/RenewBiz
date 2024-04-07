@@ -32,7 +32,7 @@ if(isset($_POST["confirm_order"])){
       $product_id=$posts['id'.$i+1];
       $cart_id=$posts['cart_id'.$i+1];
       date_default_timezone_set('Asia/Dhaka');
-      $created_at = date("d-m-y h:i:s");
+      $created_at = date("y-m-d h:i:s");
       $query="UPDATE carts SET quantity= $quantity WHERE id=$cart_id";
       $insert_query_result = mysqli_query($dbconnect,$query);
       $_SESSION['success']="Cart Updated !!";

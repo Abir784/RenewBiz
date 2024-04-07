@@ -8,6 +8,9 @@ $products=mysqli_query($dbconnect,$product_select);
 //categories
 $category_select='SELECT * FROM category';
 $categorys=mysqli_query($dbconnect,$category_select);
+// New arrivals
+$new_arrival_products='SELECT p.id as id,p.image as image,p.name as name,p.price as price,i.weight as weight FROM product p,inventory i WHERE (i.product_id=p.id and p.status=1) ORDER BY p.created_at DESC LIMIT 5';
+$new_products=mysqli_query($dbconnect,$new_arrival_products);
 
 ?>
 
@@ -17,21 +20,14 @@ $categorys=mysqli_query($dbconnect,$category_select);
 <section class="muse-section pb-0">
     <div class="row">
         <div class="col-lg-6 order-lg-2 text-lg-end mt-auto" data-aos="fade-up" data-aos-delay="100">
-            <img src="images/Banner.png" class="img-fluid" alt="Banner">
+            <img src="images/web/Banner.png" class="img-fluid" alt="Banner">
         </div>
         <div class="col-lg-6 mt-4 mb-2 my-lg-0">
            
             <h1 class="display-4 mt-2 mt-5 text-success">RenewBiz</h1>
             <p class="big mt-1 lh-lg"> An eco-friendly digital marketplace akin to e-commerce that facilitates connections between entrepreneurs .</p>
           
-            <div class="mt-2 mb-5">
-                
-                <a href="javascript:void(0);" class (continued)class="btn btn-success btn-icon btn-xl">
-                    <svg data-name="Icons/Tabler/Notification" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                        <rect data-name="Icons/Tabler/Notification background" width="24" height="24" fill="none"></rect>
-                        <path d="M6.162,19.63l-.005-.246v-.308H.926A.923.923,0,0,1,.471,17.35a4,4,0,0,0,1.956-2.66l.036-.229V10.726A9.492,9.492,0,0,1,7.292,2.873l.147-.08,0-.018A3.369,3.369,0,0,1,10.566.007L10.771,0a3.379,3.379,0,0,1,3.287,2.573l.045.22.147.08a9.556,9.556,0,0,1,4.806,7.541l.023.355-.007,3.582a4.016,4.016,0,0,0,2,3,.924.924,0,0,1-.329,1.719l-.126.008H15.387v.308a4.616,4.616,0,0,1-9.225.246ZM8,19.385a2.769,2.769,0,0,0,5.532.189l.007-.189v-.308H8ZM9.242,3.228l-.012.238-.005.045L9.2,3.63l-.039.113-.054.107-.035.055L9,4l-.036.038-.05.046-.1.074L8.7,4.219A7.7,7.7,0,0,0,4.332,10.46l-.022.309-.007,3.8a5.875,5.875,0,0,1-.94,2.541l-.084.119H18.266l-.007-.012a6.007,6.007,0,0,1-.983-2.452l-.043-.306V10.812a7.674,7.674,0,0,0-4.4-6.593.919.919,0,0,1-.518-.7l-.009-.132a1.538,1.538,0,0,0-3.069-.157Z" transform="translate(1.499)" fill="#fff"></path>
-                    </svg>
-                </a>
+         
             </div>
         </div>
     </div>
@@ -83,7 +79,7 @@ $categorys=mysqli_query($dbconnect,$category_select);
     <!-- Muse Section -->
     <section class="muse-section">
       <div class="swiper-container swiper-list">
-        <h3 class="text-uppercase pb-3 pb-md-5">Newly Added</h3>
+        <h3 class="text-uppercase pb-3 pb-md-5">Products</h3>
         <div class="mb-3" style="align-content: flex-start;">
           <a href="" class="btn btn-link link-dark">View all</a>
         </div>
@@ -216,10 +212,22 @@ $categorys=mysqli_query($dbconnect,$category_select);
       <div class="swiper-container swiper-list2">
         <h3 class="text-uppercase pb-3 pb-md-5">New Arrivals</h3>
         <div class="swiper-wrapper">
+          <?php foreach($new_products as $new) {?>
+
+            <?php 
+                  $product_id=$new['id'];
+                  $avg_query= "SELECT avg(rating) as avg_rating FROM buyer_feedback WHERE product_id='$product_id'";
+                  $avg_rating_query_result=mysqli_query($dbconnect,$avg_query);
+                  $avg_rating=mysqli_fetch_assoc($avg_rating_query_result)['avg_rating'];
+                    if($avg_rating == NULL){
+                      $avg_rating=0;
+
+                    }
+            ?>
           <div class="swiper-slide">
             <figure class="card border-0 transition-3d-hover">
               <div class="rounded-6 bg-light-100 px-4 pt-4 pb-5 position-relative">
-                <a href="#" class="py-2 muse-animation has-height"><img src="assets/img/templates/new-arrival1.jpg" alt="img"></a>
+                <a href="#" class="py-2 muse-animation has-height"><img src="images/product/<?=$new['image']?>" alt="img"></a>
                 <?php if(isset($_SESSION['login_done']) and ($_SESSION['login_done']==1)){?>
                   <a href="#" class="add-cart">
                 <?php } elseif(isset($_SESSION['login_done']) and ($_SESSION['login_done']==2)){?>
@@ -236,168 +244,21 @@ $categorys=mysqli_query($dbconnect,$category_select);
               <figcaption class="pt-3">
                 <div class="mb-2"><small class="star-icon big d-inline-flex align-items-center"><span class="rounded-pill me-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16.416 15.6">
                   <path d="M17.076,19.2,12,16.14,6.924,19.2l1.344-5.772L3.792,9.546l5.9-.5L12,3.6l2.3,5.442,5.9.5-4.476,3.882Z" transform="translate(-3.792 -3.6)" fill="#ffffff"/>
-                </svg></span> 4.8</small></div>
-                <h5 class="mb-2 title-box"><a href="#">Opus #2 Digital Audio Player</a></h5>
-                <span class="h6">$195</span>
+                </svg></span> <?=$avg_rating?></small></div>
+                <h5 class="mb-2 title-box"><a href="#"><?=$new['name']?></a></h5>
+                <?php if($new['weight']>0){?>
+                <span class="h5">
+                  <?=$new['price']?> Tk
+                </span>
+
+                <?php }else{?>
+                   <strike><?=$new['price']?> Tk</strike> Out of Stock
+
+                <?php } ?>
               </figcaption>
             </figure>
           </div>
-          <div class="swiper-slide">
-            <figure class="card border-0 transition-3d-hover">
-              <div class="rounded-6 bg-light-100 px-4 pt-4 pb-5 position-relative">
-                <a href="#" class="py-2 muse-animation has-height"><img src="assets/img/templates/new-arrival2.jpg" alt="img"></a>
-                <?php if(isset($_SESSION['login_done']) and ($_SESSION['login_done']==1)){?>
-                  <a href="#" class="add-cart">
-                <?php } elseif(isset($_SESSION['login_done']) and ($_SESSION['login_done']==2)){?>
-                  <a href="#" class="add-cart">
-                <?php } else{?>
-                  <a href="login/login.php" class="add-cart">
-                <?php }?>
-                  <svg data-name="icons/tabler/cart" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">
-                    <rect data-name="Icons/Tabler/Cart background" width="16" height="16" fill="none"></rect>
-                    <path d="M8.753,13.995A2.006,2.006,0,1,1,10.759,16,2.008,2.008,0,0,1,8.753,13.995Zm1.094,0a.912.912,0,1,0,.912-.912A.913.913,0,0,0,9.847,13.995Zm-6.929,0A2.006,2.006,0,1,1,4.924,16,2.008,2.008,0,0,1,2.918,13.995Zm1.094,0a.912.912,0,1,0,.912-.912A.913.913,0,0,0,4.012,13.995ZM10.9,11.309l-.142,0H5.684c-.052,0-.1,0-.157,0A2.723,2.723,0,0,1,3,9.616l-.052-.136-.023-.092L2.1,4.434l-.013-.028a.5.5,0,0,1-.038-.139l-.005-.074a.512.512,0,0,1,.005-.075L1.542,1.094H.547A.548.548,0,0,1,.005.621L0,.547A.548.548,0,0,1,.473.005L.547,0H2.006a.544.544,0,0,1,.52.38l.019.077.531,3.19h10.6a.547.547,0,0,1,.547.549l-.006.076-.729,5.1-.025.1a2.721,2.721,0,0,1-2.554,1.829Zm-.111-1.1.095,0a1.64,1.64,0,0,0,1.5-.977l.03-.077.632-4.419H3.259l.735,4.412.033.085a1.643,1.643,0,0,0,1.491.977l.133,0Z" transform="translate(1)" fill="#1e1e1e"></path>
-                  </svg>
-                </a>
-              </div>
-              <figcaption class="pt-3">
-                <div class="mb-2"><small class="star-icon big d-inline-flex align-items-center"><span class="rounded-pill me-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16.416 15.6">
-                  <path d="M17.076,19.2,12,16.14,6.924,19.2l1.344-5.772L3.792,9.546l5.9-.5L12,3.6l2.3,5.442,5.9.5-4.476,3.882Z" transform="translate(-3.792 -3.6)" fill="#ffffff"/>
-                </svg></span> 4.2</small></div>
-                <h5 class="mb-2 title-box"><a href="#">HIFIMAN HE-35X Headphones</a></h5>
-                <span class="h6">$195</span>
-              </figcaption>
-            </figure>
-          </div>
-          <div class="swiper-slide">
-            <figure class="card border-0 transition-3d-hover">
-              <div class="rounded-6 bg-light-100 px-4 pt-4 pb-5 position-relative">
-                <a href="#" class="py-2 muse-animation has-height"><img src="assets/img/templates/new-arrival3.jpg" alt="img"></a>
-                <?php if(isset($_SESSION['login_done']) and ($_SESSION['login_done']==1)){?>
-                  <a href="#" class="">
-                <?php } elseif(isset($_SESSION['login_done']) and ($_SESSION['login_done']==2)){?>
-                  <a href="#" class="add-cart">
-                <?php } else{?>
-                  <a href="login/login.php" class="add-cart">
-                <?php }?>
-                  <svg data-name="icons/tabler/cart" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">
-                    <rect data-name="Icons/Tabler/Cart background" width="16" height="16" fill="none"></rect>
-                    <path d="M8.753,13.995A2.006,2.006,0,1,1,10.759,16,2.008,2.008,0,0,1,8.753,13.995Zm1.094,0a.912.912,0,1,0,.912-.912A.913.913,0,0,0,9.847,13.995Zm-6.929,0A2.006,2.006,0,1,1,4.924,16,2.008,2.008,0,0,1,2.918,13.995Zm1.094,0a.912.912,0,1,0,.912-.912A.913.913,0,0,0,4.012,13.995ZM10.9,11.309l-.142,0H5.684c-.052,0-.1,0-.157,0A2.723,2.723,0,0,1,3,9.616l-.052-.136-.023-.092L2.1,4.434l-.013-.028a.5.5,0,0,1-.038-.139l-.005-.074a.512.512,0,0,1,.005-.075L1.542,1.094H.547A.548.548,0,0,1,.005.621L0,.547A.548.548,0,0,1,.473.005L.547,0H2.006a.544.544,0,0,1,.52.38l.019.077.531,3.19h10.6a.547.547,0,0,1,.547.549l-.006.076-.729,5.1-.025.1a2.721,2.721,0,0,1-2.554,1.829Zm-.111-1.1.095,0a1.64,1.64,0,0,0,1.5-.977l.03-.077.632-4.419H3.259l.735,4.412.033.085a1.643,1.643,0,0,0,1.491.977l.133,0Z" transform="translate(1)" fill="#1e1e1e"></path>
-                  </svg>
-                </a>
-              </div>
-              <figcaption class="pt-3">
-                <div class="mb-2"><small class="star-icon big d-inline-flex align-items-center"><span class="rounded-pill me-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16.416 15.6">
-                  <path d="M17.076,19.2,12,16.14,6.924,19.2l1.344-5.772L3.792,9.546l5.9-.5L12,3.6l2.3,5.442,5.9.5-4.476,3.882Z" transform="translate(-3.792 -3.6)" fill="#ffffff"/>
-                </svg></span> 4.1</small></div>
-                <h5 class="mb-2 title-box"><a href="#">JVC HA-FW01 Wood Series</a></h5>
-                <span class="h6">$240</span>
-              </figcaption>
-            </figure>
-          </div>
-          <div class="swiper-slide">
-            <figure class="card border-0 transition-3d-hover">
-              <div class="rounded-6 bg-light-100 px-4 pt-4 pb-5 position-relative">
-                <a href="#" class="py-2 muse-animation has-height"><img src="assets/img/templates/new-arrival4.jpg" alt="img"></a>
-                <?php if(isset($_SESSION['login_done']) and ($_SESSION['login_done']==1)){?>
-                  <a href="#" class="">
-                <?php } elseif(isset($_SESSION['login_done']) and ($_SESSION['login_done']==2)){?>
-                  <a href="#" class="add-cart">
-                <?php } else{?>
-                  <a href="login/login.php" class="add-cart">
-                <?php }?>
-                  <svg data-name="icons/tabler/cart" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">
-                    <rect data-name="Icons/Tabler/Cart background" width="16" height="16" fill="none"></rect>
-                    <path d="M8.753,13.995A2.006,2.006,0,1,1,10.759,16,2.008,2.008,0,0,1,8.753,13.995Zm1.094,0a.912.912,0,1,0,.912-.912A.913.913,0,0,0,9.847,13.995Zm-6.929,0A2.006,2.006,0,1,1,4.924,16,2.008,2.008,0,0,1,2.918,13.995Zm1.094,0a.912.912,0,1,0,.912-.912A.913.913,0,0,0,4.012,13.995ZM10.9,11.309l-.142,0H5.684c-.052,0-.1,0-.157,0A2.723,2.723,0,0,1,3,9.616l-.052-.136-.023-.092L2.1,4.434l-.013-.028a.5.5,0,0,1-.038-.139l-.005-.074a.512.512,0,0,1,.005-.075L1.542,1.094H.547A.548.548,0,0,1,.005.621L0,.547A.548.548,0,0,1,.473.005L.547,0H2.006a.544.544,0,0,1,.52.38l.019.077.531,3.19h10.6a.547.547,0,0,1,.547.549l-.006.076-.729,5.1-.025.1a2.721,2.721,0,0,1-2.554,1.829Zm-.111-1.1.095,0a1.64,1.64,0,0,0,1.5-.977l.03-.077.632-4.419H3.259l.735,4.412.033.085a1.643,1.643,0,0,0,1.491.977l.133,0Z" transform="translate(1)" fill="#1e1e1e"></path>
-                  </svg>
-                </a>
-              </div>
-              <figcaption class="pt-3">
-                <div class="mb-2"><small class="star-icon big d-inline-flex align-items-center"><span class="rounded-pill me-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16.416 15.6">
-                  <path d="M17.076,19.2,12,16.14,6.924,19.2l1.344-5.772L3.792,9.546l5.9-.5L12,3.6l2.3,5.442,5.9.5-4.476,3.882Z" transform="translate(-3.792 -3.6)" fill="#ffffff"/>
-                </svg></span> 3.1</small></div>
-                <h5 class="mb-2 title-box"><a href="#">OLKB Planck Keyboard</a></h5>
-                <span class="h6">$100</span>
-              </figcaption>
-            </figure>
-          </div>
-          <div class="swiper-slide">
-            <figure class="card border-0 transition-3d-hover">
-              <div class="rounded-6 bg-light-100 px-4 pt-4 pb-5 position-relative">
-                <a href="#" class="py-2 muse-animation has-height"><img src="assets/img/templates/new-arrival1.jpg" alt="img"></a>
-                <?php if(isset($_SESSION['login_done']) and ($_SESSION['login_done']==1)){?>
-                  <a href="#" class="">
-                <?php } elseif(isset($_SESSION['login_done']) and ($_SESSION['login_done']==2)){?>
-                  <a href="#" class="add-cart">
-                <?php } else{?>
-                  <a href="login/login.php" class="add-cart">
-                <?php }?>
-                  <svg data-name="icons/tabler/cart" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">
-                    <rect data-name="Icons/Tabler/Cart background" width="16" height="16" fill="none"></rect>
-                    <path d="M8.753,13.995A2.006,2.006,0,1,1,10.759,16,2.008,2.008,0,0,1,8.753,13.995Zm1.094,0a.912.912,0,1,0,.912-.912A.913.913,0,0,0,9.847,13.995Zm-6.929,0A2.006,2.006,0,1,1,4.924,16,2.008,2.008,0,0,1,2.918,13.995Zm1.094,0a.912.912,0,1,0,.912-.912A.913.913,0,0,0,4.012,13.995ZM10.9,11.309l-.142,0H5.684c-.052,0-.1,0-.157,0A2.723,2.723,0,0,1,3,9.616l-.052-.136-.023-.092L2.1,4.434l-.013-.028a.5.5,0,0,1-.038-.139l-.005-.074a.512.512,0,0,1,.005-.075L1.542,1.094H.547A.548.548,0,0,1,.005.621L0,.547A.548.548,0,0,1,.473.005L.547,0H2.006a.544.544,0,0,1,.52.38l.019.077.531,3.19h10.6a.547.547,0,0,1,.547.549l-.006.076-.729,5.1-.025.1a2.721,2.721,0,0,1-2.554,1.829Zm-.111-1.1.095,0a1.64,1.64,0,0,0,1.5-.977l.03-.077.632-4.419H3.259l.735,4.412.033.085a1.643,1.643,0,0,0,1.491.977l.133,0Z" transform="translate(1)" fill="#1e1e1e"></path>
-                  </svg>
-                </a>
-              </div>
-              <figcaption class="pt-3">
-                <div class="mb-2"><small class="star-icon big d-inline-flex align-items-center"><span class="rounded-pill me-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16.416 15.6">
-                  <path d="M17.076,19.2,12,16.14,6.924,19.2l1.344-5.772L3.792,9.546l5.9-.5L12,3.6l2.3,5.442,5.9.5-4.476,3.882Z" transform="translate(-3.792 -3.6)" fill="#ffffff"/>
-                </svg></span> 4.8</small></div>
-                <h5 class="mb-2 title-box"><a href="#">Opus #2 Digital Audio Player</a></h5>
-                <span class="h6">$195</span>
-              </figcaption>
-            </figure>
-          </div>
-          <div class="swiper-slide">
-            <figure class="card border-0 transition-3d-hover">
-              <div class="rounded-6 bg-light-100 px-4 pt-4 pb-5 position-relative">
-                <a href="#" class="py-2 muse-animation has-height"><img src="assets/img/templates/new-arrival2.jpg" alt="img"></a>
-                <?php if(isset($_SESSION['login_done']) and ($_SESSION['login_done']==1)){?>
-                  <a href="#" class="">
-                <?php } elseif(isset($_SESSION['login_done']) and ($_SESSION['login_done']==2)){?>
-                  <a href="#" class="add-cart">
-                <?php } else{?>
-                  <a href="login/login.php" class="add-cart">
-                <?php }?>
-                  <svg data-name="icons/tabler/cart" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">
-                    <rect data-name="Icons/Tabler/Cart background" width="16" height="16" fill="none"></rect>
-                    <path d="M8.753,13.995A2.006,2.006,0,1,1,10.759,16,2.008,2.008,0,0,1,8.753,13.995Zm1.094,0a.912.912,0,1,0,.912-.912A.913.913,0,0,0,9.847,13.995Zm-6.929,0A2.006,2.006,0,1,1,4.924,16,2.008,2.008,0,0,1,2.918,13.995Zm1.094,0a.912.912,0,1,0,.912-.912A.913.913,0,0,0,4.012,13.995ZM10.9,11.309l-.142,0H5.684c-.052,0-.1,0-.157,0A2.723,2.723,0,0,1,3,9.616l-.052-.136-.023-.092L2.1,4.434l-.013-.028a.5.5,0,0,1-.038-.139l-.005-.074a.512.512,0,0,1,.005-.075L1.542,1.094H.547A.548.548,0,0,1,.005.621L0,.547A.548.548,0,0,1,.473.005L.547,0H2.006a.544.544,0,0,1,.52.38l.019.077.531,3.19h10.6a.547.547,0,0,1,.547.549l-.006.076-.729,5.1-.025.1a2.721,2.721,0,0,1-2.554,1.829Zm-.111-1.1.095,0a1.64,1.64,0,0,0,1.5-.977l.03-.077.632-4.419H3.259l.735,4.412.033.085a1.643,1.643,0,0,0,1.491.977l.133,0Z" transform="translate(1)" fill="#1e1e1e"></path>
-                  </svg>
-                </a>
-              </div>
-              <figcaption class="pt-3">
-                <div class="mb-2"><small class="star-icon big d-inline-flex align-items-center"><span class="rounded-pill me-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16.416 15.6">
-                  <path d="M17.076,19.2,12,16.14,6.924,19.2l1.344-5.772L3.792,9.546l5.9-.5L12,3.6l2.3,5.442,5.9.5-4.476,3.882Z" transform="translate(-3.792 -3.6)" fill="#ffffff"/>
-                </svg></span> 4.2</small></div>
-                <h5 class="mb-2 title-box"><a href="#">HIFIMAN HE-35X Headphones</a></h5>
-                <span class="h6">$195</span>
-              </figcaption>
-            </figure>
-          </div>
-          <div class="swiper-slide">
-            <figure class="card border-0 transition-3d-hover">
-              <div class="rounded-6 bg-light-100 px-4 pt-4 pb-5 position-relative">
-                <a href="#" class="py-2 muse-animation has-height"><img src="assets/img/templates/new-arrival3.jpg" alt="img"></a>
-                <?php if(isset($_SESSION['login_done']) and ($_SESSION['login_done']==1)){?>
-                  <a href="#" class="">
-                <?php } elseif(isset($_SESSION['login_done']) and ($_SESSION['login_done']==2)){?>
-                  <a href="#" class="add-cart">
-                <?php } else{?>
-                  <a href="login/login.php" class="add-cart">
-                <?php }?>
-                  <svg data-name="icons/tabler/cart" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">
-                    <rect data-name="Icons/Tabler/Cart background" width="16" height="16" fill="none"></rect>
-                    <path d="M8.753,13.995A2.006,2.006,0,1,1,10.759,16,2.008,2.008,0,0,1,8.753,13.995Zm1.094,0a.912.912,0,1,0,.912-.912A.913.913,0,0,0,9.847,13.995Zm-6.929,0A2.006,2.006,0,1,1,4.924,16,2.008,2.008,0,0,1,2.918,13.995Zm1.094,0a.912.912,0,1,0,.912-.912A.913.913,0,0,0,4.012,13.995ZM10.9,11.309l-.142,0H5.684c-.052,0-.1,0-.157,0A2.723,2.723,0,0,1,3,9.616l-.052-.136-.023-.092L2.1,4.434l-.013-.028a.5.5,0,0,1-.038-.139l-.005-.074a.512.512,0,0,1,.005-.075L1.542,1.094H.547A.548.548,0,0,1,.005.621L0,.547A.548.548,0,0,1,.473.005L.547,0H2.006a.544.544,0,0,1,.52.38l.019.077.531,3.19h10.6a.547.547,0,0,1,.547.549l-.006.076-.729,5.1-.025.1a2.721,2.721,0,0,1-2.554,1.829Zm-.111-1.1.095,0a1.64,1.64,0,0,0,1.5-.977l.03-.077.632-4.419H3.259l.735,4.412.033.085a1.643,1.643,0,0,0,1.491.977l.133,0Z" transform="translate(1)" fill="#1e1e1e"></path>
-                  </svg>
-                </a>
-              </div>
-              <figcaption class="pt-3">
-                <div class="mb-2"><small class="star-icon big d-inline-flex align-items-center"><span class="rounded-pill me-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16.416 15.6">
-                  <path d="M17.076,19.2,12,16.14,6.924,19.2l1.344-5.772L3.792,9.546l5.9-.5L12,3.6l2.3,5.442,5.9.5-4.476,3.882Z" transform="translate(-3.792 -3.6)" fill="#ffffff"/>
-                </svg></span> 4.1</small></div>
-                <h5 class="mb-2 title-box"><a href="#">JVC HA-FW01 Wood Series</a></h5>
-                <span class="h6">$240</span>
-              </figcaption>
-            </figure>
-          </div>
+          <?php } ?>
         </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination"></div>

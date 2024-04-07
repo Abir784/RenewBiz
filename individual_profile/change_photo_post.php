@@ -8,7 +8,7 @@ $user=mysqli_fetch_assoc($user_select_query_result);
 $role=$user['role'];
 $error=[];
 date_default_timezone_set('Asia/Dhaka');
-$updated_at = date("d-m-y h:i:s");
+$updated_at = date("y-m-d h:i:s");
 
 if(!empty($_POST['password'])){
     //password present, img ase

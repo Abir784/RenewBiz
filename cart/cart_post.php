@@ -15,7 +15,7 @@ if ($data){
     $buyer=mysqli_fetch_assoc($buyer_select_query_result);
     $bid=$buyer['id'];
     date_default_timezone_set('Asia/Dhaka');
-    $created_at = date("d-m-y h:i:s");
+    $created_at = date("y-m-d h:i:s");
 
     $if_product_exists="SELECT EXISTS (SELECT * FROM carts WHERE (product_id = '$id' and buyer_id = '$bid')) as cart";
     $product_exists=mysqli_query($dbconnect,$if_product_exists);

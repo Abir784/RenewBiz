@@ -4,7 +4,7 @@ include '../session_check.php';
 include '../page_includes/dashboard_header.php';
 include '../db.php';
 $user_id=$_SESSION['login_user_id'];
-$product_select_query="SELECT p.id,p.name AS p_name, c.name AS category_name,p.price AS price,p.image AS product_image,p.status AS p_status ,p.description AS p_description  FROM product p INNER JOIN Category c ON p.category_id = c.id WHERE user_id=$user_id";
+$product_select_query="SELECT p.id,p.name AS p_name, c.name AS category_name,p.price AS price,p.image AS product_image,p.status AS p_status  FROM product p INNER JOIN Category c ON p.category_id = c.id WHERE user_id=$user_id";
 $products=mysqli_query($dbconnect,$product_select_query);
 
 ?>
@@ -24,7 +24,6 @@ $products=mysqli_query($dbconnect,$product_select_query);
                         <th>Product Name</th>
                         <th>Category</th>
                         <th>Price</th>
-                        <th>Description</th>
                         <th>Status</th>
                         <th colspan="4" class="text-center">Action</th>
                     </tr>
@@ -38,7 +37,6 @@ $products=mysqli_query($dbconnect,$product_select_query);
                         <td><?=$product['p_name']?></td>
                         <td><?=$product['category_name']?></td>
                         <td><?=$product['price']?></td>
-                        <td><?=$product['p_description']?></td>
                         <?php if($product['p_status']==1) {?>
                         <td><a href="status_change.php?id=<?=$product['id']?>" class="btn btn-success">Live</a></td>
                         <?php } else {?>
