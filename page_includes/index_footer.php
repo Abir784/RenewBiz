@@ -2,7 +2,7 @@
 <!-- Muse Footer, Pt 4, Pt Md 5, Pb 2, Pb Md 4 -->
 <footer class="pt-4 pt-md-5 pb-2 pb-md-4">
   <div class="container">
-    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 pt-3 pt-md-4">
+    <!-- <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 pt-3 pt-md-4">
       <div class="col mb-3">
         <h6 class="font-weight-bold">Product</h6>
         <ul class="list-unstyled footer-link">
@@ -88,7 +88,7 @@
           </li>
         </ul>
       </div>
-    </div>
+    </div> -->
     <hr class="my-4">
     <div class="row">
       <div class="col-sm-5 order-sm-2">
@@ -111,7 +111,7 @@
         </div>
       </div>
       <div class="col-sm-7">
-        <p class="small text-gray-600 text-center text-sm-start">&copy; 2020 Fabrx Design. All rights reserved.</p>
+        <p class="small text-gray-600 text-center text-sm-start">&copy; 2024 RenewBiz. All rights reserved.</p>
       </div>
     </div>
   </div>

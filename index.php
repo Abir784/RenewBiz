@@ -11,7 +11,10 @@ $categorys=mysqli_query($dbconnect,$category_select);
 // New arrivals
 $new_arrival_products='SELECT p.id as id,p.image as image,p.name as name,p.price as price,i.weight as weight FROM product p,inventory i WHERE (i.product_id=p.id and p.status=1) ORDER BY p.created_at DESC LIMIT 5';
 $new_products=mysqli_query($dbconnect,$new_arrival_products);
-
+// Highest Grossing Proudct
+$highest_grossing_product_query='SELECT p.id as product_id,p.image as product_image,p.name as product_name,p.price as product_price ,p.description as p_description,i.weight as weight, count(p.id) as num_of_orders From product p,orders o,inventory i WHERE i.product_id = p.id and o.product_id = p.id GROUP BY p.id ORDER BY num_of_orders DESC LIMIT 1';
+$highest_grossing_product_query_result=mysqli_query($dbconnect,$highest_grossing_product_query);
+$highest_grossing_product=mysqli_fetch_assoc($highest_grossing_product_query_result);
 ?>
 
 <div class="container">
@@ -149,20 +152,15 @@ $new_products=mysqli_query($dbconnect,$new_arrival_products);
     </section>
     
     <!-- Muse Section -->
+    <?php if($highest_grossing_product) {?>
     <section class="muse-section">
-      <h3 class="text-uppercase pb-3 pb-md-5">Featured Today</h3>
+      <h3 class="text-uppercase pb-3 pb-md-5">Top Pick</h3>
       <div class="row align-items-center">
         <div class="col-lg-7">
           <div class="swiper-container swiper-navication">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
-                <img src="assets/img/templates/amp.jpg" class="w-100" alt="img">
-              </div>
-              <div class="swiper-slide">
-                <img src="assets/img/templates/amp.jpg" class="w-100" alt="img">
-              </div>
-              <div class="swiper-slide">
-                <img src="assets/img/templates/amp.jpg" class="w-100" alt="img">
+                <img src="images/product/<?=$highest_grossing_product['product_image']?>" class="w-100" alt="img">
               </div>
             </div>
             <!-- Add Arrows -->
@@ -173,18 +171,46 @@ $new_products=mysqli_query($dbconnect,$new_arrival_products);
         <div class="col-lg-5 my-4" data-aos="fade-up" data-aos-delay="100">
           <p class="star-icon mb-2"><span class="rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16.416 15.6">
             <path d="M17.076,19.2,12,16.14,6.924,19.2l1.344-5.772L3.792,9.546l5.9-.5L12,3.6l2.3,5.442,5.9.5-4.476,3.882Z" transform="translate(-3.792 -3.6)" fill="#ffffff"/>
-          </svg></span> 4.8</p>
-          <h2 class="h1 text-uppercase mb-0">CAVALLI LIQUID CARBON X AMP</h2>
-          <p class="big lh-lg">On the other hand, we denounce with righteous indignation and dislike men.</p>
-          <p class="h3 mt-4">$2,195</p>
-          <div class="mt-2">
-            <a href="javascript:void(0);" class="btn btn-xl btn-dark text-uppercase me-2 px-5"><span class="px-md-5">Cart</span></a>
-          </div>
+            <?php 
+                  $product_id=$highest_grossing_product['product_id'];
+                  $avg_query= "SELECT avg(rating) as avg_rating FROM buyer_feedback WHERE product_id='$product_id'";
+                  $avg_rating_query_result=mysqli_query($dbconnect,$avg_query);
+                  $avg_rating=mysqli_fetch_assoc($avg_rating_query_result)['avg_rating'];
+                    if($avg_rating == NULL){
+                      $avg_rating=0;
+
+                    }
+            ?>
+          </svg></span> <?=round($avg_rating,3)?></p>
+          <h2 class="h1 text-uppercase mb-0"><a href="add_to_cart.php?id=<?=$highest_grossing_product['product_id']?>"><?=$highest_grossing_product['product_name']?></a></h2>
+          <p class="big lh-lg"><?=$highest_grossing_product['p_description']?>.</p>
+
+          <?php if($highest_grossing_product['weight']>0){?>
+                       <p class="h3 mt-4"><?=$highest_grossing_product['product_price']?> Taka</p>
+                <?php }else{?>
+                  <p class="h3 mt-4"><strike><?=$highest_grossing_product['price']?> Taka</strike> Out of Stock </p>
+
+                <?php } ?>
+
+                <?php if($highest_grossing_product['weight']>0){  ?>
+                  <?php if(isset($_SESSION['login_done']) and ($_SESSION['login_done']==1)){?>
+                    <div class="mt-2">
+                      <a href="" class="btn btn-xl btn-dark text-uppercase me-2 px-5"><span class="px-md-5">Cart</span></a>
+                    </div>
+                  <?php } elseif(isset($_SESSION['login_done']) and ($_SESSION['login_done']==2)){?>
+                    <div class="mt-2">
+                      <a href="cart/cart_post.php?id=<?=$highest_grossing_product['product_id']?>" class="btn btn-xl btn-dark text-uppercase me-2 px-5"><span  class="px-md-5">Add to Cart</span></a>
+                      </div>
+                  <?php } else{?>
+                    <div class="mt-2">
+                        <a href="cart/cart_post.php?id=<?=$highest_grossing_product['product_id']?>" class="btn btn-xl btn-dark text-uppercase me-2 px-5"><span  class="px-md-5">Add to Cart</span></a>
+                    </div>
+                 <?php }?>
+               <?php } ?>
         </div>
-        
       </div>
     </section>
-    
+    <?php }?>
     <!-- Muse Section -->
     <section class="muse-section">
       <div class="row">
@@ -269,8 +295,8 @@ $new_products=mysqli_query($dbconnect,$new_arrival_products);
     <section class="muse-section perfection-section">
       <div class="row g-0 border-top">
         <div class="col-lg-12 col-xl-4 py-md-5 border-bottom">
-          <h2 class="mb-2">COMMITED TO PERFECTION</h2>
-          <p class="lh-lg pe-lg-5 me-xl-2">On the other hand, we denounce with righteous indignation and dislike men who are so beguiled.</p>
+          <h2 class="mb-2">COMMITTED TO SUSTAINABILITY</h2>
+          <p class="lh-lg pe-lg-5 me-xl-2">At RenewBiz, we are committed to sustainability and denounce with righteous indignation any practices that harm the environment.</p>
         </div>
         <div class="col-md-6 col-xl-4 border-start border-end border-bottom">
           <ul class="perfection-list">
@@ -284,8 +310,8 @@ $new_products=mysqli_query($dbconnect,$new_arrival_products);
                 </span>
               </div>
               <div class="perfection-right">
-                <h6 class="mb-2">SUPER FAST SHIPPING</h6>
-                <p class="small lh-lg text-gray-600 mb-1">On the other hand, we denounce with righteous indignation and</p>
+                <h6 class="mb-2">ECO-FRIENDLY SHIPPING</h6>
+                <p class="small lh-lg text-gray-600 mb-1">RenewBiz ships fast, eco-friendly, minimizing environmental impact with carbon reduction.</p>
               </div>
             </li>
             <li>
@@ -299,7 +325,7 @@ $new_products=mysqli_query($dbconnect,$new_arrival_products);
               </div>
               <div class="perfection-right">
                 <h6 class="mb-2">30 DAY MONEY BACK</h6>
-                <p class="small lh-lg text-gray-600 mb-1">On the other hand, we denounce with righteous indignation and</p>
+                <p class="small lh-lg text-gray-600 mb-1">RenewBiz offers 30-day returns, promoting sustainability with hassle-free options.</p>
               </div>
             </li>
           </ul>
@@ -316,8 +342,8 @@ $new_products=mysqli_query($dbconnect,$new_arrival_products);
                 </span>
               </div>
               <div class="perfection-right">
-                <h6 class="mb-2">24/7 SUPPORT</h6>
-                <p class="small lh-lg text-gray-600 mb-1">On the other hand, we denounce with righteous indignation and</p>
+                <h6 class="mb-2">24/7 GREEN SUPPORT</h6>
+                <p class="small lh-lg text-gray-600 mb-1">RenewBiz provides 24/7 eco-support, prioritizing sustainability in customer assistance.</p>
               </div>
             </li>
             <li>
@@ -330,8 +356,9 @@ $new_products=mysqli_query($dbconnect,$new_arrival_products);
                 </span>
               </div>
               <div class="perfection-right">
-                <h6 class="mb-2">FREE RETURNS</h6>
-                <p class="small lh-lg text-gray-600 mb-1">On the other hand, we denounce with righteous indignation and</p>
+                <h6 class="mb-2">ZERO FRAUD TOLERANCE</h6>
+                <p class="small lh-lg text-gray-600 mb-1">
+                   RenewBiz ensures zero fraud, offering free eco-friendly returns.</p>
               </div>
             </li>
           </ul>
@@ -339,7 +366,7 @@ $new_products=mysqli_query($dbconnect,$new_arrival_products);
       </div>
       <div class="row pt-4">
         <div class="col-xl-7">
-          <p class="small text-start text-gray-600 lh-lg mb-0">This order process is provided by Brand name, who handle all payment services, invoicing and download links. Need more information? You can always reach us at <a href="mailto:support@email.com" class="text-gray-600">support@email.com</a></p>
+          <p class="small text-start text-gray-600 lh-lg mb-0">This order process is provided by Brand name, who handle all payment services, invoicing and download links. Need more information? You can always reach us at <a href="mailto:support@email.com" class="text-gray-600">renewsupport@justmail.com</a></p>
         </div>
       </div>
     </section>
@@ -350,7 +377,7 @@ $new_products=mysqli_query($dbconnect,$new_arrival_products);
         <div class="row align-items-center">
           <div class="col-xl-6 col-md-7">
             <div class="p-4 p-lg-5 m-sm-2">
-              <h2 class="h1 text-uppercase mb-0">Daily Savings!</h2>
+              <h2 class="h1 text-uppercase mb-0">Subscribe !</h2>
               <p class="fs-20 text-black-600 lh-lg">Best deals directly to your inbox</p>
               <form class="mt-sm-4 signup-form">
                 <div class="input-group input-group-xl">
