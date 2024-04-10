@@ -62,6 +62,10 @@ $join_product_order_table_result= mysqli_query($dbconnect,$join_product_order_ta
 <?php
 include '../page_includes/dashboard_footer.php';
 ?>
+
+
+
+
 <script>
         $(document).on('change','#status',function() {
             var status = $(this).val();

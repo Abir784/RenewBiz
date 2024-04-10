@@ -5,6 +5,7 @@ include '../db.php';
 include '../page_includes/dashboard_header.php';
 $join_product_order_table="SELECT o.id as order_id,p.image as product_image,p.name as product_name, o.created_at as order_date ,o.status as order_status From product p,orders o WHERE (o.product_id = p.id and p.user_id = $user_id)";
 $join_product_order_table_result= mysqli_query($dbconnect,$join_product_order_table);
+
 ?>
 
 <div class="container">
