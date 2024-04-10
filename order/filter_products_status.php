@@ -17,6 +17,7 @@ foreach($join_product_order_table_result as $orders){
     }else{
         $st='<td><span class="avatar-status avatar-sm-status avatar-danger position-relative me-1 bottom-0 end-0">&nbsp;</span> Declined</td>';
     }
+    
     $data.='<tr><td><img src="../images/product/'.$orders['product_image'].'" width="50px" height="50px" alt=""></td><td>'.$orders['product_name'].'</td>'.'<td>'.date_format(date_create($orders['order_date']),'d-M-y h:i A').'</td>'.$st.'<td><a href="../order/seller_side_order_details.php?id='.$orders['order_id'].'"> See order details</a></td>'.'</tr>';
 }
 echo $data;
