@@ -2,8 +2,7 @@
 session_start();
 include '../db.php';
 $status=$_POST['status'];
-echo $status;
-die();
+
 $user_id=$_SESSION['login_user_id'];
 $join_product_order_table="SELECT o.id as order_id,p.image as product_image,p.name as product_name, o.created_at as order_date ,o.status as order_status From product p,orders o WHERE (o.product_id = p.id and p.user_id = $user_id and o.status='$status')";
 $join_product_order_table_result= mysqli_query($dbconnect,$join_product_order_table);

@@ -37,7 +37,7 @@ $join_product_order_table_result= mysqli_query($dbconnect,$join_product_order_ta
                 <th>Action</th>
             </tr>
         </thead>
-        <tbody id="Abir">
+        <tbody id="content">
         <?php foreach($join_product_order_table_result as $orders){ ?>
             <tr>
                 <td><img src="../images/product/<?=$orders['product_image']?>" width="50px" height="50px" alt=""></td>
@@ -74,7 +74,7 @@ include '../page_includes/dashboard_footer.php';
                 url: 'filter_s_status.php',
                 data: {status: status},
                 success: function(response) {
-                    $('#Abir').html(response);
+                    $('#content').html(response);
                 }
             });
     });
@@ -91,7 +91,7 @@ $(function() {
                 url: 'filter_s_date.php',
                 data: {start: start.format('YYYY-MM-DD'),end:end.format('YYYY-MM-DD')},
                 success: function(response) {
-                    $('#Abir').html(response);
+                    $('#content').html(response);
                 }
             });
   });
