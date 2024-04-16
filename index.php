@@ -223,9 +223,9 @@ $highest_grossing_product=mysqli_fetch_assoc($highest_grossing_product_query_res
         <?php foreach($categorys as $category){ ?>
         <div class="col-6 col-lg-3 mt-1" data-aos="fade-up" data-aos-delay="100">
           <figure class="card border-0 transition-3d-hover mb-0 mb-md-3">
-            <a href="#"><img src="images/category/<?=$category['image']?>" class="rounded-6 w-100" alt="img"></a>
+            <a href="category_filter.php?id=<?=$category['id']?>"><img src="images/category/<?=$category['image']?>" class="rounded-6 w-100" alt="img"></a>
             <figcaption class="pt-3 pb-4">
-              <h5 class="mb-0 mb-md-3 title-box"><a href="#"><?=$category['name']?></a></h5>
+              <h5 class="mb-0 mb-md-3 title-box"><a href="category_filter.php?id=<?=$category['id']?>"><?=$category['name']?></a></h5>
             </figcaption>
           </figure>
         </div>
