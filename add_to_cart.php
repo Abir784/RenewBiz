@@ -96,6 +96,7 @@ $avg_rating=mysqli_fetch_assoc($avg_rating_query_result)['avg_rating'];
 .rate > input:checked ~ label:hover ~ label,
 .rate > label:hover ~ input:checked ~ label {
     color: #c59b08;}
+    
 </style>
 <div class="container">
   <div class="row">

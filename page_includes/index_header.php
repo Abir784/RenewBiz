@@ -12,6 +12,7 @@
 <!-- Muse Plugins CSS -->
 <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" type="text/css" media="all">
 <link href="assets/vendor/aos/dist/aos.css" rel="stylesheet" type="text/css" media="all">
+<link rel="stylesheet" href="assets/css/wishlist.css">
 <!-- Muse Theme CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="assets/css/theme.min.css" rel="stylesheet" type="text/css" media="all">
