@@ -36,8 +36,8 @@ $categories = mysqli_query($dbconnect, $category_select_query);
                                         <img src="../images/category/<?= $category['image'] ?>" width="50px" height="50px" alt="<?= $category['name'] ?> Image">
                                     </td>
                                     <td class="text-center">
-                                    <a href="update.php?id=<?= $category['id'] ?>" class="btn btn-info btn-sm">Update</a>
-                                    <td><a href="delete_p.php?id=<?=$category['id']?>" class="btn btn-danger" id="alertButton">Delete</a></td>
+                                        <a href="update.php?id=<?= $category['id'] ?>"><i class="fa-solid fa-marker text-primary m-2" title="Edit"></i></a>
+                                        <a href="delete_p.php?id=<?=$category['id']?>" title="Delete" id="alertButton"><i class="fa-solid fa-trash text-danger m-2"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
