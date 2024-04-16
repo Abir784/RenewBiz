@@ -58,7 +58,7 @@ $grand_total=0;
                         <td><?=$product['price']*$product['quantity']?> TK.</td>
                         <input type="hidden" name="total_price<?=$key+1?>" value="<?=$product['price']*$product['quantity']?>">
                         <input type="hidden" name="cart_id<?=$key+1?>" value="<?=$product['cart_id']?>">
-                        <td><a href="cart_delete.php?id=<?=$product['id']?>" class="btn btn-danger" id="alertButton">Remove</a></td>
+                        <td><a href="cart_delete.php?id=<?=$product['cart_id']?>" class="btn btn-danger" id="alertButton">Remove</a></td>
                     
                     </tr>
                     <?php } ?>
@@ -73,8 +73,8 @@ $grand_total=0;
                 </tfoot>
                 </table>
                 <div class="text-right">
-                <button type="submit" name="save" class="btn btn-secondary mb-3">Save</button>
-                <button type="submit" name="confirm_order" class="btn btn-info mb-3">Confirm Order</button>
+                <button type="submit" name="save_from_cart" class="btn btn-secondary mb-3">Save</button>
+                <button type="submit" name="confirm_order_from_cart" class="btn btn-info mb-3">Confirm Order</button>
                 </div>
             </div>
             </form>
