@@ -77,7 +77,7 @@ if ($role == 2){
           <div class="collapse navbar-collapse d-lg-block" id="navbarNav2">
             <ul class="sidebar-nav pt-3">
               <li>
-                <a href="account-profile.html" class="active">General</a>
+                <a href="account-profile.php" class="active">General</a>
               </li>
               <li>
                 <a href="change_photo.php">Change Password</a>

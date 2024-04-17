@@ -12,7 +12,9 @@
 <!-- Muse Plugins CSS -->
 <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" type="text/css" media="all">
 <link href="assets/vendor/aos/dist/aos.css" rel="stylesheet" type="text/css" media="all">
+<link rel="stylesheet" href="assets/css/wishlist.css">
 <!-- Muse Theme CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="assets/css/theme.min.css" rel="stylesheet" type="text/css" media="all">
 </head>
 <body class="bg-gray-100 ecommerce-template">
@@ -147,7 +149,8 @@
           
         </ul>
         <?php if(isset($_SESSION['login_user_id']) and ($_SESSION['login_done']==2)) {?>
-        <a href="cart/cart.php" class="btn btn-primary my-2 my-lg-0">My Cart</a>
+        <a href="cart/cart.php" class="btn btn-primary my-2 my-lg-0" style="margin-left:5px ;">My Cart</a>
+        <a href="cart/wishlist.php" class="btn btn-secondary my-2 my-lg-0" style="margin-left:5px ;">My Wishlist</a>
         <a href="dashboard/dashboard.php" class="btn btn-success my-2 my-lg-0" style="margin-left:5px ;">Dashboard</a>
         <?php } elseif(isset($_SESSION['login_user_id']) and ($_SESSION['login_done']==1)) {?>
         <a href="dashboard/dashboard.php" class="btn btn-success my-2 my-lg-0">Dashboard</a>

@@ -25,7 +25,7 @@ $products=mysqli_query($dbconnect,$product_select_query);
                         <th>Category</th>
                         <th>Price</th>
                         <th>Status</th>
-                        <th colspan="4" class="text-center">Action</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,13 +38,15 @@ $products=mysqli_query($dbconnect,$product_select_query);
                         <td><?=$product['category_name']?></td>
                         <td><?=$product['price']?></td>
                         <?php if($product['p_status']==1) {?>
-                        <td><a href="status_change.php?id=<?=$product['id']?>" class="btn btn-success">Live</a></td>
+                        <td><a href="status_change.php?id=<?=$product['id']?>" title="Product Is Live"><i class="fa-solid fa-circle-check text-success"></i></a></td>
                         <?php } else {?>
-                        <td><a href="status_change.php?id=<?=$product['id']?>" class="btn btn-danger">Offline</a></td>
+                        <td><a href="status_change.php?id=<?=$product['id']?>"  title="Product Is Offline"><i class="fa-solid fa-circle-dot text-danger"></i></a></td>
                         <?php }?>
-                        <td><a href="delete.php?id=<?=$product['id']?>" class="btn btn-danger" id="alertButton">Delete</a></td>
-                        <td><a href="edit.php?id=<?=$product['id']?>" class="btn btn-primary"> Edit </a></td>
-                        <td><a href="add_inventory.php?id=<?=$product['id']?>" class="btn btn-info"> Inventory </a></td>
+                        <td>
+                          <a href="delete.php?id=<?=$product['id']?>" id="alertButton" Title="Delete"><i class="fa-solid fa-trash text-danger m-2"></i></a>
+                          <a href="edit.php?id=<?=$product['id']?>"  title="Edit"> <i class="fa-solid fa-marker text-primary m-2"></i> </a>
+                          <a href="add_inventory.php?id=<?=$product['id']?>"  title="Add Inventory"> <i class="fa-solid fa-warehouse text-secondary m-2"></i></a>
+                        </td>
                     </tr>
                     <?php } ?>
                 </tbody>
