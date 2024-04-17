@@ -84,7 +84,7 @@ $highest_grossing_product=mysqli_fetch_assoc($highest_grossing_product_query_res
       <div class="swiper-container swiper-list">
         <h3 class="text-uppercase pb-3 pb-md-5">Products</h3>
         <div class="mb-3" style="align-content: flex-start;">
-          <a href="" class="btn btn-link link-dark">View all</a>
+          <a href="view_all.php" class="btn btn-link link-dark">View all</a>
         </div>
         <div class="swiper-wrapper">
           <?php foreach($products as $product) {?>
@@ -314,7 +314,7 @@ $highest_grossing_product=mysqli_fetch_assoc($highest_grossing_product_query_res
                 <div class="mb-2"><small class="star-icon big d-inline-flex align-items-center"><span class="rounded-pill me-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16.416 15.6">
                   <path d="M17.076,19.2,12,16.14,6.924,19.2l1.344-5.772L3.792,9.546l5.9-.5L12,3.6l2.3,5.442,5.9.5-4.476,3.882Z" transform="translate(-3.792 -3.6)" fill="#ffffff"/>
                 </svg></span> <?=$avg_rating?></small></div>
-                <h5 class="mb-2 title-box"><a href="#"><?=$new['name']?></a></h5>
+                <h5 class="mb-2 title-box"><a href="add_to_cart.php?id=<?=$product_id?>"><?=$new['name']?></a></h5>
                 <?php if($new['weight']>0){?>
                 <span class="h5">
                   <?=$new['price']?> Tk
