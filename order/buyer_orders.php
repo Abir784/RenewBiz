@@ -26,7 +26,7 @@ $join_product_order_table_result= mysqli_query($dbconnect,$join_product_order_ta
             </div>
 
     <table class="table card-table table-nowrap">
-        <thead>
+        <thead >
             <tr>
                 <th>Product Image</th>
                 <th>Product Name</th>
