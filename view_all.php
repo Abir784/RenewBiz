@@ -10,7 +10,17 @@ $products=mysqli_query($dbconnect,$product_select);
 
 
 <div class="container bg-white">
-    <div class="row">
+    <div class="container mt-4">
+        <h6 class="mt-5"><b>Search Product</b></h6>
+        <div class="input-group mb-4 mt-3">
+            <div class="form-outline">
+                <input type="text" id="getName"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="sadia">
+        
         
         <!-- Start Loop-->
         <?php foreach($products as $product) {?>
@@ -85,13 +95,31 @@ $products=mysqli_query($dbconnect,$product_select);
             </div>
         <?php }?>
         
+        
         <!-- Start Loop-->
+    
     </div>
+    
 </div>
-
-
-
 
 <?php
 include 'page_includes/index_footer.php'
 ?>
+
+<script>
+    $(document).ready(function(){
+    $('#getName').on("keyup", function(){
+        var getName = $(this).val();
+        
+        $.ajax({
+        method:'POST',
+        url:'search.php',
+        data:{name:getName},
+        success:function(response)
+        {
+            $("#sadia").html(response);
+        } 
+        });
+    });
+    });
+</script>
