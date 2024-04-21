@@ -8,16 +8,16 @@ $products=mysqli_query($dbconnect,$product_select);
 
 
 
-
-<div class="container bg-white">
-    <div class="container mt-4">
+<div class="container mt-4">
         <h6 class="mt-5"><b>Search Product</b></h6>
-        <div class="input-group mb-4 mt-3">
+        <div class="input-group mb-5 mt-3">
             <div class="form-outline">
                 <input type="text" id="getName"/>
             </div>
         </div>
-    </div>
+</div>
+<div class="container bg-white">
+    
 
     <div class="row" id="sadia">
         
@@ -94,9 +94,7 @@ $products=mysqli_query($dbconnect,$product_select);
             </figure>
             </div>
         <?php }?>
-        
-        
-        <!-- Start Loop-->
+
     
     </div>
     
