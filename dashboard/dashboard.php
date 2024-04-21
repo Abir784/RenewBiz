@@ -251,7 +251,8 @@ $join_product_order_buyer_table_result= mysqli_query($dbconnect,$join_product_or
   </div>
   <?php } else {?>
     <div class="container">
-       <h5>Complete your profile to access dashboard</h5>
+      
+       <h5>Complete your profile to access dashboard <a href ="../individual_profile/account-profile.php" class='ml-3'> Click Here To Complete </a></h5>
     </div>
   <?php } ?>
 </div>
