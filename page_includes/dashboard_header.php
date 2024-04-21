@@ -1,5 +1,4 @@
 <?php
-$page="Orders";
 include '../db.php';
 $id=$_SESSION['login_user_id'];
 $user_select_query="SELECT * FROM user WHERE id='$id'";
