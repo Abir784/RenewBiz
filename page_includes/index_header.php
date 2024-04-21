@@ -2,20 +2,29 @@
 <html lang="en">
 <head>
 <title>RenewBiz - Grow Business and Nature</title>
+
 <meta charset="UTF-8">
 <meta name="description" content="Muse">
 <meta name="keywords" content="Muse">
 <meta name="author" content="Muse">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <!-- Muse Favicon -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" media="all" />
 <link href="images/web/small_logo.png" rel="shortcut icon" type="image/x-icon">
 <!-- Muse Plugins CSS -->
 <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" type="text/css" media="all">
 <link href="assets/vendor/aos/dist/aos.css" rel="stylesheet" type="text/css" media="all">
 <link rel="stylesheet" href="assets/css/wishlist.css">
+<link rel="stylesheet" href="assets/css/price_range.css">
 <!-- Muse Theme CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="assets/css/theme.min.css" rel="stylesheet" type="text/css" media="all">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" integrity="sha512-BHDCWLtdp0XpAFccP2NifCbJfYoYhsRSZOUM3KnAxy2b/Ay3Bn91frud+3A95brA4wDWV3yEOZrJqgV8aZRXUQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css" integrity="sha512-lvdq1fIyCp6HMWx1SVzXvGC4jqlX3e7Xm7aCBrhj5F1WdWoLe0dBzU0Sy10sheZYSkJpJcboMNO/4Qz1nJNxfA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- jQuery -->
+
+    
 </head>
 <body class="bg-gray-100 ecommerce-template">
 

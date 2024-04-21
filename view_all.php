@@ -16,8 +16,41 @@ $products=mysqli_query($dbconnect,$product_select);
             </div>
         </div>
 </div>
+<div class="container mt-4">
+        <h6 class="mt-5"><b>Price Filter</b></h6>
+        <div class="input-group mb-5 mt-3">
+            <div class="form-outline">
+                <select name="price_filter" class="form-control" id="price_filter">
+                    <option value="" selected disabled>Filter</option>
+                    <option value="0">low to high</option>
+                    <option value="1">high to low</option>
+                </select>
+            </div>
+            
+            
+        </div>
+        </div>
+</div>
+<div class="price-range-block">
+        <div class="container">
+              <div class="row">
+                  <div class="col-md-12">
+                    <div id="slider-range" class="price-filter-range" name="rangeInput"></div>
+
+                    <div style="margin:30px auto">
+                        <input type="number" min=0 max="9900" oninput="validity.valid||(value='0');" id="min_price" class="price-range-field" />
+                        <input type="number" min=0 max="10000" oninput="validity.valid||(value='10000');" id="max_price" class="price-range-field" />
+                    </div>
+
+                    <button class="price-range-search" id="price-range-submit">Search</button>
+
+                    <div id="searchResults" class="search-results-block"></div>
+                </div>
+            </div>
+          </div>
+      </div>
 <div class="container bg-white">
-    
+
 
     <div class="row" id="sadia">
         
@@ -120,4 +153,102 @@ include 'page_includes/index_footer.php'
         });
     });
     });
+</script>
+<script>
+    $(document).ready(function(){
+    $('#price_filter').on("change", function(){
+        var price_filter = $(this).val();
+        $.ajax({
+        method:'POST',
+        url:'price_filter.php',
+        data:{price_filter:price_filter},
+        success:function(response)
+        {
+            $("#sadia").html(response);
+        } 
+        });
+    });
+    });
+</script>
+<script>
+    (function ($) {
+  
+  $('#price-range-submit').hide();
+
+	$("#min_price,#max_price").on('change', function () {
+
+	  $('#price-range-submit').show();
+
+	  var min_price_range = parseInt($("#min_price").val());
+
+	  var max_price_range = parseInt($("#max_price").val());
+
+	  if (min_price_range > max_price_range) {
+		$('#max_price').val(min_price_range);
+	  }
+
+	  $("#slider-range").slider({
+		values: [min_price_range, max_price_range]
+	  });
+	  
+	});
+
+
+	$("#min_price,#max_price").on("paste keyup", function () {                                        
+
+	  $('#price-range-submit').show();
+
+	  var min_price_range = parseInt($("#min_price").val());
+
+	  var max_price_range = parseInt($("#max_price").val());
+	  
+	  if(min_price_range == max_price_range){
+
+			max_price_range = min_price_range + 100;
+			
+			$("#min_price").val(min_price_range);		
+			$("#max_price").val(max_price_range);
+	  }
+
+	  $("#slider-range").slider({
+		values: [min_price_range, max_price_range]
+	  });
+
+	});
+
+
+	$(function () {
+	  $("#slider-range").slider({
+		range: true,
+		orientation: "horizontal",
+		min: 0,
+		max: 10000,
+		values: [0, 10000],
+		step: 100,
+
+		slide: function (event, ui) {
+		  if (ui.values[0] == ui.values[1]) {
+			  return false;
+		  }
+		  
+		  $("#min_price").val(ui.values[0]);
+		  $("#max_price").val(ui.values[1]);
+		}
+	  });
+
+	  $("#min_price").val($("#slider-range").slider("values", 0));
+	  $("#max_price").val($("#slider-range").slider("values", 1));
+
+	});
+
+	$("#slider-range,#price-range-submit").click(function () {
+
+	  var min_price = $('#min_price').val();
+	  var max_price = $('#max_price').val();
+
+	  $("#searchResults").text("Here List of products will be shown which are cost between " + min_price  +" "+ "and" + " "+ max_price + ".");
+	});
+
+  
+})(jQuery);
 </script>
