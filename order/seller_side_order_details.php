@@ -1,4 +1,5 @@
 <?php 
+$page='Order Details';
 include '../session_check.php'; 
 include '../db.php'; 
 include '../page_includes/dashboard_header.php'; 
