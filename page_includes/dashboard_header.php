@@ -202,8 +202,7 @@ if ($role == 2){
           </a>
             <?php }?>
           <?php } ?>
-            <!-- <a href="#" class="text-dark ms-4 h5 mb-0 ps-2"><img src="../assets/svg/icons/setting1.svg" alt="Setting"></a>
-            <a href="#" class="text-dark ms-4 h5 mb-0 ps-2"><img src="../assets/svg/icons/hamburger1.svg" alt="Hamburger"></a> -->
+        
             <div class="dropdown d-none d-md-inline-block ps-2">
               <a href="#" class="avatar avatar-sm avatar-circle avatar-border-sm ms-4" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenuButton">
                 <img class="avatar-img" src="../images/user/<?=$user['image']?>" alt="Avatar">

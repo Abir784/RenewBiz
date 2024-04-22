@@ -12,7 +12,7 @@ session_start();
 <meta name="author" content="Muse">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <!-- Muse Favicon -->
-<link href="../favicon.ico" rel="shortcut icon" type="image/x-icon">
+<link href="../images/web/small_logo.png" rel="shortcut icon" type="image/x-icon">
 <!-- Muse Plugins CSS -->
 <link href="../assets/vendor/aos/dist/aos.css" rel="stylesheet" type="text/css" media="all">
 <!-- Muse Theme CSS -->
@@ -21,7 +21,7 @@ session_start();
 <body class="login-template">
 <!-- Muse Login -->
 <div class="position-absolute p-4 p-md-5">
-  <a href="#"><img src="../assets/svg/brand/logo-white.svg" alt="Muse"></a>
+  <a href="../index.php"><img src="../images/web/small_logo.png" alt="Muse"></a>
 </div>
 <div class="row g-0 align-items-center">
   <div class="col-md-6 col-lg-7">

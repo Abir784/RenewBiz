@@ -41,43 +41,7 @@ $highest_grossing_product=mysqli_fetch_assoc($highest_grossing_product_query_res
   <div class="container">
 
     <!-- Muse Section, Muse Brands -->
-    <section class="muse-section muse-brands">
-      <p class="text-center text-gray-600 mb-4 text-uppercase small ls-3">Popular Brands</p>
-      <div class="swiper-container swiper-clients">
-      <div class="swiper-wrapper align-items-center">
-        <div class="swiper-slide">
-          <a href="#0">
-            <img src="assets/img/templates/client-logo1.svg" alt="Client Logo">
-          </a>
-        </div>
-        <div class="swiper-slide">
-          <a href="#0">
-            <img src="assets/img/templates/client-logo2.svg" alt="Client Logo">
-          </a>
-        </div>
-        <div class="swiper-slide">
-          <a href="#0">
-            <img src="assets/img/templates/client-logo3.svg" alt="Client Logo">
-          </a>
-        </div>
-        <div class="swiper-slide">
-          <a href="#0">
-            <img src="assets/img/templates/client-logo4.svg" alt="Client Logo">
-          </a>
-        </div>
-        <div class="swiper-slide">
-          <a href="#0">
-            <img src="assets/img/templates/client-logo5.svg" alt="Client Logo">
-          </a>
-        </div>
-        <div class="swiper-slide">
-          <a href="#0">
-            <img src="assets/img/templates/client-logo7.svg" alt="Client Logo">
-          </a>
-        </div>
-      </div>
-    </div>
-    </section>
+    <!--  -->
     
     <!-- Muse Section -->
     <section class="muse-section">

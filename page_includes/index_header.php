@@ -1,3 +1,14 @@
+<?php
+include 'db.php';
+if(isset($_SESSION['login_user_id'])){
+  $id=$_SESSION['login_user_id'];
+  $user_select_query="SELECT * FROM user WHERE id='$id'";
+  $user_select_query_result=mysqli_query($dbconnect,$user_select_query);
+  $user=mysqli_fetch_assoc($user_select_query_result);
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +27,7 @@
 <!-- Muse Theme CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="assets/css/theme.min.css" rel="stylesheet" type="text/css" media="all">
+
 </head>
 <body class="bg-gray-100 ecommerce-template">
 
@@ -38,124 +50,43 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav m-auto">
-          <li class="nav-item dropdown horizontal-menu">
-            <a class="nav-link active" href="#" role="button" id="landing" data-bs-toggle="dropdown" aria-expanded="false">Landing <svg class="ms-1" data-name="icons/tabler/chevron down" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 16 16">
-                <rect data-name="Icons/Tabler/Chevron Down background" width="16" height="16" fill="none"/>
-                <path d="M.264.26A.909.909,0,0,1,1.435.174l.1.086,7.2,7.111a.881.881,0,0,1,.087,1.157l-.087.1-7.2,7.111a.908.908,0,0,1-1.273,0,.881.881,0,0,1-.087-1.157l.087-.1L6.827,8,.264,1.517A.881.881,0,0,1,.176.36Z" transform="translate(16 4) rotate(90)" fill="#1e1e1e"/>
-              </svg>
-            </a>
-            <ul class="dropdown-menu shadow-lg" aria-labelledby="single">
-              <li>
-                <ul>
-                  <li><a class="dropdown-item" href="../templates/saas-style-one.html">Saas style one</a></li>
-                  <li><a class="dropdown-item" href="../templates/saas-style-two.html">Saas style two</a></li>
-                  <li><a class="dropdown-item" href="../templates/saas-style-three.html">Saas style three</a></li>
-                  <li><a class="dropdown-item" href="../templates/dashboard.html">Dashboard light</a></li>
-                  <li><a class="dropdown-item" href="../templates/dashboard-dark.html">Dashboard dark</a></li>
-                </ul>
-              </li>
-              <li>
-                <ul>
-                  <li><a class="dropdown-item" href="../templates/education.html">Education <span class="badge badge-success fs-11 py-1 px-2 ms-1 rounded text-uppercase">New</span></a></li>
-                  <li><a class="dropdown-item" href="../templates/portfolio.html">Portfolio</a></li>
-                  <li><a class="dropdown-item" href="../templates/travel.html">Travel</a></li>
-                  <li><a class="dropdown-item" href="../templates/agency.html">Agency</a></li>
-                </ul>
-              </li>
-              <li>
-                <ul>
-                  <li><a class="dropdown-item" href="../templates/studio.html">Studio</a></li>
-                  <li><a class="dropdown-item" href="../templates/ecommerce.html">Ecommerce</a></li>
-                  <li><a class="dropdown-item" href="../templates/clinic.html">Clinic</a></li>
-                  <li><a class="dropdown-item" href="../templates/magazine.html">News</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown horizontal-menu">
-            <a class="nav-link" href="#" role="button" id="single" data-bs-toggle="dropdown" aria-expanded="false">Pages <svg class="ms-1" data-name="icons/tabler/chevron down" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 16 16">
-              <rect data-name="Icons/Tabler/Chevron Down background" width="16" height="16" fill="none"/>
-              <path d="M.264.26A.909.909,0,0,1,1.435.174l.1.086,7.2,7.111a.881.881,0,0,1,.087,1.157l-.087.1-7.2,7.111a.908.908,0,0,1-1.273,0,.881.881,0,0,1-.087-1.157l.087-.1L6.827,8,.264,1.517A.881.881,0,0,1,.176.36Z" transform="translate(16 4) rotate(90)" fill="#1e1e1e"/>
-            </svg></a>
-            <ul class="dropdown-menu shadow-lg" aria-labelledby="single">
-              <li>
-                <small class="d-block">Jobs</small>
-                <ul>
-                  <li><a class="dropdown-item" href="../pages/job-opening.html">Opening</a></li>
-                  <li><a class="dropdown-item" href="../pages/job-listing.html">Listing</a></li>
-                </ul>
-                <small class="d-block">Misc</small>
-                <ul>
-                  <li><a class="dropdown-item" href="../pages/404.html">404</a></li>
-                  <li><a class="dropdown-item" href="../pages/coming-soon.html">Coming soon</a></li>
-                  <li><a class="dropdown-item" href="../pages/maintenance.html">Maintenance</a></li>
-                </ul>
-              </li>
-              <li>
-                <small class="d-block">Company</small>
-                <ul>
-                  <li><a class="dropdown-item" href="../pages/help-center.html">Help Center</a></li>
-                  <li><a class="dropdown-item" href="../pages/pricing.html">Pricing</a></li>
-                  <li><a class="dropdown-item" href="../pages/about-style1.html">About <span class="badge badge-success fs-11 py-1 px-2 ms-1 rounded text-uppercase">New</span></a></li>
-                  <li><a class="dropdown-item" href="../pages/contact.html">Contact</a></li>
-                  <li><a class="dropdown-item" href="../pages/legal.html">Legal</a></li>
-                </ul>
-              </li>
-              <li>
-                <small class="d-block">Account</small>
-                <ul>
-                  <li><a class="dropdown-item" href="../pages/account-profile.html">General</a></li>
-                  <li><a class="dropdown-item" href="../pages/account-payment.html">Payments</a></li>
-                  <li><a class="dropdown-item" href="../pages/account-friends.html">Friends</a></li>
-                  <li><a class="dropdown-item" href="../pages/account-security.html">Security</a></li>
-                </ul>
-              </li>
-              <li>
-                <small class="d-block">Login</small>
-                <ul>
-                  <li><a class="dropdown-item" href="../pages/login.html">Cover</a></li>
-                  <li><a class="dropdown-item" href="../pages/login-simple.html">Simple</a></li>
-                </ul>
-                <small class="d-block">Gallery</small>
-                <ul>
-                  <li><a class="dropdown-item" href="../pages/gallery-mansorny.html">Mansorny</a></li>
-                  <li><a class="dropdown-item" href="../pages/grid-gallery.html">Grid</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link" href="#" role="button" id="dashboard" data-bs-toggle="dropdown" aria-expanded="false">Blog <svg class="ms-1" data-name="icons/tabler/chevron down" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 16 16">
-              <rect data-name="Icons/Tabler/Chevron Down background" width="16" height="16" fill="none"/>
-              <path d="M.264.26A.909.909,0,0,1,1.435.174l.1.086,7.2,7.111a.881.881,0,0,1,.087,1.157l-.087.1-7.2,7.111a.908.908,0,0,1-1.273,0,.881.881,0,0,1-.087-1.157l.087-.1L6.827,8,.264,1.517A.881.881,0,0,1,.176.36Z" transform="translate(16 4) rotate(90)" fill="#1e1e1e"/>
-            </svg></a>
-            <ul class="dropdown-menu shadow-lg" aria-labelledby="dashboard">
-              <li><a class="dropdown-item" href="../blog/blog-home1.html">Home 01</a></li>
-              <li><a class="dropdown-item" href="../blog/blog-home2.html">Home 02 <span class="badge badge-success fs-11 py-1 px-2 ms-1 rounded text-uppercase">New</span></a></li>
-              <li><a class="dropdown-item" href="../blog/blog-post-sidebar.html">Post 01</a></li>
-              <li><a class="dropdown-item" href="../blog/blog-post.html">Post 02</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link" href="#" role="button" id="docs" data-bs-toggle="dropdown" aria-expanded="false">Docs <svg class="ms-1" data-name="icons/tabler/chevron down" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 16 16">
-              <rect data-name="Icons/Tabler/Chevron Down background" width="16" height="16" fill="none"/>
-              <path d="M.264.26A.909.909,0,0,1,1.435.174l.1.086,7.2,7.111a.881.881,0,0,1,.087,1.157l-.087.1-7.2,7.111a.908.908,0,0,1-1.273,0,.881.881,0,0,1-.087-1.157l.087-.1L6.827,8,.264,1.517A.881.881,0,0,1,.176.36Z" transform="translate(16 4) rotate(90)" fill="#1e1e1e"/>
-            </svg></a>
-            <ul class="dropdown-menu shadow-lg" aria-labelledby="docs">
-              <li><a class="dropdown-item" href="documentation/index.html">Documentation</a></li>
-              <li><a class="dropdown-item" href="snippets/index.html">Snippets <span class="badge badge-success fs-11 py-1 px-2 ms-1 rounded text-uppercase">Build</span></a></li>
-            </ul>
-          </li>
+         
+       
+        
+        
           
         </ul>
+        
+
         <?php if(isset($_SESSION['login_user_id']) and ($_SESSION['login_done']==2)) {?>
-        <a href="cart/cart.php" class="btn btn-primary my-2 my-lg-0" style="margin-left:5px ;">My Cart</a>
-        <a href="cart/wishlist.php" class="btn btn-secondary my-2 my-lg-0" style="margin-left:5px ;">My Wishlist</a>
-        <a href="dashboard/dashboard.php" class="btn btn-success my-2 my-lg-0" style="margin-left:5px ;">Dashboard</a>
+
+        <a href="cart/cart.php" class="btn btn-trasnparent m-3" style="margin-left:5px ;"><i class="fa-solid fa-cart-shopping m-3"></i>Cart</a>
+        <a href="cart/wishlist.php" class="btn btn-trasnparent m-3" style="margin-left:5px ;"><i class="fa-solid fa-heart m-3"></i> Wishlist</a>
+        <a href="dashboard/dashboard.php" class="btn btn-trasnparent m-3" style="margin-left:5px ;"><i class="fa-solid fa-house m-3"></i>Dashboard</a>
+        <div class="dropdown d-none d-md-inline-block ps-2">
+              <a href="#" class="avatar avatar-sm avatar-circle avatar-border-sm ms-4" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenuButton">
+                <img class="avatar-img" src="images/user/<?=$user['image']?>" alt="<?=$user['image']?>">
+                <span class="avatar-status avatar-sm-status avatar-success">&nbsp;</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" href="individual_profile/account-profile.php">Profile</a></li>
+                <li><a class="dropdown-item" href="login/logout.php">Logout</a></li>
+              </ul>
+            </div>
         <?php } elseif(isset($_SESSION['login_user_id']) and ($_SESSION['login_done']==1)) {?>
-        <a href="dashboard/dashboard.php" class="btn btn-success my-2 my-lg-0">Dashboard</a>
+          <a href="dashboard/dashboard.php" class="btn btn-trasnparent m-3" style="margin-left:5px ;"><i class="fa-solid fa-house m-3"></i>Dashboard</a>
+          <div class="dropdown d-none d-md-inline-block ps-2">
+              <a href="#" class="avatar avatar-sm avatar-circle avatar-border-sm ms-4" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenuButton">
+                <img class="avatar-img" src="images/user/<?=$user['image']?>" alt="<?=$user['image']?>">
+                <span class="avatar-status avatar-sm-status avatar-success">&nbsp;</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" href="individual_profile/account-profile.php">Profile</a></li>
+                <li><a class="dropdown-item" href="login/logout.php">Logout</a></li>
+              </ul>
+            </div>
         <?php }else { ?>
-        <a href="dashboard/dashboard.php" class="btn btn-success my-2 my-lg-0"> Sign-in</a>
+        <a href="dashboard/dashboard.php" class="btn btn-trasnparent m-3"><i class="fa-solid fa-user-tie m-2"></i> Sign-in</a>
         <?php } ?>
       </div>
     </nav>
