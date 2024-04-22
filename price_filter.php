@@ -5,8 +5,12 @@ include 'db.php';
 $filter = $_POST['price_filter'];
 if($filter==0){
     $product_select="SELECT p.id as id,p.image as image,p.name as name,p.price as price,i.weight as weight FROM product p,inventory i WHERE i.product_id=p.id and p.status=1 ORDER BY p.price ASC";
-}else{
+}elseif($filter==1){
     $product_select="SELECT p.id as id,p.image as image,p.name as name,p.price as price,i.weight as weight FROM product p,inventory i WHERE i.product_id=p.id and p.status=1 ORDER BY p.price DESC";
+}else{
+    $max_price=$_POST["max_price"];
+    $min_price=$_POST["min_price"];
+    $product_select="SELECT p.id as id,p.image as image,p.name as name,p.price as price,i.weight as weight FROM product p,inventory i WHERE i.product_id=p.id and p.status=1 and p.price between '$min_price' and '$max_price'";
 }
 $query = mysqli_query($dbconnect,$product_select);
 $data='';
