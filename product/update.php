@@ -1,18 +1,13 @@
 <?php
 session_start();
 include '../db.php';
-
-
 $field_names = ["name"=>"Product Name required", "description"=>"Description required", "price"=>"Price required",'category'=>'Category Need to be Added'];
-
 $error =[];
-
 foreach($field_names as $key=>$value){
     if (empty($_POST[$key])){
         $error[$key] = $value;
         }
     }  
-
 
 if(count($error)==0){
     $id=$_POST['id'];

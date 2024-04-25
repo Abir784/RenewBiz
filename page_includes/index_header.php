@@ -69,9 +69,9 @@ if(isset($_SESSION['login_user_id'])){
 
         <?php if(isset($_SESSION['login_user_id']) and ($_SESSION['login_done']==2)) {?>
 
-        <a href="cart/cart.php" class="btn btn-trasnparent m-3" style="margin-left:5px ;"><i class="fa-solid fa-cart-shopping m-3"></i>Cart</a>
-        <a href="cart/wishlist.php" class="btn btn-trasnparent m-3" style="margin-left:5px ;"><i class="fa-solid fa-heart m-3"></i> Wishlist</a>
-        <a href="dashboard/dashboard.php" class="btn btn-trasnparent m-3" style="margin-left:5px ;"><i class="fa-solid fa-house m-3"></i>Dashboard</a>
+        <a href="cart/cart.php" class="btn btn-trasnparent m-3" style="margin-left:5px ;"><i class="fa-solid fa-cart-shopping mr-3"></i>Cart</a>
+        <a href="cart/wishlist.php" class="btn btn-trasnparent m-3" style="margin-left:5px ;"><i class="fa-solid fa-heart mr-3"></i> Wishlist</a>
+        <a href="dashboard/dashboard.php" class="btn btn-trasnparent m-3" style="margin-left:5px ;"><i class="fa-solid fa-house mr-3"></i>Dashboard</a>
         <div class="dropdown d-none d-md-inline-block ps-2">
               <a href="#" class="avatar avatar-sm avatar-circle avatar-border-sm ms-4" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenuButton">
                 <img class="avatar-img" src="images/user/<?=$user['image']?>" alt="<?=$user['image']?>">
@@ -95,7 +95,7 @@ if(isset($_SESSION['login_user_id'])){
               </ul>
             </div>
         <?php }else { ?>
-        <a href="dashboard/dashboard.php" class="btn btn-trasnparent m-3"><i class="fa-solid fa-user-tie m-2"></i> Sign-in</a>
+        <a href="dashboard/dashboard.php" class="btn btn-outline-primary m-3"><i class="fa-solid fa-user-tie mr-2"></i> Sign-in</a>
         <?php } ?>
       </div>
     </nav>
