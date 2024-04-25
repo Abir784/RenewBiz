@@ -18,6 +18,9 @@ $avg=mysqli_fetch_assoc($join_product_order_table_seller_avg_result)['avg_sell']
 // Show orders
 $join_product_order_table="SELECT o.id as order_id,p.name as product_name, o.created_at as order_date,o.updated_at as delivered_date,o.status as order_status From product p,orders o WHERE (o.product_id = p.id and p.user_id = $user_id) ORDER BY o.created_at DESC LIMIT 5";
 $join_product_order_table_result= mysqli_query($dbconnect,$join_product_order_table);
+
+
+
 // buyer part - orders count 
 $join_product_order_table_buyer="SELECT o.status as status,count(*) as count From product p,orders o WHERE (o.product_id = p.id and o.user_id ='$user_id' and (o.status=0 or o.status=2)) group by o.status";
 $join_product_order_table_buyer_result= mysqli_query($dbconnect,$join_product_order_table_buyer);
