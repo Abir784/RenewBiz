@@ -23,8 +23,22 @@ if(isset($_POST["confirm_order_from_cart"])){
     $cart_delete=mysqli_query($dbconnect,$delete_product);
     $_SESSION['success']="Order Placed !!";
     header("location:cart.php");
-
   }
+} elseif(isset($_POST['save_from_cart'])){
+  $posts=$_POST;
+  $n=((count($posts)-1)/3);
+  for ($i=0;$i<$n;$i++){
+    $quantity=$posts['quantity'.$i+1];
+    $product_id=$posts['id'.$i+1];
+    $cart_id=$posts['cart_id'.$i+1];
+    date_default_timezone_set('Asia/Dhaka');
+    $created_at = date("y-m-d h:i:s");
+    $query="UPDATE carts SET quantity= $quantity WHERE id=$cart_id";
+    $insert_query_result = mysqli_query($dbconnect,$query);
+    $_SESSION['success']="Cart Updated !!";
+    header("location:cart.php");
+  }
+
 } elseif(isset($_POST["confirm_order_from_wishlist"])){
   $posts=$_POST;
   $n=((count($posts)-1)/4);
@@ -44,22 +58,6 @@ if(isset($_POST["confirm_order_from_cart"])){
 
   }
 
-} elseif(isset($_POST['save_from_cart'])){
-  $posts=$_POST;
-  $n=((count($posts)-1)/3);
-  for ($i=0;$i<$n;$i++){
-    $quantity=$posts['quantity'.$i+1];
-    $product_id=$posts['id'.$i+1];
-    $cart_id=$posts['cart_id'.$i+1];
-    date_default_timezone_set('Asia/Dhaka');
-    $created_at = date("y-m-d h:i:s");
-    $query="UPDATE carts SET quantity= $quantity WHERE id=$cart_id";
-    $insert_query_result = mysqli_query($dbconnect,$query);
-    $_SESSION['success']="Cart Updated !!";
-    header("location:cart.php");
-
-  }
-
 } elseif(isset($_POST['save_from_wishlist'])){
   $posts=$_POST;
   $n=((count($posts)-1)/3);
@@ -75,13 +73,5 @@ if(isset($_POST["confirm_order_from_cart"])){
     header("location:wishlist.php");
 
   }
-
 }
-
-
-
-//status 0 = pending order
-//status 1 = confirmed order by seller
-//status 2 = order delivered
-
 ?>

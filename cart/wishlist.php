@@ -16,11 +16,9 @@ $product_select_query_result=mysqli_query($dbconnect,$product_select_query);
 $product_details_query="SELECT w.id AS wishlist_id, p.id,p.name AS p_name, p.price as price, p.image AS product_image, w.quantity AS quantity FROM product p, wishlist w WHERE w.product_id = p.id";
 $products=mysqli_query($dbconnect,$product_details_query);
 $grand_total=0;
-
 ?> 
 <div class="container mb-5">
   <!-- Muse Section, Py 4, Py Md 5 -->
-  <!-- Muse Section, Pt 4 -->
   <section class="muse-section pt-4 mb-5">
         <div class="row">
          <div class="col-lg-12">
@@ -47,7 +45,6 @@ $grand_total=0;
                     <tr> 
                         <?php
                         $grand_total+=($product['price']*$product['quantity']);
-
                         ?>
                         <th scope="row"><?=$key+1?></th>
                         <th><img class="rounded-pill" width="150" height="75" src="../images/product/<?=$product['product_image']?>" alt="0.jpg"></th>
@@ -59,10 +56,8 @@ $grand_total=0;
                         <input type="hidden" name="total_price<?=$key+1?>" value="<?=$product['price']*$product['quantity']?>">
                         <input type="hidden" name="wishlist_id<?=$key+1?>" value="<?=$product['wishlist_id']?>">
                         <td><a href="wishlist_delete.php?id=<?=$product['wishlist_id']?>" class="btn btn-danger" id="alertButton">Remove</a></td>
-                    
                     </tr>
-                    <?php } ?>
-                    
+                    <?php } ?>   
                 </tbody>
                 <tfoot>
                     <tr>
@@ -82,11 +77,9 @@ $grand_total=0;
       </div>
     </div>
   </section>
-
 <?php 
 include '../page_includes/dashboard_footer.php'
 ?>
-
 <?php if(isset($_SESSION['success'])) {?>
 <script>
   $(document).ready(function(){

@@ -6,8 +6,6 @@ $product_select='SELECT p.id as id,p.image as image,p.name as name,p.price as pr
 $products=mysqli_query($dbconnect,$product_select);
 ?>
 
-
-
 <div class="container mt-4">
         <h6 class="mt-4"><b>Search Product</b></h6>
         <div class="input-group mb-4 mt-3">
@@ -25,9 +23,7 @@ $products=mysqli_query($dbconnect,$product_select);
                     <option value="0">low to high</option>
                     <option value="1">high to low</option>
                 </select>
-            </div>
-            
-            
+            </div>  
         </div>
         </div>
 </div>
@@ -51,10 +47,7 @@ $products=mysqli_query($dbconnect,$product_select);
       </div>
 <div class="container bg-white">
 
-
-    <div class="row" id="sadia">
-        
-        
+    <div class="row" id="sadia"> 
         <!-- Start Loop-->
         <?php foreach($products as $product) {?>
             <?php 
@@ -64,7 +57,6 @@ $products=mysqli_query($dbconnect,$product_select);
                   $avg_rating=mysqli_fetch_assoc($avg_rating_query_result)['avg_rating'];
                     if($avg_rating == NULL){
                       $avg_rating=0;
-
                     }
             ?>
          <div class="col-lg-4">
