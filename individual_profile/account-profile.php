@@ -85,7 +85,7 @@ if ($role == 2){
               
             </ul>
             <div class="border-top border-gray-200 p-3">
-              <a href="#" class="btn btn-sm btn-primary">Log Out</a>
+              <a href="../login/logout.php" class="btn btn-sm btn-primary">Log Out</a>
             </div>
           </div>
         </aside>
@@ -225,7 +225,7 @@ if ($role == 2){
               
             </ul>
             <div class="border-top border-gray-200 p-3">
-              <a href="#" class="btn btn-sm btn-primary">Log Out</a>
+              <a href="../login/logout.php" class="btn btn-sm btn-primary">Log Out</a>
             </div>
           </div>
         </aside>
