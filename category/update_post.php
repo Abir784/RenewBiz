@@ -48,7 +48,7 @@ if(count($error)==0){
                 header('location:update.php?id='.$id);
         }
     }
-    $_SESSION['success']='category Updated Successfully';
+    $_SESSION['success']='Category Updated Successfully';
     header('location:update.php?id='.$id);
     
    
