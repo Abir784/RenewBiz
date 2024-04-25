@@ -4,13 +4,13 @@ include '../session_check.php';
 include '../page_includes/dashboard_header.php';
 include '../db.php';
 //profile page
+
 $id=$_SESSION['login_user_id'];
 $user_select_query="SELECT * FROM user WHERE id='$id'";
 $user_select_query_result=mysqli_query($dbconnect,$user_select_query);
 $user=mysqli_fetch_assoc($user_select_query_result);
 $role=$user['role'];
 
-//buyer 12-36 baad, 85 baad
 if ($role == 2){
   $if_exists="SELECT EXISTS (SELECT * FROM buyer WHERE user_id = '$id') as buyer";
   $exists_result_done=mysqli_query($dbconnect,$if_exists);
