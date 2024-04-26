@@ -116,8 +116,8 @@ $avg_rating=mysqli_fetch_assoc($avg_rating_query_result)['avg_rating'];
       <p class="h3 mt-4"><?=$product['price']?> Tk</p>
       <?php if($product['weight']>0) {?>
       <div class="d-flex justify-content-center mt-2">
-            <a href="cart/cart_post.php?id=<?=$product_id?>" class="btn btn-xl btn-dark font-weight-semibold text-uppercase me-2 px-5"><span class="px-md-5">Add to Cart</span></a>
-            <a href="cart/wishlist_post.php?id=<?=$product_id?>" class="btn btn-xl btn-warning font-weight-semibold text-uppercase me-2 px-5" title="Add to Wishlist">
+            <a href="cart/cart_post.php?id=<?=$id?>" class="btn btn-xl btn-dark font-weight-semibold text-uppercase me-2 px-5"><span class="px-md-5">Add to Cart</span></a>
+            <a href="cart/wishlist_post.php?id=<?=$id?>" class="btn btn-xl btn-warning font-weight-semibold text-uppercase me-2 px-5" title="Add to Wishlist">
             <i class="fa-sharp fa-regular fa-heart"></i>
             </a>
      </div>
