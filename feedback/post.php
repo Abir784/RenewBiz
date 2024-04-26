@@ -13,7 +13,6 @@ $buyer_id =$after_assoc['id'];
 date_default_timezone_set('Asia/Dhaka');
 $created_at = date("y-m-d h:i:s");
 $field_names = ["comment"=>"do comment", "rate"=>"rating required"];
-
 $error =[];
 
 foreach($field_names as $key=>$value){

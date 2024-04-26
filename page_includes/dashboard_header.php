@@ -6,9 +6,14 @@ $user_select_query_result=mysqli_query($dbconnect,$user_select_query);
 $user=mysqli_fetch_assoc($user_select_query_result);
 $role=$user['role'];
 $user_id=$user['id'];
+
+
 // joining order table with product table
 $join_product_order_table="SELECT p.user_id as sellers_user_id, o.user_id as buyers_user_id From product p,orders o WHERE (o.product_id = p.id and p.user_id = $user_id and o.status = 0)";
 $join_product_order_table_result= mysqli_query($dbconnect,$join_product_order_table);
+
+
+
 if ($role == 2){
   $if_exists="SELECT EXISTS (SELECT * FROM buyer WHERE user_id = '$id') as buyer";
   $exists_result_done=mysqli_query($dbconnect,$if_exists);

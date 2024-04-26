@@ -4,13 +4,14 @@ include 'page_includes/index_header.php';
 include 'db.php';
 $id=$_GET['id'];
 $select_product_query="SELECT * FROM product WHERE id='$id'";
+
 if(isset($_SESSION['login_user_id'])){
     $user_id=$_SESSION['login_user_id'];
     $if_buyer_exists="SELECT EXISTS (SELECT * FROM buyer WHERE user_id = '$user_id') as buyer";
     $buyer_exists_result=mysqli_query($dbconnect,$if_buyer_exists);
     $exists_result=mysqli_fetch_assoc($buyer_exists_result);
     $data=$exists_result['buyer'];
-    
+
     if ($data){
         
         $if_product_exists="SELECT EXISTS (SELECT * FROM orders WHERE (user_id = '$user_id' and product_id = '$id' and status = 2)) as orders";
@@ -22,6 +23,7 @@ if(isset($_SESSION['login_user_id'])){
         $product_data=false;
     }
   }
+
 
 $select_product_query="SELECT * FROM product WHERE id='$id'";
 $product_id=$_GET['id'];
@@ -47,8 +49,10 @@ if(isset($_SESSION['login_user_id'])){
       $product_data=false;
   }
 }
+
 $select_buyer_feedback="SELECT u.image as profile_image ,b.name as buyer_name,bf.comment,bf.rating FROM user u, buyer_feedback bf,buyer b WHERE (u.id=b.user_id and b.id=bf.buyer_id and product_id='$id')";
 $buyer_feedback_query=mysqli_query($dbconnect,$select_buyer_feedback);
+
 $avg_query= "SELECT avg(rating) as avg_rating FROM buyer_feedback WHERE product_id='$id'";
 $avg_rating_query_result=mysqli_query($dbconnect,$avg_query);
 $avg_rating=mysqli_fetch_assoc($avg_rating_query_result)['avg_rating'];
@@ -131,7 +135,7 @@ $avg_rating=mysqli_fetch_assoc($avg_rating_query_result)['avg_rating'];
                     <label for="feedback">Your Feedback</label>
                     <textarea name="comment" id="feedback" class="form-control" rows="5" required></textarea>
                 </div>
-                <div class="form-class">
+                <div class="form-group">
                   <label for="rating" class="form-control"></label>
                   <div class="rate">
                     <input type="radio" id="star5" name="rate" value="5" />
@@ -149,7 +153,6 @@ $avg_rating=mysqli_fetch_assoc($avg_rating_query_result)['avg_rating'];
                 <div class="mb-3" >
                     <button type="submit" class="btn btn-success">submit</button>
                 </div>
-
             </form>
         </div>
     </div>
