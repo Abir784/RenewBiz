@@ -2,10 +2,7 @@
 session_start();
 include '../db.php';
 $user_id=$_SESSION['login_user_id'];
-$buyer_id_query="SELECT * FROM buyer WHERE user_id=$user_id";
-$buyer_id_done=mysqli_query($dbconnect,$buyer_id_query);
-$buyer=mysqli_fetch_assoc($buyer_id_done);
-$buyer_id=$buyer['id'];
+
 
 if(isset($_POST["confirm_order_from_cart"])){
   $posts=$_POST;
