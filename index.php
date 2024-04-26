@@ -179,7 +179,7 @@ $highest_grossing_product=mysqli_fetch_assoc($highest_grossing_product_query_res
           <?php if($highest_grossing_product['weight']>0){?>
                        <p class="h3 mt-4"><?=$highest_grossing_product['product_price']?> Taka</p>
                 <?php }else{?>
-                  <p class="h3 mt-4"><strike><?=$highest_grossing_product['price']?> Taka</strike> Out of Stock </p>
+                  <p class="h3 mt-4"><strike><?=$highest_grossing_product['product_price']?> Taka</strike> Out of Stock </p>
 
                 <?php } ?>
 
