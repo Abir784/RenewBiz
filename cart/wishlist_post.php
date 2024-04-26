@@ -3,7 +3,6 @@ session_start();
 include '../db.php';
 
 $id = $_GET['id'];
-
 $user_id=$_SESSION['login_user_id'];
 $if_exists="SELECT EXISTS (SELECT * FROM buyer WHERE user_id = '$user_id') as buyer";
 $exists_result_done=mysqli_query($dbconnect,$if_exists);

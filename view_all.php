@@ -6,35 +6,31 @@ $product_select='SELECT p.id as id,p.image as image,p.name as name,p.price as pr
 $products=mysqli_query($dbconnect,$product_select);
 ?>
 
-
-
 <div class="container mt-4">
-        <h6 class="mt-5"><b>Search Product</b></h6>
-        <div class="input-group mb-5 mt-3">
+        <h6 class="mt-4"><b>Search Product</b></h6>
+        <div class="input-group mb-4 mt-3">
             <div class="form-outline">
                 <input type="text" id="getName"/>
             </div>
         </div>
 </div>
 <div class="container mt-4">
-        <h6 class="mt-5"><b>Price Filter</b></h6>
-        <div class="input-group mb-5 mt-3">
+        <h6 class="mt-4"><b>Price Filter</b></h6>
+        <div class="input-group mb-3 mt-2">
             <div class="form-outline">
                 <select name="price_filter" class="form-control" id="price_filter">
                     <option value="" selected disabled>Filter</option>
                     <option value="0">low to high</option>
                     <option value="1">high to low</option>
                 </select>
-            </div>
-            
-            
+            </div>  
         </div>
         </div>
 </div>
 <div class="price-range-block">
-        <div class="container">
+        <div class="container mb-3"> Price Range Filter
               <div class="row">
-                  <div class="col-md-12">
+                  <div class="col-md-12"> 
                     <div id="slider-range" class="price-filter-range" name="rangeInput"></div>
 
                     <div style="margin:30px auto">
@@ -51,10 +47,7 @@ $products=mysqli_query($dbconnect,$product_select);
       </div>
 <div class="container bg-white">
 
-
-    <div class="row" id="sadia">
-        
-        
+    <div class="row" id="sadia"> 
         <!-- Start Loop-->
         <?php foreach($products as $product) {?>
             <?php 
@@ -64,7 +57,6 @@ $products=mysqli_query($dbconnect,$product_select);
                   $avg_rating=mysqli_fetch_assoc($avg_rating_query_result)['avg_rating'];
                     if($avg_rating == NULL){
                       $avg_rating=0;
-
                     }
             ?>
          <div class="col-lg-4">

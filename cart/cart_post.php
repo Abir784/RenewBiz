@@ -3,7 +3,6 @@ session_start();
 include '../db.php';
 
 $id = $_GET['id'];
-
 $user_id=$_SESSION['login_user_id'];
 $if_exists="SELECT EXISTS (SELECT * FROM buyer WHERE user_id = '$user_id') as buyer";
 $exists_result_done=mysqli_query($dbconnect,$if_exists);
@@ -37,7 +36,6 @@ if ($data){
         $_SESSION['success']='Added to Cart Successfully';
         header('location:../add_to_cart.php?id='.$id);
     }
-
 //buyer id doesn't exists in buyer table
 }else{
     $_SESSION['error1']="You have to Sign up as buyer to buy this product";

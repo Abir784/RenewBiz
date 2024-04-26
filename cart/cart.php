@@ -47,7 +47,6 @@ $grand_total=0;
                     <tr> 
                         <?php
                         $grand_total+=($product['price']*$product['quantity']);
-
                         ?>
                         <th scope="row"><?=$key+1?></th>
                         <th><img class="rounded-pill" width="150" height="75" src="../images/product/<?=$product['product_image']?>" alt="0.jpg"></th>
@@ -59,10 +58,8 @@ $grand_total=0;
                         <input type="hidden" name="total_price<?=$key+1?>" value="<?=$product['price']*$product['quantity']?>">
                         <input type="hidden" name="cart_id<?=$key+1?>" value="<?=$product['cart_id']?>">
                         <td><a href="cart_delete.php?id=<?=$product['cart_id']?>" class="btn btn-danger" id="alertButton">Remove</a></td>
-                    
                     </tr>
-                    <?php } ?>
-                    
+                    <?php } ?>    
                 </tbody>
                 <tfoot>
                     <tr>
@@ -82,11 +79,9 @@ $grand_total=0;
       </div>
     </div>
   </section>
-
 <?php 
 include '../page_includes/dashboard_footer.php'
 ?>
-
 <?php if(isset($_SESSION['success'])) {?>
 <script>
   $(document).ready(function(){
