@@ -2,15 +2,20 @@
 session_start();
 include('page_includes/index_header.php');
 include 'db.php';
+
+
 // products;
 $product_select='SELECT p.id as id,p.image as image,p.name as name,p.price as price,i.weight as weight FROM product p,inventory i WHERE i.product_id=p.id and p.status=1';
 $products=mysqli_query($dbconnect,$product_select);
+
+
 //categories
 $category_select='SELECT * FROM category';
 $categorys=mysqli_query($dbconnect,$category_select);
 // New arrivals
 $new_arrival_products='SELECT p.id as id,p.image as image,p.name as name,p.price as price,i.weight as weight FROM product p,inventory i WHERE (i.product_id=p.id and p.status=1) ORDER BY p.created_at DESC LIMIT 5';
 $new_products=mysqli_query($dbconnect,$new_arrival_products);
+
 // Highest Grossing Proudct
 $highest_grossing_product_query='SELECT p.id as product_id,p.image as product_image,p.name as product_name,p.price as product_price ,p.description as p_description,i.weight as weight, count(p.id) as num_of_orders From product p,orders o,inventory i WHERE i.product_id = p.id and o.product_id = p.id GROUP BY p.id ORDER BY num_of_orders DESC LIMIT 1';
 $highest_grossing_product_query_result=mysqli_query($dbconnect,$highest_grossing_product_query);
