@@ -32,6 +32,12 @@ if(count($error)==0){
         $allowed_extention=array('jpg','jpeg','png');
         if(in_array($extention,$allowed_extention)){
             if($uploaded_file['size']<20000000){
+                $select_photo_query="SELECT image FROM category WHERE id='$id'";
+                $select_photo_query_result=mysqli_query($dbconnect,$select_photo_query);
+                $photo=mysqli_fetch_assoc($select_photo_query_result);
+                if($photo['image'] != '0.jpg'){
+                    unlink('../images/category/'.$photo['image']);
+                }
                 $new_file_name=$id.'.'.$extention;
                 $new_location='../images/category/'.$new_file_name;
                 move_uploaded_file($uploaded_file['tmp_name'],$new_location);
