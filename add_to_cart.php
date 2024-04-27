@@ -28,29 +28,6 @@ $select_product_query="SELECT * FROM product p,inventory i WHERE p.id='$id' and 
 $select_product_query_result=mysqli_query($dbconnect,$select_product_query);
 $product=mysqli_fetch_assoc($select_product_query_result);
 
-
-
-
-if(isset($_SESSION['login_user_id'])){
-
-  $user_id=$_SESSION['login_user_id'];
-
-  $if_buyer_exists="SELECT EXISTS (SELECT * FROM buyer WHERE user_id = '$user_id') as buyer";
-  $buyer_exists_result=mysqli_query($dbconnect,$if_buyer_exists);
-  $exists_result=mysqli_fetch_assoc($buyer_exists_result);
-  $data=$exists_result['buyer'];
-  
-  if ($data){
-      $if_product_exists="SELECT EXISTS (SELECT * FROM orders WHERE (user_id = '$user_id' and product_id = '$id' and status=2)) as orders";
-      $product_exists_result=mysqli_query($dbconnect,$if_product_exists);
-      $product_exists=mysqli_fetch_assoc($product_exists_result);
-      $product_data=$product_exists['orders'];
-  
-  } else {
-      $product_data=false;
-  }
-}
-
 $select_buyer_feedback="SELECT u.image as profile_image ,b.name as buyer_name,bf.comment,bf.rating FROM user u, buyer_feedback bf,buyer b WHERE (u.id=b.user_id and b.id=bf.buyer_id and product_id='$id')";
 $buyer_feedback_query=mysqli_query($dbconnect,$select_buyer_feedback);
 

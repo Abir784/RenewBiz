@@ -52,7 +52,7 @@ session_start();
           </div>
           <div class="mt-3">
           <p>Don't have a seller account yet? <a href="signup.php">Sign Up as Seller</a></p>
-          <p class="mt-2">Don't have biyer account yet? <a href="../buyer_reg/buyer_reg.php">Sign up as buyer</a></p>
+          <p class="mt-2">Don't have biyer account yet? <a href="buyer_reg.php">Sign up as buyer</a></p>
             
           </div>
         </form>

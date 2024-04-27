@@ -8,6 +8,8 @@ foreach($field_names as $key=>$value){
         $error[$key] = $value;
         }
     }  
+
+
 if(count($error)==0){
     $name=$_POST['name'];
     $desp=$_POST['description'];
@@ -18,7 +20,9 @@ if(count($error)==0){
     date_default_timezone_set('Asia/Dhaka');
     $created_at = date("y-m-d h:i:s");
     $query = "INSERT INTO product(user_id,category_id,name,status,description,price,created_at) VALUES ('$user_id','$category_id','$name',0,'$desp','$price','$created_at')";
+
     $insert_query_result = mysqli_query($dbconnect,$query);
+
     if($_FILES['product_image']['error']==0){
         $id = mysqli_insert_id($dbconnect);
         $file_name=$uploaded_file['name'];

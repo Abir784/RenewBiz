@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2024 at 09:46 PM
+-- Generation Time: Apr 27, 2024 at 06:16 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -35,7 +35,7 @@ CREATE TABLE `buyer` (
   `phone_number` varchar(15) DEFAULT NULL,
   `business_name` varchar(255) DEFAULT NULL,
   `business_industry` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -44,8 +44,7 @@ CREATE TABLE `buyer` (
 --
 
 INSERT INTO `buyer` (`id`, `user_id`, `name`, `address`, `phone_number`, `business_name`, `business_industry`, `created_at`, `updated_at`) VALUES
-(4, 3, 'Shukhi', 'Error dicta architec', '0155526222', 'Charissa Chase', 'Reiciendis earum ips', '2020-03-23 21:22:52', '2024-04-03 10:27:16'),
-(5, 1, 'Byron Berg', 'Occaecat at laborios', 'Molestiae eaque', 'Keefe Rios', 'Et corrupti officii', '2003-04-24 03:17:43', '2024-04-03 15:17:43');
+(1, 2, 'Jerry Booker', 'Anim itaque omnis re', '6546512', 'Basia Townsend', 'Dolor aliquam ration', '2027-04-23 19:00:28', NULL);
 
 -- --------------------------------------------------------
 
@@ -59,7 +58,7 @@ CREATE TABLE `buyer_feedback` (
   `buyer_id` int(11) DEFAULT NULL,
   `comment` text DEFAULT NULL,
   `rating` int(11) DEFAULT NULL,
-  `created_at` timestamp NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -74,7 +73,7 @@ CREATE TABLE `carts` (
   `product_id` int(11) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
   `buyer_id` int(11) DEFAULT NULL,
-  `created_at` timestamp NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -88,7 +87,7 @@ CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT '0.jpg',
-  `created_at` timestamp NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -97,9 +96,10 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `name`, `image`, `created_at`, `updated_at`) VALUES
-(1, 'Plastic', '0.jpg', '2024-03-16 15:32:36', '2024-03-27 09:49:42'),
-(2, 'Paper', '0.jpg', '2024-03-16 15:32:36', '2024-03-27 09:49:47'),
-(3, 'Glass', '0.jpg', '2024-03-16 15:32:36', '2024-03-27 09:49:14');
+(1, 'Plastic', '1.png', '2024-04-27 06:14:27', '2024-04-27 06:20:12'),
+(2, 'Metal', '2.jpg', '2024-04-27 06:14:36', '2024-04-27 06:33:50'),
+(5, 'Electronics', '0.jpg', '2024-04-27 06:15:11', NULL),
+(6, 'Paper', '6.jpg', '2024-04-27 06:15:24', '2024-04-27 06:36:05');
 
 -- --------------------------------------------------------
 
@@ -111,9 +111,23 @@ CREATE TABLE `inventory` (
   `id` int(11) NOT NULL,
   `product_id` int(11) DEFAULT NULL,
   `weight` decimal(10,2) DEFAULT NULL,
-  `created_at` timestamp NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `inventory`
+--
+
+INSERT INTO `inventory` (`id`, `product_id`, `weight`, `created_at`, `updated_at`) VALUES
+(1, 1, 100.00, '2024-04-27 06:40:34', '2024-04-27 06:44:55'),
+(2, 2, 25.00, '2024-04-27 06:41:12', '2024-04-27 06:51:54'),
+(3, 3, 50.00, '2024-04-27 06:47:37', NULL),
+(4, 5, 50.00, '2024-04-27 06:58:41', NULL),
+(5, 4, 20.00, '2024-04-27 06:59:06', NULL),
+(6, 6, 20.00, '2024-04-27 06:59:19', NULL),
+(7, 7, 20.00, '2024-04-27 06:59:25', NULL),
+(8, 8, 20.00, '2024-04-27 06:59:31', NULL);
 
 -- --------------------------------------------------------
 
@@ -128,18 +142,9 @@ CREATE TABLE `orders` (
   `weight` decimal(10,2) DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
   `total_price` decimal(10,2) DEFAULT NULL,
-  `created_at` timestamp NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `user_id`, `product_id`, `weight`, `status`, `total_price`, `created_at`, `updated_at`) VALUES
-(6, 1, 16, 5.00, '2', 615.00, '2003-04-24 03:21:31', '2024-04-03 16:02:57'),
-(8, 3, 18, 10.00, '2', 3500.00, '2024-04-03 16:19:23', '2004-04-24 03:59:56'),
-(9, 1, 16, 10.00, '2', 4000.00, '2024-04-03 16:19:23', '2004-04-24 04:00:00');
 
 -- --------------------------------------------------------
 
@@ -156,7 +161,7 @@ CREATE TABLE `product` (
   `description` text DEFAULT NULL,
   `image` varchar(255) DEFAULT '0.jpg',
   `price` decimal(10,2) DEFAULT NULL,
-  `created_at` timestamp NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -165,9 +170,14 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`Id`, `user_id`, `category_id`, `name`, `status`, `description`, `image`, `price`, `created_at`, `updated_at`) VALUES
-(15, 2, 1, 'Bottle Waste', '1', ' Sed ipsum excepturi ', '15.png', 216.00, '2017-03-23 21:26:07', '2024-04-03 10:24:32'),
-(16, 3, 3, 'Raymond Rush', '1', 'Do quae corporis fac', '0.jpg', 123.00, '2017-03-23 21:26:15', '2024-04-03 16:01:26'),
-(18, 3, 1, 'Cheryl Hunter', '1', 'Aut dicta commodo se', '0.jpg', 488.00, '2017-03-23 21:27:06', '2024-04-03 15:23:43');
+(1, 1, 1, 'Biodegradable plastics', '1', '  Biodegradable plastic cups are eco-friendly alternatives to traditional plastic cups. Made from plant-based materials like cornstarch or sugarcane, they break down naturally over time, reducing environmental impact. These cups are designed to decompose into harmless organic matter, water, and carbon dioxide, leaving behind no harmful residues. They offer a sustainable solution for single-use items, minimizing pollution and helping to preserve the planet for future generations ', '1.jpg', 200.00, '2024-04-27 06:40:22', '2024-04-27 06:57:12'),
+(2, 1, 1, 'Iron alloy', '1', ' Iron alloy is a material formed by combining iron with one or more other elements, typically to enhance its properties for specific applications. Common alloying elements include carbon, chromium, nickel, and manganese. ', '0.jpg', 20.00, '2024-04-27 06:41:04', '2024-04-27 06:54:20'),
+(3, 1, 6, 'Paper Bags', '1', '  Biodegradable paper bags are environmentally friendly alternatives to traditional plastic bags. Made from renewable resources like wood pulp or recycled paper, these bags are designed to break down naturally when discarded, reducing waste and pollution. They decompose into organic materials, water, and carbon dioxide, leaving behind minimal environmental impact. Biodegradable paper bags offer a sustainable option for packaging and carrying items, helping to protect ecosystems and wildlife ', '3.jpeg', 50.00, '2024-04-27 06:43:17', '2024-04-27 06:57:25'),
+(4, 1, 5, 'Recycled cardboard', '1', 'Recycled cardboard is a sustainable material created from reclaimed paper fibers, primarily sourced from used cardboard boxes and packaging materials.', '0.jpg', 667.00, '2024-04-27 06:49:54', '2024-04-27 06:52:51'),
+(5, 1, 1, 'Polypropylene', '1', 'Polypropylene is a versatile thermoplastic polymer widely used in various industries for its excellent combination of properties. It is lightweight, durable, and resistant to moisture, chemicals, and fatigue, making it suitable for applications ranging from packaging and textiles to automotive parts and medical devices. ', '0.jpg', 294.00, '2024-04-27 06:50:06', '2024-04-27 06:54:04'),
+(6, 1, 2, 'Aluminium', '1', '  In illo natus numqua  ', '6.jpeg', 165.00, '2024-04-27 06:50:19', '2024-04-27 06:58:18'),
+(7, 1, 2, 'Copper', '1', '  Aliquam nesciunt ni  ', '7.jpeg', 859.00, '2024-04-27 06:50:22', '2024-04-27 06:57:57'),
+(8, 1, 2, 'Brass', '1', 'Ad obcaecati atque d', '8.jpeg', 2500.00, '2024-04-27 06:56:45', NULL);
 
 -- --------------------------------------------------------
 
@@ -183,7 +193,7 @@ CREATE TABLE `seller` (
   `phone_number` varchar(15) DEFAULT NULL,
   `business_name` varchar(255) DEFAULT NULL,
   `business_industry` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -192,9 +202,7 @@ CREATE TABLE `seller` (
 --
 
 INSERT INTO `seller` (`id`, `user_id`, `name`, `address`, `phone_number`, `business_name`, `business_industry`, `created_at`, `updated_at`) VALUES
-(3, 8, 'Leslie Oneal', 'Cupidatat deserunt e', 'Animi dolorem e', 'Julie Dudley', 'Sed dolorum quos in ', '2020-03-23 21:03:28', '2024-03-20 09:03:28'),
-(7, 3, 'Asaf Abir', 'Mirpur', '019544232', 'Shukhi Recycle', 'Plastic Bag Manefacturer', '2003-04-24 04:52:44', '2004-04-24 04:01:39'),
-(8, 2, 'MD ABIR HOSSAIN ABIR', 'MATUAIL UTTARPARA', '01552484784', 'Paper Cuts Inc.', 'Paper Recycling', '2005-04-24 06:05:29', '2024-04-04 18:05:29');
+(1, 1, 'John Doe', 'Badda', '954788215', 'Eco Poly creations', 'Polythin Recycling', '2027-04-24 06:13:36', NULL);
 
 -- --------------------------------------------------------
 
@@ -217,9 +225,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `password`, `image`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'abir@gmail.com', '$2y$10$PG4Uci690aPF8lZVov/yJ.x7l5ceUyqK8etqpEu5yG4sLmLJpBPci', '1.jpg', 2, '2022-03-23 22:50:51.000000', NULL),
-(2, 'abirhossain@gmail.com', '$2y$10$Cyx2Pxu3DfE7Ud83QMXNmu/i4d4OS0/md2dbEiSnAEPVowHekKSiy', 'avatar1.svg', 1, NULL, NULL),
-(3, 'seller@gmail.com', '$2y$10$h8IXbzeRDMED9Ocpogw4LuMO6XgSzK3D.N57yPbFxf6TfzafZr01y', 'avatar1.svg', 1, NULL, NULL);
+(1, 'seller@gmail.com', '$2y$10$qcJ9PD1ZoATzmaq5DwBNkuVPEDgdeDVwJZgmHwLlvAudsOF/UplSi', 'avatar1.svg', 1, NULL, NULL),
+(2, 'buyer@gmail.com', '$2y$10$cakIsLIPCix878lmNGOWsOvZmvAQaBw89gQYzj0eJDczwmEXwKioC', 'avatar1.svg', 2, '2027-04-24 06:12:26.000000', NULL),
+(3, 'buywe@gmail.com', '$2y$10$EN8XWz7zBYa7Jb69DSmsDeA7EcQqc3oOQjNXe3CcpxfsKjMgR3EdW', 'avatar1.svg', 2, '2027-04-23 19:00:08.000000', NULL);
 
 -- --------------------------------------------------------
 
@@ -232,7 +240,7 @@ CREATE TABLE `wishlist` (
   `product_id` int(11) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
   `buyer_id` int(11) DEFAULT NULL,
-  `created_at` timestamp NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -312,7 +320,7 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT for table `buyer`
 --
 ALTER TABLE `buyer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `buyer_feedback`
@@ -324,37 +332,37 @@ ALTER TABLE `buyer_feedback`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `seller`
 --
 ALTER TABLE `seller`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
