@@ -39,6 +39,6 @@ if ($data){
 //buyer id doesn't exists in buyer table
 }else{
     $_SESSION['error1']="You have to Sign up as buyer to buy this product";
-    header('location:../buyer_reg/buyer_reg.php');
+    header('location:../login/buyer_reg.php');
 }
 ?>
